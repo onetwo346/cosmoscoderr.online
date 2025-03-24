@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Coderr - Galactic Portfolio</title>
+    <meta name="description" content="Portfolio of Cosmos Coderr - Game Developer, Web Creator, and Tool Builder">
+    <meta name="keywords" content="game development, web development, AI tools, portfolio">
+    <meta name="author" content="Cosmos Coderr">
+    <meta property="og:title" content="Cosmos Coderr - Galactic Portfolio">
+    <meta property="og:description" content="Portfolio of Cosmos Coderr - Game Developer, Web Creator, and Tool Builder">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ffff;
+            --secondary: #ff00ff;
+            --dark-bg: #0f0f0f;
+            --card-bg: rgba(0, 255, 255, 0.1);
+            --text-light: #ffffff;
+            --transition-speed: 0.3s;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, var(--dark-bg), #1a0033, #003366);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        /* Cosmic Stars Background */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+            border-radius: 50%;
+            animation: shoot var(--shoot-duration) linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(var(--shoot-x)) translateY(var(--shoot-y)); opacity: 0; }
+        }
+        
+        /* Header Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        
+        header {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px var(--secondary), 0 0 40px var(--primary);
+            animation: glow 2s infinite alternate;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--primary); }
+            to { text-shadow: 0 0 20px var(--secondary), 0 0 40px var(--primary), 0 0 60px var(--secondary); }
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--secondary);
+            max-width: 800px;
+            line-height: 1.5;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            transition: all var(--transition-speed);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+            background: rgba(255, 0, 255, 0.1);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        /* Blog Section */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .blog-post {
+            background: rgba(255, 0, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.2);
+        }
+        
+        .blog-post h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .blog-post .date {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color var(--transition-speed);
+            display: inline-block;
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+        }
+        
+        /* Blog Post Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: var(--dark-bg);
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+            position: relative;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color var(--transition-speed);
+            background: none;
+            border: none;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+        
+        .modal-date {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .modal-body {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+        
+        .modal-body ul, .modal-body ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 8px;
+        }
+        
+        .modal-body h4 {
+            color: var(--primary);
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .project {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .project:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px var(--secondary), 0 0 60px var(--primary);
+            background: rgba(0, 255, 255, 0.2);
+        }
+        
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            margin-bottom: 15px;
+        }
+        
+        .project:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project h3 {
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .project p {
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        /* Donation Section */
+        .donation-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        
+        .donation-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .donation-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-light);
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: color var(--transition-speed);
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* X Logo Styling */
+        .x-logo {
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 1.7rem;
+            display: inline-block;
+            transform: scale(1.1);
+        }
+        
+        /* Scroll-to-top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity var(--transition-speed), background var(--transition-speed);
+            z-index: 999;
+            font-size: 1.5rem;
+            border: none;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+        
+        .scroll-to-top:hover {
+            background: var(--primary);
+        }
+        
+        /* Loading Animation */
+        .loader {
+            display: none;
+            border: 4px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Focus styles for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 15px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding-top: 80px;
+            }
+            
+            .projects-grid, .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+                padding: 20px;
+                width: 90%;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">PORTFOLIO</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#blog">Blog</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="stars-container" id="starsContainer"></div>
+        <header>COSMOS CODERR</header>
+        <div class="subtitle">Game Developer | Web Creator | Tool Builder</div>
+    </section>
+
+    <main class="container">
+        <!-- Blog Section First -->
+        <section id="blog">
+            <h2>Latest Updates</h2>
+            <div class="blog-posts" id="blogPostsContainer">
+                <!-- Blog posts will be loaded here dynamically -->
+                <div class="loader" id="blogLoader"></div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Creations</h2>
+            <div class="projects-grid">
+                <div class="project" onclick="window.location.href='https://pic2puzz.space'">
+                    <img src="pic.jpg" alt="Pic2Puzz - Turn any image into a puzzle game" loading="lazy">
+                    <h3>Pic2Puzz</h3>
+                    <p>Turn any image into a puzzle game with AI-generated challenges. Perfect for casual gamers and puzzle enthusiasts.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://earthquakeanalyst.space'">
+                    <img src="quake.jpg" alt="Earthquake Analyst - Real-time earthquake data platform" loading="lazy">
+                    <h3>Earthquake Analyst</h3>
+                    <p>Interactive platform providing real-time earthquake data, AI-driven insights, and predictive analyses.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://xowars.space'">
+                    <img src="xowars.jpg" alt="XOWARS - Strategic neon battlefield game" loading="lazy">
+                    <h3>XOWARS</h3>
+                    <p>Strategic game with multiple modes: local duels, AI opponents, and online matches through alliance codes.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://quickwrap.space'">
+                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1000" alt="Quick Wrap - P2P messaging system" loading="lazy">
+                    <h3>Quick Wrap</h3>
+                    <p>Futuristic P2P messaging system with unique encryption and self-destructing messages.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://wordgridquest.xyz'">
+                    <img src="word.jpg" alt="Word Grid Quest - Cosmic word puzzle game" loading="lazy">
+                    <h3>Word Grid Quest</h3>
+                    <p>Online word puzzle game with interstellar theme where players uncover hidden words in a galactic grid.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://onetwo346.github.io/Make-this-recipe-'">
+                    <img src="makethis.jpg" alt="Make This Recipe" loading="lazy">
+                    <h3>Make This Recipe</h3>
+                    <p>Make This Recipe" is an interactive web application designed to assist users in discovering recipes based on the ingredients they have available. Upon entering the virtual kitchen, users can input their on-hand ingredients, and the "Recipe Buddy" will generate corresponding recipe suggestions.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://onetwo346.github.io/horonum'">
+                    <img src="horonum.jpg" alt="Horonum - Cosmic word puzzle game" loading="lazy">
+                    <h3>Horonum</h3>
+                    <p>Horonum is an interactive horoscope experience that provides users with personalized astrological insights. By simply visiting the site, users receive randomly generated predictions that offer guidance, inspiration, and a touch of cosmic mystery.</p>
+                </div>
+
+                <div class="project" onclick="window.location.href='https://beeek.online'">
+                    <img src="beeek.jpg" alt="Beeek - Neural text-to-speech system" loading="lazy">
+                    <h3>Beeek</h3>
+                    <p>Advanced neural text-to-speech system that converts written documents into lifelike audio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Section -->
+        <section class="donation-section">
+            <h3>Support My Work</h3>
+            <p>If you enjoy my projects and want to support future development, consider making a donation.</p>
+            <a href="https://buy.stripe.com/00g16Q5xv4Cw05G6oo" class="donation-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-heart"></i> Donate via Stripe
+            </a>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                    <a href="mailto:cosmoscoderr@gmail.com">cosmoscoderr@gmail.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Cosmos Coderr. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://x.com/cosmoscoderr" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+                <span class="x-logo">𝕏</span>
+            </a>
+        </div>
+        <p>Made with <i class="fas fa-heart" style="color: var(--secondary);"></i> in the cosmos</p>
+    </footer>
+
+    <!-- Blog Post Modal -->
+    <div class="modal" id="blogModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal" aria-label="Close modal">&times;</button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <span class="modal-date" id="modalDate"></span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Create cosmic star background
+        function createStars() {
+            const container = document.getElementById('starContainer');
+            if (!container) return;
+            
+            // Create 200 twinkling stars
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random properties for each star
+                const size = Math.random() * 3;
+                const duration = 5 + Math.random() * 10;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(star);
+            }
+            
+            // Create 5 shooting stars
+            for (let i = 0; i < 5; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                
+                const x = 50 + Math.random() * 30;
+                const y = 20 + Math.random() * 30;
+                const duration = 3 + Math.random() * 2;
+                const delay = Math.random() * 15;
+                
+                shootingStar.style.setProperty('--shoot-x', `${x}vw`);
+                shootingStar.style.setProperty('--shoot-y', `${y}vh`);
+                shootingStar.style.setProperty('--shoot-duration', `${duration}s`);
+                shootingStar.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(shootingStar);
+            }
+        }
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // Scroll-to-top button
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL without page reload
+                        if (history.pushState) {
+                            history.pushState(null, null, targetId);
+                        } else {
+                            location.hash = targetId;
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Project card click handling
+        document.querySelectorAll('.project').forEach(project => {
+            project.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    window.location.href = project.getAttribute('onclick').match(/'(.*?)'/)[1];
+                }
+            });
+            
+            // Add role for better accessibility
+            project.setAttribute('role', 'button');
+            project.setAttribute('tabindex', '0');
+        });
+
+        // Blog Modal functionality
+        const blogModal = document.getElementById('blogModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDate = document.getElementById('modalDate');
+        const modalBody = document.getElementById('modalBody');
+
+        function openModal() {
+            blogModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            closeModal.focus();
+        }
+
+        function closeModalFunc() {
+            blogModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        closeModal.addEventListener('click', closeModalFunc);
+
+        window.addEventListener('click', (e) => {
+            if (e.target === blogModal) {
+                closeModalFunc();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && blogModal.style.display === 'block') {
+                closeModalFunc();
+            }
+        });
+
+        // AI-generated blog posts with updated content
+        const blogPosts = [
+            {
+                title: "Introducing Story to Vid AI",
+                date: "March 25, 2025",
+                summary: "Announcing the launch of Story to Vid, an AI-powered tool that transforms written narratives into engaging video content with automatic visuals and voiceovers.",
+                fullContent: `<p>Today marks a significant milestone as we officially launch Story to Vid, our revolutionary AI-powered platform that transforms written narratives into captivating video content. This tool represents months of dedicated development and testing, and we're thrilled to share it with the world.</p>
+                <p>Story to Vid utilizes advanced natural language processing and computer vision algorithms to analyze your text and generate appropriate visuals, animations, and even voiceovers. Whether you're an educator looking to make lessons more engaging, a marketer creating content, or a storyteller bringing your narratives to life, this tool is designed for you.</p>
+                <h4>Key Features</h4>
+                <ul>
+                    <li><strong>Multiple Visual Styles:</strong> Choose from various artistic styles to match your content's tone</li>
+                    <li><strong>Smart Scene Transitions:</strong> Automatic pacing adjustments based on content analysis</li>
+                    <li><strong>Voice Customization:</strong> Select from 20+ voice options with emotion modulation</li>
+                    <li><strong>One-Click Export:</strong> Optimized formats for all major platforms</li>
+                    <li><strong>Collaboration Tools:</strong> Real-time editing with team members</li>
+                </ul>
+                <h4>Early Success Metrics</h4>
+                <p>Our beta testers reported impressive results:</p>
+                <ul>
+                    <li>300% average increase in engagement compared to text posts</li>
+                    <li>75% reduction in video production time</li>
+                    <li>92% user satisfaction rating</li>
+                </ul>
+                <p>The AI continues to learn and improve with each video created, constantly expanding its library of visual metaphors and narrative techniques.</p>
+                <p>Try Story to Vid today and experience the future of content creation! We're offering a special launch discount for the first 100 users.</p>`
+            },
+            {
+                title: "Pic2Puzz 2.0 Released",
+                date: "March 18, 2025",
+                summary: "Version 2.0 of Pic2Puzz introduces new puzzle modes, enhanced AI image processing, and social sharing features for competitive puzzle solving.",
+                fullContent: `<p>We're excited to announce the release of Pic2Puzz 2.0, our most significant update yet! This version introduces several groundbreaking features that take the puzzle experience to new heights.</p>
+                <h4>New Puzzle Modes</h4>
+                <p>We've added three innovative puzzle modes:</p>
+                <ul>
+                    <li><strong>Time Attack:</strong> Solve puzzles against the clock with increasing difficulty levels and special power-ups</li>
+                    <li><strong>Memory Challenge:</strong> Pieces disappear after being viewed briefly, testing your visual memory</li>
+                    <li><strong>Collaborative Mode:</strong> Work with friends in real-time to solve massive puzzles together</li>
+                    <li><strong>Daily Challenges:</strong> Compete in special themed puzzles with global leaderboards</li>
+                </ul>
+                <h4>Enhanced AI Processing</h4>
+                <p>Our image analysis algorithms have been completely overhauled:</p>
+                <ul>
+                    <li>30% better edge detection for more accurate piece shapes</li>
+                    <li>Automatic difficulty adjustment based on image complexity analysis</li>
+                    <li>New "Smart Hint" system that learns your solving patterns</li>
+                    <li>Improved color matching for more intuitive piece placement</li>
+                </ul>
+                <h4>Social Integration</h4>
+                <p>Share your puzzle achievements and challenge friends:</p>
+                <ul>
+                    <li>Create custom puzzle challenges from your photos</li>
+                    <li>Compete on weekly leaderboards for fastest solves</li>
+                    <li>Export completed puzzles as shareable digital artworks</li>
+                    <li>Join puzzle-solving communities based on interests</li>
+                </ul>
+                <h4>Performance Improvements</h4>
+                <p>The update also includes:</p>
+                <ul>
+                    <li>50% faster loading times</li>
+                    <li>Reduced memory usage for large puzzles</li>
+                    <li>New gesture controls for mobile devices</li>
+                    <li>Accessibility features including high-contrast mode</li>
+                </ul>
+                <p>The update is available now on all platforms. Update your app and experience the new Pic2Puzz today!</p>`
+            },
+            {
+                title: "Upcoming Project Roadmap",
+                date: "March 10, 2025",
+                summary: "Preview of exciting new tools in development including an AI gift recommendation engine and a secure P2P messaging platform with quantum encryption.",
+                fullContent: `<p>As we continue to innovate, I'm thrilled to share some sneak peeks at the projects currently in development. These initiatives represent our commitment to pushing the boundaries of what's possible with AI and user experience.</p>
+                <h4>1. Gift Idea Genius</h4>
+                <p>This AI-powered platform learns gift preferences through natural conversations and suggests perfect presents for any occasion. Key features include:</p>
+                <ul>
+                    <li><strong>Personality Analysis:</strong> Machine learning models that understand recipient preferences</li>
+                    <li><strong>Multi-Source Integration:</strong> Aggregates options from hundreds of retailers</li>
+                    <li><strong>Event-Specific Suggestions:</strong> Tailored recommendations for birthdays, holidays, etc.</li>
+                    <li><strong>Price Tracking:</strong> Alerts when desired items go on sale</li>
+                    <li><strong>Wrap Suggestions:</strong> Complete gifting solution</li>
+                </ul>
+                <h4>2. Quick Wrap</h4>
+                <p>Our revolutionary P2P messaging system offers:</p>
+                <ul>
+                    <li><strong>Quantum-Resistant Encryption:</strong> Future-proof security</li>
+                    <li><strong>Ephemeral Messaging:</strong> Self-destructing messages with custom timers</li>
+                    <li><strong>Decentralized Network:</strong> No central point of failure</li>
+                    <li><strong>Biometric Authentication:</strong> Fingerprint or facial recognition</li>
+                    <li><strong>Offline Capability:</strong> Messages sync when connection resumes</li>
+                </ul>
+                <h4>3. AI Content Studio</h4>
+                <p>A comprehensive suite for digital content creation featuring:</p>
+                <ul>
+                    <li><strong>Multi-Format Output:</strong> Generate blogs, videos, and podcasts from single input</li>
+                    <li><strong>Brand Consistency:</strong> Maintains voice across all content</li>
+                    <li><strong>SEO Optimization:</strong> Automatic keyword integration</li>
+                    <li><strong>Collaboration Tools:</strong> Team editing with version control</li>
+                    <li><strong>Analytics Dashboard:</strong> Performance tracking across platforms</li>
+                </ul>
+                <h4>Development Timeline</h4>
+                <ul>
+                    <li><strong>April 2025:</strong> Closed alpha testing begins</li>
+                    <li><strong>June 2025:</strong> Public beta releases</li>
+                    <li><strong>September 2025:</strong> Official launch of first product</li>
+                </ul>
+                <p>We're currently seeking beta testers for these projects. If you're interested in early access, please reach out via our contact form!</p>`
+            },
+            {
+                title: "The Evolution of AI Development",
+                date: "March 5, 2025",
+                summary: "Exploring emerging trends in AI tools and how they're transforming the development landscape with self-improving systems and ethical frameworks.",
+                fullContent: `<p>As we stand at the forefront of AI innovation, it's clear we're entering a new era of development tools. The pace of change is accelerating, and the possibilities are expanding exponentially.</p>
+                <h4>Current Trends Shaping AI Development</h4>
+                <p>The most significant developments we're seeing include:</p>
+                <ul>
+                    <li><strong>Self-Improving Systems:</strong> AI that can refine its own algorithms through reinforcement learning</li>
+                    <li><strong>Multimodal Models:</strong> Unified systems processing text, images, and audio simultaneously</li>
+                    <li><strong>Edge AI:</strong> Compact models running efficiently on mobile and IoT devices</li>
+                    <li><strong>Explainable AI:</strong> Systems that can justify their decisions in human terms</li>
+                    <li><strong>Ethical Frameworks:</strong> Built-in fairness and bias detection mechanisms</li>
+                </ul>
+                <h4>Our Development Philosophy</h4>
+                <p>At Cosmos Coderr, we're focusing on three core principles:</p>
+                <ol>
+                    <li><strong>Democratization:</strong> Making powerful AI tools accessible to developers of all skill levels</li>
+                    <li><strong>Transparency:</strong> Clear documentation of model capabilities and limitations</li>
+                    <li><strong>Responsibility:</strong> Implementing safeguards against potential misuse</li>
+                </ol>
+                <h4>Emerging Technologies</h4>
+                <p>We're particularly excited about these developing areas:</p>
+                <ul>
+                    <li><strong>Generative Prototyping:</strong> AI that can create working prototypes from natural language descriptions</li>
+                    <li><strong>Predictive Debugging:</strong> Systems that anticipate potential bugs before they occur</li>
+                    <li><strong>Context-Aware IDEs:</strong> Development environments that understand project requirements</li>
+                    <li><strong>AI Pair Programming:</strong> Real-time coding assistants that learn your style</li>
+                    <li><strong>Self-Documenting Code:</strong> Automatic generation of maintainable documentation</li>
+                </ul>
+                <h4>Future Outlook</h4>
+                <p>In the next 2-3 years, we expect to see:</p>
+                <ul>
+                    <li>Wider adoption of AI-assisted development in enterprise</li>
+                    <li>Standardization of ethical AI development practices</li>
+                    <li>Emergence of AI-generated software architectures</li>
+                    <li>Integration of quantum computing with AI systems</li>
+                </ul>
+                <p>The future is bright, and we're committed to being at the cutting edge of these developments. Stay tuned for more updates as we continue to innovate!</p>`
+            }
+        ];
+
+        // Display blog posts
+        const blogPostsContainer = document.getElementById('blogPostsContainer');
+        const blogLoader = document.getElementById('blogLoader');
+
+        function displayBlogPosts() {
+            blogLoader.style.display = 'block';
+            
+            // Simulate API loading delay
+            setTimeout(() => {
+                blogPostsContainer.innerHTML = '';
+                
+                blogPosts.forEach(post => {
+                    const article = document.createElement('article');
+                    article.className = 'blog-post';
+                    article.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <span class="date">${post.date}</span>
+                        <p>${post.summary}</p>
+                        <a href="#" class="read-more" data-post-id="${blogPosts.indexOf(post)}">Read more →</a>
+                    `;
+                    blogPostsContainer.appendChild(article);
+                });
+                
+                blogLoader.style.display = 'none';
+                
+                // Add event listeners to read more buttons
+                document.querySelectorAll('.read-more').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const postId = button.getAttribute('data-post-id');
+                        showFullPost(postId);
+                    });
+                });
+            }, 800);
+        }
+
+        function showFullPost(postId) {
+            const post = blogPosts[postId];
+            modalTitle.textContent = post.title;
+            modalDate.textContent = post.date;
+            modalBody.innerHTML = post.fullContent;
+            openModal();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create stars container
+            const starsContainer = document.createElement('div');
+            starsContainer.id = 'starContainer';
+            starsContainer.className = 'stars-container';
+            document.querySelector('.hero').prepend(starsContainer);
+            
+            // Generate stars
+            createStars();
+            
+            // Load blog posts
+            displayBlogPosts();
+            
+            // Add loading="lazy" to all images for better performance
+            document.querySelectorAll('img').forEach(img => {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+
+        // Service worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
