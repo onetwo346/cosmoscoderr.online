@@ -3,124 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmos Coderr - Portfolio</title>
+    <title>Cosmos Coderr - Galactic Portfolio</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: #080808;
-            color: #0ff;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #0f0f0f, #1a0033, #003366);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #00ffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            z-index: 1000;
             text-align: center;
         }
+        nav a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        /* Header */
         header {
-            padding: 20px;
-            font-size: 2rem;
-            font-weight: bold;
+            padding: 3rem 1rem;
+            font-size: 2.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px #0ff;
+            letter-spacing: 0.3rem;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+            animation: glow 2s infinite alternate;
+            text-align: center;
+            margin-top: 5rem;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+            to { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; }
         }
         .subtitle {
             font-size: 1.2rem;
-            color: #0ff;
-            margin-bottom: 30px;
+            color: #ff00ff;
+            text-align: center;
+            margin: 1rem 0 2rem;
+            text-shadow: 0 0 10px #ff00ff;
         }
+        /* Container */
         .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
+            max-width: 90%;
+            margin: 2rem auto;
+            padding: 1rem;
         }
-        .project {
-            background: rgba(0, 255, 255, 0.1);
-            padding: 15px;
-            margin: 15px 0;
+        /* Blog/News Feed Section */
+        .blog {
+            padding: 2rem;
+            background: rgba(255, 0, 255, 0.1);
+            border-radius: 15px;
+            animation: pulse 3s infinite;
+            margin-bottom: 2rem;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px #ff00ff; }
+            50% { box-shadow: 0 0 40px #00ffff; }
+            100% { box-shadow: 0 0 20px #ff00ff; }
+        }
+        .blog h2 {
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff;
+            margin-bottom: 1rem;
+        }
+        .blog-post {
+            background: rgba(0, 255, 255, 0.2);
+            padding: 1rem;
+            margin: 1rem 0;
             border-radius: 10px;
-            transition: 0.3s;
+        }
+        .blog-post h3 {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        .blog-post p {
+            color: #fff;
+        }
+        /* Projects Section */
+        .project {
+            background: rgba(0, 255, 255, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .project:hover {
-            background: rgba(0, 255, 255, 0.3);
+            transform: scale(1.03);
+            box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff;
+            background: rgba(0, 255, 255, 0.4);
         }
         .project img {
             width: 100%;
-            border-radius: 10px;
-            max-height: 200px;
+            height: 200px;
             object-fit: cover;
-        }
-        .blog {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(0, 255, 255, 0.1);
             border-radius: 10px;
+            transition: transform 0.5s;
         }
-        .blog h2 {
-            text-shadow: 0 0 10px #0ff;
+        .project:hover img {
+            transform: rotate(3deg) scale(1.05);
         }
+        .project h3 {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            margin: 0.5rem 0;
+        }
+        .project p {
+            color: #fff;
+        }
+        /* Footer */
         footer {
-            margin-top: 30px;
-            padding: 10px;
-            font-size: 0.9rem;
-            color: #0ff;
+            padding: 1.5rem;
+            font-size: 1rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
         }
         a {
+            color: #ff00ff;
             text-decoration: none;
-            color: #0ff;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        /* Scroll-to-Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: #ff00ff;
+            color: #fff;
+            padding: 0.8rem 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s;
+        }
+        .scroll-to-top:hover {
+            background: #00ffff;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.8rem;
+                letter-spacing: 0.2rem;
+                padding: 2rem 0.5rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 1rem;
+            }
+            .container {
+                padding: 0.5rem;
+            }
+            .project img {
+                height: 150px;
+            }
+            .blog, .project {
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                font-size: 1.5rem;
+                letter-spacing: 0.1rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.9rem;
+            }
+            .project img {
+                height: 120px;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>Cosmos Coderr</header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#blog">News Feed</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <header id="home">Cosmos Coderr</header>
     <div class="subtitle">Game Developer | Web Creator | Tool Builder</div>
 
     <div class="container">
-        <h2>My Creations</h2>
-        
-        <div class="project" onclick="window.location.href='https://pic2puzz.space'">
-            <img src="https://via.placeholder.com/800x400" alt="Pic2Puzz Game">
-            <h3>Pic2Puzz</h3>
-            <p>Turn any image into a puzzle game with AI-generated challenges.</p>
+        <!-- Blog/News Feed Section First -->
+        <div class="blog" id="blog">
+            <h2>News Feed</h2>
+            <div class="blog-post">
+                <h3>March 2025 Update</h3>
+                <p>Launching Story to Vid, an AI-driven history video generator! Stay tuned for more updates.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="blog-post">
+                <h3>February 2025 Update</h3>
+                <p>Working on a new feature for Pic2Puzz—AI difficulty scaling. Let me know your thoughts!</p>
+                <a href="#">Read More</a>
+            </div>
         </div>
 
-        <div class="project" onclick="window.location.href='https://yourproject1.com'">
-            <img src="https://via.placeholder.com/800x400" alt="Project Image">
-            <h3>Ase AI</h3>
-            <p>The most advanced AI chatbot with deep learning capabilities.</p>
-        </div>
-
-        <div class="project" onclick="window.location.href='https://yourproject2.com'">
-            <img src="https://via.placeholder.com/800x400" alt="Project Image">
-            <h3>Move Show Recreate</h3>
-            <p>Transforming written narratives into immersive movies.</p>
-        </div>
-
-        <div class="project" onclick="window.location.href='https://yourproject3.com'">
-            <img src="https://via.placeholder.com/800x400" alt="Project Image">
-            <h3>Quick Wrap</h3>
-            <p>A futuristic P2P messaging system with unique encryption.</p>
-        </div>
-
-        <div class="project" onclick="window.location.href='https://yourproject4.com'">
-            <img src="https://via.placeholder.com/800x400" alt="Project Image">
-            <h3>Gift Idea Genius</h3>
-            <p>AI-powered gift recommendation platform.</p>
-        </div>
-
-        <div class="project" onclick="window.location.href='https://yourproject5.com'">
-            <img src="https://via.placeholder.com/800x400" alt="Project Image">
-            <h3>Story to Vid</h3>
-            <p>Transforming historical narratives into AI-generated videos.</p>
-        </div>
-
-        <div class="blog">
-            <h2>Latest Blog Post</h2>
-            <p><strong>March 2025:</strong> Launching Story to Vid, an AI-driven history video generator!</p>
-            <a href="#">Read More</a>
+        <!-- Projects Section -->
+        <div id="projects">
+            <h2>My Creations</h2>
+            <div class="project" onclick="window.location.href='https://pic2puzz.space'">
+                <img src="https://via.placeholder.com/800x400/00ffff/ff00ff" alt="Pic2Puzz Game">
+                <h3>Pic2Puzz</h3>
+                <p>Turn any image into a puzzle game with AI-generated challenges.</p>
+            </div>
+            <div class="project" onclick="window.location.href='https://yourproject1.com'">
+                <img src="https://via.placeholder.com/800x400/ff00ff/00ffff" alt="Project Image">
+                <h3>Ase AI</h3>
+                <p>The most advanced AI chatbot with deep learning capabilities.</p>
+            </div>
+            <div class="project" onclick="window.location.href='https://yourproject2.com'">
+                <img src="https://via.placeholder.com/800x400/00ffff/ff00ff" alt="Project Image">
+                <h3>Move Show Recreate</h3>
+                <p>Transforming written narratives into immersive movies.</p>
+            </div>
+            <div class="project" onclick="window.location.href='https://yourproject3.com'">
+                <img src="https://via.placeholder.com/800x400/ff00ff/00ffff" alt="Project Image">
+                <h3>Quick Wrap</h3>
+                <p>A futuristic P2P messaging system with unique encryption.</p>
+            </div>
+            <div class="project" onclick="window.location.href='https://yourproject4.com'">
+                <img src="https://via.placeholder.com/800x400/00ffff/ff00ff" alt="Project Image">
+                <h3>Gift Idea Genius</h3>
+                <p>AI-powered gift recommendation platform.</p>
+            </div>
+            <div class="project" onclick="window.location.href='https://yourproject5.com'">
+                <img src="https://via.placeholder.com/800x400/ff00ff/00ffff" alt="Project Image">
+                <h3>Story to Vid</h3>
+                <p>Transforming historical narratives into AI-generated videos.</p>
+            </div>
         </div>
     </div>
 
-    <footer>
+    <footer id="contact">
         <p>Designed by Cosmos Coderr | Contact: <a href="mailto:cosmoscoderr@gmail.com">cosmoscoderr@gmail.com</a></p>
     </footer>
+
+    <div class="scroll-to-top" onclick="scrollToTop()">↑</div>
+
+    <script>
+        // Scroll-to-top button visibility
+        window.onscroll = function() {
+            let scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollButton.style.display = "block";
+            } else {
+                scrollButton.style.display = "none";
+            }
+        };
+
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
