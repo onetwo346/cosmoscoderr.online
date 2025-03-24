@@ -4,27 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmos Coderr - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #080808;
+            color: #0ff;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #0ff;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #0ff;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .project {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .project:hover {
+            background: rgba(0, 255, 255, 0.3);
+        }
+        .project img {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .blog {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .blog h2 {
+            text-shadow: 0 0 10px #0ff;
+        }
+        footer {
+            margin-top: 30px;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #0ff;
+        }
+        a {
+            text-decoration: none;
+            color: #0ff;
+        }
+    </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    
-    <header>
-        <h1>Cosmos Coderr</h1>
-        <p>Game Developer | Web Creator | Tool Builder</p>
-    </header>
+    <header>Cosmos Coderr</header>
+    <div class="subtitle">Game Developer | Web Creator | Tool Builder</div>
 
-    <section class="projects">
+    <div class="container">
         <h2>My Creations</h2>
-        <div class="project-container" id="projectContainer">
-            <!-- Projects will be dynamically added here -->
+        
+        <div class="project" onclick="window.location.href='https://pic2puzz.space'">
+            <img src="https://via.placeholder.com/800x400" alt="Pic2Puzz Game">
+            <h3>Pic2Puzz</h3>
+            <p>Turn any image into a puzzle game with AI-generated challenges.</p>
         </div>
-    </section>
+
+        <div class="project" onclick="window.location.href='https://yourproject1.com'">
+            <img src="https://via.placeholder.com/800x400" alt="Project Image">
+            <h3>Ase AI</h3>
+            <p>The most advanced AI chatbot with deep learning capabilities.</p>
+        </div>
+
+        <div class="project" onclick="window.location.href='https://yourproject2.com'">
+            <img src="https://via.placeholder.com/800x400" alt="Project Image">
+            <h3>Move Show Recreate</h3>
+            <p>Transforming written narratives into immersive movies.</p>
+        </div>
+
+        <div class="project" onclick="window.location.href='https://yourproject3.com'">
+            <img src="https://via.placeholder.com/800x400" alt="Project Image">
+            <h3>Quick Wrap</h3>
+            <p>A futuristic P2P messaging system with unique encryption.</p>
+        </div>
+
+        <div class="project" onclick="window.location.href='https://yourproject4.com'">
+            <img src="https://via.placeholder.com/800x400" alt="Project Image">
+            <h3>Gift Idea Genius</h3>
+            <p>AI-powered gift recommendation platform.</p>
+        </div>
+
+        <div class="project" onclick="window.location.href='https://yourproject5.com'">
+            <img src="https://via.placeholder.com/800x400" alt="Project Image">
+            <h3>Story to Vid</h3>
+            <p>Transforming historical narratives into AI-generated videos.</p>
+        </div>
+
+        <div class="blog">
+            <h2>Latest Blog Post</h2>
+            <p><strong>March 2025:</strong> Launching Story to Vid, an AI-driven history video generator!</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
 
     <footer>
-        <p>Contact: <a href="mailto:cosmoscoderr@gmail.com">cosmoscoderr@gmail.com</a></p>
-        <p>&copy; 2025 Cosmos Coderr. All Rights Reserved.</p>
+        <p>Designed by Cosmos Coderr | Contact: <a href="mailto:cosmoscoderr@gmail.com">cosmoscoderr@gmail.com</a></p>
     </footer>
 </body>
 </html>
