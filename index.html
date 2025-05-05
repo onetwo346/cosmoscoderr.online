@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmos Coderr - Galactic Portfolio</title>
+    <title>Galactic Web App Store - Cosmos Coderr</title>
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Cosmos Coderr - Galactic Portfolio">
+    <meta name="title" content="Galactic Web App Store - Cosmos Coderr">
     <meta name="description" content="Explore the digital universe of Cosmos Coderr - Game Developer, Web Creator, and Tool Builder. Discover innovative projects and cosmic coding experiences.">
     <meta name="keywords" content="game development, web development, AI tools, portfolio, cosmos coderr, developer portfolio">
     <meta name="author" content="Cosmos Coderr">
@@ -14,7 +14,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cosmoscoderr.online">
-    <meta property="og:title" content="Cosmos Coderr - Galactic Portfolio">
+    <meta property="og:title" content="Galactic Web App Store - Cosmos Coderr">
     <meta property="og:description" content="Explore the digital universe of Cosmos Coderr - Game Developer, Web Creator, and Tool Builder. Discover innovative projects and cosmic coding experiences.">
     <meta property="og:image" content="https://cosmoscoderr.online/cosmoslogo.jpg">
     <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
     <meta name="x:card" content="summary_large_image">
     <meta name="x:site" content="@cosmoscoderr">
     <meta name="x:creator" content="@cosmoscoderr">
-    <meta name="x:title" content="Cosmos Coderr - Galactic Portfolio">
+    <meta name="x:title" content="Galactic Web App Store - Cosmos Coderr">
     <meta name="x:description" content="Explore the digital universe of Cosmos Coderr - Game Developer, Web Creator, and Tool Builder. Discover innovative projects and cosmic coding experiences.">
     <meta name="x:image" content="https://cosmoscoderr.online/cosmoslogo.jpg">
     <meta name="x:image:alt" content="Cosmos Coderr Portfolio Logo">
@@ -50,7 +50,7 @@
     <!-- Quantum Preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
@@ -73,13 +73,71 @@
         }
 
         body {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Exo 2', sans-serif;
             background: var(--dark-matter);
             color: var(--quantum-blue);
             overflow-x: hidden;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.8;
             cursor: none;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4, h5, h6, .nav-logo, .nav-link, .filter-btn, .cta-btn, header {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            max-width: 70ch;
+            line-height: 1.8;
+        }
+
+        /* Content Container Improvements */
+        .about-content, .blog-post, .project, .modal-content {
+            padding: 2rem;
+            border-radius: 1rem;
+            line-height: 1.7;
+        }
+
+        .blog-post h3, .project h3 {
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-post .date, .modal-date {
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .blog-post p, .project p, .modal-body p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Improved Headings */
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--quantum-blue);
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            font-weight: 700;
         }
 
         /* Quantum Field Background */
@@ -279,17 +337,6 @@
         section {
             padding: 4rem 0;
             scroll-margin-top: 80px;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--quantum-blue);
-            position: relative;
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         h2.visible {
@@ -542,12 +589,30 @@
             padding: 0 1.5rem 1.5rem;
         }
 
-        .donation-section, .contact-info {
+        .donation-section {
             text-align: center;
-            margin: 4rem 0;
             padding: 4rem 2rem;
-            background: rgba(0, 247, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 1rem;
+            margin: 4rem 0;
+        }
+
+        .donation-text {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+        }
+
+        .donation-text h3 {
+            color: var(--plasma-pink);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .donation-text p {
+            color: var(--quantum-blue);
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
 
         .donation-btn {
@@ -568,17 +633,72 @@
             animation: lightSweep 2s linear infinite;
         }
 
-        .contact-item {
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-wrapper h2 {
+            color: var(--plasma-pink);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .contact-wrapper h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--quantum-blue), var(--plasma-pink));
+            border-radius: 2px;
+        }
+
+        .contact-info {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
         .contact-icon {
             font-size: 1.5rem;
             color: var(--plasma-pink);
+        }
+
+        .contact-item a {
+            color: var(--quantum-blue);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .contact-item a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--quantum-blue), var(--plasma-pink));
+            transition: width 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--plasma-pink);
+        }
+
+        .contact-item a:hover::after {
+            width: 100%;
         }
 
         /* Supernova Footer */
@@ -588,29 +708,77 @@
             text-align: center;
             color: white;
             background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--event-horizon);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-copyright {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .social-link {
             color: var(--quantum-blue);
             font-size: 1.5rem;
-            transition: color var(--light-speed);
+            transition: all var(--light-speed);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 247, 255, 0.2);
         }
 
         .social-link:hover {
             color: var(--plasma-pink);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 247, 0.3);
+            border-color: var(--plasma-pink);
         }
 
         .x-logo {
             font-family: sans-serif;
             font-weight: bold;
             transform: scale(1.1);
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .footer-heart {
+            color: var(--plasma-pink);
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         /* Scroll to Top Button */
@@ -1027,7 +1195,7 @@
     <!-- Pulsar Navigation -->
     <nav class="cosmic-nav">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">PORTFOLIO</a>
+            <a href="#home" class="nav-logo">COSMOS CODERR</a>
             
             <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -1037,7 +1205,7 @@
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#blog" class="nav-link">Blog</a>
-                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#projects" class="nav-link">Apps</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
         </div>
@@ -1045,18 +1213,18 @@
 
     <!-- Hero Singularity -->
     <section class="hero" id="home">
-        <header>COSMOS CODERR</header>
-        <div class="subtitle">Game Developer | Web Creator | Tool Builder</div>
-        <div class="tagline">Crafting Galactic Experiences with Coding.</div>
-        <a href="#projects" class="cta-btn">Explore My Universe</a>
+        <header>GALACTIC WEB APP STORE</header>
+        <div class="subtitle">Games | Tools | Web Apps</div>
+        <div class="tagline">Your portal to cosmic digital experiences.</div>
+        <a href="#projects" class="cta-btn">Explore The Store</a>
     </section>
 
     <!-- Main Content Wormhole -->
     <main class="container">
         <section id="about">
-            <h2>About Me</h2>
+            <h2>About The Store</h2>
             <div class="about-content">
-                <p>I'm Cosmos Coderr, a coder navigating the universe through tech. I build games, tools, and web experiences.</p>
+                <p>Welcome to the Galactic Web App Store by Cosmos Coderr. Here you'll find games, tools, and web applications ready to explore.</p>
                 <p>Join me on this interstellar journey let's create something out of this world!</p>
             </div>
         </section>
@@ -1069,7 +1237,7 @@
         </section>
 
         <section id="projects">
-            <h2>My Creations</h2>
+            <h2>Featured Apps</h2>
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="game">Games</button>
@@ -1235,32 +1403,38 @@
         </section>
 
         <section class="donation-section">
-            <h3>Support My Work</h3>
-            <p>Fuel my cosmic creations with a donation!</p>
+            <div class="donation-text">
+                <h3>Support The App Store</h3>
+                <p>Fuel my cosmic creations with a donation!</p>
+            </div>
             <a href="https://buy.stripe.com/00g16Q5xv4Cw05G6oo" class="donation-btn" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-heart"></i> Donate via Stripe
             </a>
         </section>
 
         <section id="contact">
-            <h2>Get In Touch</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                    <a href="mailto:cosmoscoderr@gmail.com">cosmoscoderr@gmail.com</a>
+            <div class="contact-wrapper">
+                <h2>Get In Touch</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                        <a href="mailto:cosmoscoderr@gmail.com">cosmoscoderr@gmail.com</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© <span id="year"></span> Cosmos Coderr. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://x.com/cosmoscoderr" target="_blank" rel="noopener noreferrer" aria-label="X Profile">
-                <span class="x-logo">𝕏</span>
-            </a>
+        <div class="footer-content">
+            <p class="footer-copyright">© <span id="year"></span> Cosmos Coderr - Galactic Web App Store. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://x.com/cosmoscoderr" target="_blank" rel="noopener noreferrer" aria-label="X Profile" class="social-link">
+                    <span class="x-logo">𝕏</span>
+                </a>
+            </div>
+            <p class="footer-tagline">Made with <i class="fas fa-heart footer-heart"></i> in the cosmos</p>
         </div>
-        <p>Made with <i class="fas fa-heart" style="color: var(--plasma-pink);"></i> in the cosmos</p>
     </footer>
 
     <div class="modal" id="blogModal">
@@ -1555,28 +1729,34 @@
             // Blog posts data
             const blogPosts = [
                 { 
-                    title: "Introducing Story to Vid AI", 
+                    title: "New App: Stellar UI Builder Released", 
+                    date: "April 15, 2025", 
+                    summary: "Create stunning space-themed UIs with our new drag-and-drop builder.", 
+                    fullContent: "<p>We're excited to announce the release of Stellar UI Builder, a powerful tool that lets you create beautiful space-themed user interfaces with an intuitive drag-and-drop interface. Perfect for game developers, web designers, and anyone looking to add cosmic flair to their projects.</p><p>Features include 50+ pre-designed space components, animation effects, and export options for various platforms.</p>"
+                },
+                { 
+                    title: "Pic2Puzz 2.0 Major Update", 
+                    date: "April 8, 2025", 
+                    summary: "Multiplayer mode, difficulty settings, and AI image enhancement.", 
+                    fullContent: "<p>Pic2Puzz has received its biggest update yet! Version 2.0 introduces several exciting new features including multiplayer puzzle competitions, adjustable difficulty settings, and AI-powered image enhancement for clearer puzzles.</p><p>The update also includes performance improvements and a new cosmic theme to match the Galactic Web App Store aesthetic.</p>"
+                },
+                { 
+                    title: "App Store Now Features User Reviews", 
+                    date: "April 1, 2025", 
+                    summary: "Share your thoughts on your favorite apps.", 
+                    fullContent: "<p>The Galactic Web App Store now supports user reviews! You can rate apps on a scale of 1-5 stars and leave detailed feedback about your experience. This helps other users discover quality apps and helps developers improve their offerings.</p><p>To celebrate this launch, users who leave reviews in April will receive exclusive access to premium features in select apps.</p>"
+                },
+                { 
+                    title: "Coming Soon: Cosmic Code Editor", 
                     date: "March 25, 2025", 
-                    summary: "AI-powered video from narratives.", 
-                    fullContent: "<p>I'm excited to announce the launch of Story to Vid AI, a revolutionary tool that transforms written narratives into engaging video content. Using advanced natural language processing and generative AI, the platform can create scenes, characters, and even voiceovers based on your story.</p>"
+                    summary: "A sleek, space-themed code editor built for web developers.", 
+                    fullContent: "<p>We're putting the finishing touches on Cosmic Code Editor, a beautiful, space-themed code editor designed specifically for web developers. With syntax highlighting for over 30 languages, built-in preview functions, and integration with popular frameworks, it's the perfect tool for building stellar web applications.</p><p>Early access sign-ups are now open - visit the Apps section for details!</p>"
                 },
                 { 
-                    title: "Pic2Puzz 2.0 Released", 
+                    title: "App Store Redesign Launched", 
                     date: "March 18, 2025", 
-                    summary: "New puzzle modes and AI enhancements.", 
-                    fullContent: "<p>Pic2Puzz has received its biggest update yet! Version 2.0 introduces several exciting new features that take the puzzle experience to the next level.</p>"
-                },
-                { 
-                    title: "Upcoming Project Roadmap", 
-                    date: "March 10, 2025", 
-                    summary: "AI gift engine and more.", 
-                    fullContent: "<p>I wanted to share what's coming next in my development pipeline. Here's a peek at projects currently in development.</p>"
-                },
-                { 
-                    title: "The Evolution of AI Development", 
-                    date: "March 5, 2025", 
-                    summary: "Trends in AI tools.", 
-                    fullContent: "<p>Having worked with AI tools for several years now, I've observed some fascinating trends in how developers are integrating AI into their workflows.</p>"
+                    summary: "New look, better performance, and improved app discovery.", 
+                    fullContent: "<p>The Galactic Web App Store has a fresh new look! We've completely redesigned the interface for better usability, faster performance, and improved app discovery. Navigation is now more intuitive, search functionality has been enhanced, and personalized recommendations help you find apps you'll love.</p><p>The new design also features enhanced accessibility options and dark mode support.</p>"
                 }
             ];
 
