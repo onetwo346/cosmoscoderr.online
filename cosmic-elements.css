@@ -1,0 +1,276 @@
+/* Cosmic Elements Styles */
+.cosmic-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+    animation: float 15s ease-in-out infinite;
+}
+
+.planet-1 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    right: 10%;
+    background: radial-gradient(circle at 30% 30%, var(--quantum-blue), var(--neutron-star));
+    animation-delay: 0s;
+}
+
+.planet-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 15%;
+    background: radial-gradient(circle at 30% 30%, var(--plasma-pink), var(--neutron-star));
+    animation-delay: 2s;
+}
+
+.planet-3 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 20%;
+    background: radial-gradient(circle at 30% 30%, #8A2BE2, var(--neutron-star));
+    animation-delay: 1s;
+}
+
+.floating-asteroid {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #555;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: floatAsteroid 20s linear infinite;
+}
+
+.asteroid-1 {
+    top: 30%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.asteroid-2 {
+    top: 50%;
+    right: 30%;
+    animation-delay: 5s;
+}
+
+.asteroid-3 {
+    bottom: 30%;
+    right: 15%;
+    animation-delay: 10s;
+}
+
+
+
+@keyframes floatAsteroid {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(100px, 50px) rotate(180deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+
+
+/* Shooting Stars */
+.shooting-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--quantum-blue), transparent);
+    animation: shootingStar 5s linear infinite;
+    opacity: 0;
+}
+
+.shooting-star:nth-child(1) {
+    top: 20%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 40%;
+    left: -10%;
+    animation-delay: 2s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 60%;
+    left: -10%;
+    animation-delay: 4s;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translateX(0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(calc(100vw + 150px)) rotate(45deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(calc(100vw + 150px)) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Hero Content Styles */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.cta-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.primary-cta {
+    background: linear-gradient(45deg, var(--quantum-blue), var(--plasma-pink));
+    color: black;
+    font-weight: 700;
+}
+
+.secondary-cta {
+    background: transparent;
+    border: 2px solid var(--quantum-blue);
+    color: var(--quantum-blue);
+}
+
+.secondary-cta:hover {
+    border-color: var(--plasma-pink);
+    color: var(--plasma-pink);
+}
+
+/* App Counter Styles */
+.app-counter {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.counter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.counter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--quantum-blue);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.counter-label {
+    font-size: 1rem;
+    color: var(--plasma-pink);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 15px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wheel {
+    width: 6px;
+    height: 10px;
+    background: white;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+    animation: scrollWheel 1.5s ease-in-out infinite;
+}
+
+.arrow-scroll {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+@keyframes scrollWheel {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}

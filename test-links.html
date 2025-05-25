@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-link {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #00f7ff, #ff00f7);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Links</h1>
+    <p>Click on these links to test if they work correctly:</p>
+    
+    <a href="https://xowars.space/" class="test-link" target="_blank">XOWARS - Play Game</a>
+    <a href="https://wordgridquest.xyz/" class="test-link" target="_blank">Word Grid Quest - Play Game</a>
+    <a href="https://earthquakeanalyst.space/" class="test-link" target="_blank">Earthquake Analyst - View Data</a>
+    
+    <p>If these links work correctly, you can update your main HTML file with these URLs.</p>
+    
+    <script>
+        // Simple script to log if links are clicked
+        document.querySelectorAll('.test-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                console.log('Link clicked: ' + this.href);
+            });
+        });
+    </script>
+</body>
+</html>
