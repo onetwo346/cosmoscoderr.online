@@ -86,6 +86,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="app-preview.css">
+    <link rel="stylesheet" href="cosmic-elements.css">
+    <link rel="stylesheet" href="cosmic-tags.css">
+    <link rel="stylesheet" href="hero-redesign.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <style>
         /* Cosmic Color Scheme */
@@ -1245,12 +1251,59 @@
         </div>
     </nav>
 
-    <!-- Hero Singularity -->
-    <section class="hero" id="home">
-        <header>COSMIC WEB APP STORE</header>
-        <div class="subtitle">Games | Tools | Web Apps</div>
-        <div class="tagline">Your portal to cosmic digital experiences.</div>
-        <a href="#projects" class="cta-btn">Explore The Store</a>
+    <!-- Modern Hero Section -->
+    <section class="hero">
+        <!-- Background Elements -->
+        <div class="hero-background">
+            <div class="star-field"></div>
+            <div class="glow-overlay"></div>
+        </div>
+        
+        <!-- Hero Grid Layout -->
+        <div class="hero-grid">
+            <!-- Left Content Column -->
+            <div class="hero-content-left">
+                <h1 class="hero-title">
+                    <span class="title-line">COSMIC</span>
+                    <span class="title-line">WEB APP</span>
+                    <span class="title-line">STORE</span>
+                </h1>
+                
+                <div class="hero-description">
+                    <p class="tagline">Your portal to cosmic digital experiences</p>
+                    
+                    <!-- Category Pills -->
+                    <div class="category-pills">
+                        <span class="category-pill games-pill">Games</span>
+                        <span class="category-pill tools-pill">Tools</span>
+                        <span class="category-pill web-pill">Web Apps</span>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="cta-container">
+                    <a href="#projects" class="cta-btn primary-cta">Explore The Store</a>
+                    <a href="#quick-play" class="cta-btn secondary-cta">Featured Apps</a>
+                </div>
+            </div>
+            
+            <!-- Right Visual Column -->
+            <div class="hero-visual">
+                <div class="hero-sphere">
+                    <div class="sphere-glow"></div>
+                </div>
+                <div class="orbit-path"></div>
+                <div class="floating-app app-1" data-speed="20"></div>
+                <div class="floating-app app-2" data-speed="15"></div>
+                <div class="floating-app app-3" data-speed="25"></div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <div class="scroll-text">Scroll</div>
+        </div>
     </section>
 
     <!-- Main Content Wormhole -->
@@ -1279,71 +1332,90 @@
                 <button class="filter-btn" data-filter="web">Web</button>
             </div>
             <div class="projects-grid">
-                <div class="project" data-category="game">
-                    <a href="https://pic2puzz.space" target="_self">
-                        <img src="pic.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Pic2Puzz'" alt="Pic2Puzz" loading="lazy">
+                <div class="project" data-category="game" data-icon-url="pic.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Pic2Puzz</h3>
-                        <p>Turn any image, gifs and videos into a puzzle game with challenges.</p>
-                    </a>
+                        <p>Transform Images</p>
+
+                        <a href="https://pic2puzz.space" class="btn" target="_self">Play Now</a>
+                    </div>
                 </div>
                      
 
-                    <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/glow-radio-" target="_self">
-                        <img src="glowlogo.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Glow Radio'" alt="Glow Radio" loading="lazy">
-                        <h3>Glow Radio</h3>
-                        <p>Glow Radio is an online platform that offers live streaming of radio stations from around the world, allowing users to explore diverse musical genres and cultures.</p>
-                    </a>
-                </div>
+                    <div class="project" data-category="tool" data-icon-url="glowlogo.jpg">
+                        <div class="icon-3d-container"></div>
+
+                        <div class="project-content">
+                            <h3>Glow Radio</h3>
+                            <p>Stream Radio</p>
+
+                            <a href="https://onetwo346.github.io/glow-radio-" class="btn" target="_self">Launch Radio</a>
+                        </div>
+                    </div>
 
 
 
-            <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/wise-saying" target="_self">
-                        <img src="akanlogo.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Glow Radio'" alt="AKAN WISDOM" loading="lazy">
+            <div class="project" data-category="tool" data-icon-url="akanlogo.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>AKAN WISDOM GENERATOR</h3>
-                        <p>The Akan Wisdom Generator offers users a chance to explore timeless proverbs from the Akan people, each offering profound life lessons that have guided generations.</p>
-                    </a>
+                        <p>Discover Wisdom</p>
+
+                        <a href="https://onetwo346.github.io/wise-saying" class="btn" target="_self">Explore Wisdom</a>
+                    </div>
                 </div>
 
 
-               <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/random-quote-generator-RQG" target="_self">
-                        <img src="random.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Glow Radio'" alt="RQG" loading="lazy">
-                        <h3>RANDOM QUOTE GENERATOR</h3>
-                        <p>The Random Quote Generator (RQG) is a simple web application that presents users with a new random quotes.</p>
-                    </a>
+               <div class="project" data-category="tool" data-icon-url="random.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
+                        <h3>RANDOM QUOTE </h3>
+                        <p>Find Inspiration</p>
+
+                        <a href="https://onetwo346.github.io/random-quote-generator-RQG" class="btn" target="_self">Generate Quotes</a>
+                    </div>
                 </div>
 
 
 
-                     <div class="project" data-category="game">
-                    <a href="https://onetwo346.github.io/fetch-or-catch/" target="_self">
-                        <img src="fc.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Glow Radio'" alt="fetch or catch" loading="lazy">
+                     <div class="project" data-category="game" data-icon-url="fc.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Fetch or Catch</h3>
-                        <p>🎮 Fetch or Catch! 🍓🧺 Slide your basket and catch falling fruits and snacks! Fast, fun, and full of surprises — how many can you grab?</p>
-                    </a>
+                        <p>Catch Treats</p>
+
+                        <a href="https://onetwo346.github.io/fetch-or-catch/" class="btn" target="_self">Play Game</a>
+                    </div>
                 </div>
 
 
-                <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/BABYYCHECKER/" target="_self">
-                        <img src="babychecker.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Glow Radio'" alt="fetch or catch" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="babychecker.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Baby Checker</h3>
-                        <p>Welcome to Baby Checker 👶💖
-Your simple, fun way to check baby-related signs and curiosities! Whether you're just curious, planning for the future, or having a little fun with friends, Baby Checker gives you a lighthearted way to explore baby possibilities. Just tap, check, and smile — it's that easy!</p>
-                    </a>
+                        <p>Explore Signs</p>
+
+                        <a href="https://onetwo346.github.io/BABYYCHECKER/" class="btn" target="_self">Start Checking</a>
+                    </div>
                 </div>
 
                 
 
-<div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/cb/" target="_self">
-                        <img src="cosmicbible.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Glow Radio'" alt="fetch or catch" loading="lazy">
+<div class="project" data-category="tool" data-icon-url="cosmicbible.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Cosmic Bible</h3>
-                        <p>Cosmic Bible
-Discover the Word of God through a cosmic lens. Dive into scripture with powerful tools, vibrant design, and divine inspiration all in one place.</p>
-                    </a>
+                        <p>Experience Scripture</p>
+
+                        <a href="https://onetwo346.github.io/cb/" class="btn" target="_self">Start Reading</a>
+                    </div>
                 </div>
 
 
@@ -1362,103 +1434,145 @@ Discover the Word of God through a cosmic lens. Dive into scripture with powerfu
                 
 
                 
-                <div class="project" data-category="web">
-                    <a href="https://earthquakeanalyst.space" target="_self">
-                        <img src="quake.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Earthquake+Analyst'" alt="Earthquake Analyst" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="earthquake.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Earthquake Analyst</h3>
-                        <p>Real-time earthquake data with AI-driven insights.</p>
-                    </a>
+                        <p>Monitor Seismic</p>
+
+                        <a href="https://earthquakeanalyst.space/" class="btn" target="_blank">View Data</a>
+                    </div>
                 </div>
-                <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/switchbox" target="_self">
-                        <img src="switchbox.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=SwitchBox'" alt="SwitchBox" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="switchbox.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>SwitchBox</h3>
-                        <p>Universal file converter for your browser.</p>
-                    </a>
+                        <p>Convert Files</p>
+
+                        <a href="https://onetwo346.github.io/switchbox/" class="btn" target="_blank">Convert Files</a>
+                    </div>
                 </div>
-                <div class="project" data-category="game">
-                    <a href="https://xowars.space" target="_self">
-                        <img src="xowars.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=XOWARS'" alt="XOWARS" loading="lazy">
+                <div class="project" data-category="game" data-icon-url="xowars.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>XOWARS</h3>
-                        <p>Strategic neon battlefield game with multiple modes.</p>
-                    </a>
+                        <p>Strategic Battle</p>
+
+                        <a href="#" class="btn" target="_self">Play Game</a>
+                    </div>
                 </div>
-                <div class="project" data-category="web">
-                    <a href="https://quickwrap.space" target="_self">
-                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1000" alt="Quick Wrap" loading="lazy">
+                <div class="project" data-category="web" data-icon-url="quickwrap.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Quick Wrap</h3>
-                        <p>P2P messaging with encryption and self-destructing messages.</p>
-                    </a>
+                        <p>Secure Chat</p>
+
+                        <a href="https://quickwrap.space" class="btn" target="_blank">Send Message</a>
+                    </div>
                 </div>
-                <div class="project" data-category="game">
-                    <a href="https://wordgridquest.xyz" target="_self">
-                        <img src="word.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Word+Grid+Quest'" alt="Word Grid Quest" loading="lazy">
+                <div class="project" data-category="game" data-icon-url="wordgrid.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Word Grid Quest</h3>
-                        <p>Cosmic word puzzle game with hidden grids.</p>
-                    </a>
+                        <p>Word Adventure</p>
+
+                        <a href="#" class="btn" target="_self">Play Game</a>
+                    </div>
                 </div>
-                <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/invoice-generator" target="_self">
-                        <img src="invoice.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Invoice+Generator'" alt="Invoice Generator Pro" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="invoice.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Invoice Generator Pro</h3>
-                        <p>Create professional invoices with ease.</p>
-                    </a>
+                        <p>Generate Invoices</p>
+
+                        <a href="https://onetwo346.github.io/invoice-generator" class="btn" target="_self">Create Invoice</a>
+                    </div>
                 </div>
-                <div class="project" data-category="tool">
-                    <a href="https://dipimagegenerator.lat" target="_self">
-                        <img src="dip.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Dip+Image+Generator'" alt="Dip Image Generator" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="dip.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Dip Image Generator</h3>
-                        <p>Generate unique images with a tap.</p>
-                    </a>
+                        <p>Create Art</p>
+
+                        <a href="https://dipimagegenerator.lat" class="btn" target="_blank">Generate Images</a>
+                    </div>
                 </div>
-                <div class="project" data-category="web">
-                    <a href="https://onetwo346.github.io/Make-this-recipe-" target="_self">
-                        <img src="makethis.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Make+This+Recipe'" alt="Make This Recipe" loading="lazy">
+                <div class="project" data-category="web" data-icon-url="makethis.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Make This Recipe</h3>
-                        <p>Recipe suggestions from your ingredients.</p>
-                    </a>
+                        <p>Find Recipes</p>
+
+                        <a href="https://onetwo346.github.io/Make-this-recipe-" class="btn" target="_self">Find Recipes</a>
+                    </div>
                 </div>
-                <div class="project" data-category="web">
-                    <a href="https://onetwo346.github.io/horonum" target="_self">
-                        <img src="horonum.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Horonum'" alt="Horonum" loading="lazy">
+                <div class="project" data-category="web" data-icon-url="horonum.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Horonum</h3>
-                        <p>Personalized astrological insights.</p>
-                    </a>
+                        <p>Discover Astrology</p>
+
+                        <a href="https://onetwo346.github.io/horonum" class="btn" target="_self">Get Insights</a>
+                    </div>
                 </div>
-                <div class="project" data-category="game">
-                    <a href="https://onetwo346.github.io/space-shooting" target="_self">
-                        <img src="spaceshooter.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Time+Escape'" alt="Time Escape" loading="lazy">
+                <div class="project" data-category="game" data-icon-url="spaceshooter.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Time Escape</h3>
-                        <p>Survive asteroid chaos in this spaceship game.</p>
-                    </a>
+                        <p>Space Adventure</p>
+                        <div class="preview-video" data-video-url="https://example.com/videos/time-escape-demo.mp4"></div>
+                        <a href="https://onetwo346.github.io/space-shooting" class="btn" target="_self">Play Game</a>
+                    </div>
                 </div>
-                <div class="project" data-category="tool">
-                    <a href="https://beeek.online" target="_self">
-                        <img src="beeek.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Beeek'" alt="Beeek" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="beeek.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Beeek</h3>
-                        <p>Neural text-to-speech for lifelike audio.</p>
-                    </a>
+                        <p>Voice Magic</p>
+                        <div class="preview-video" data-video-url="https://example.com/videos/beeek-demo.mp4"></div>
+                        <a href="https://beeek.online" class="btn" target="_blank">Convert Text</a>
+                    </div>
                 </div>
-                <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/Resume-cover-letter-" target="_self">
-                        <img src="resume.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Resume+Generator'" alt="Resume/Cover Letter Generator" loading="lazy">
-                        <h3>Resume/Cover Letter Generator</h3>
-                        <p>AI-powered resume and cover letter creator.</p>
-                    </a>
+                <div class="project" data-category="tool" data-icon-url="resume.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
+                        <h3>Resume/Cover Letter</h3>
+                        <p>Career Builder</p>
+                        <div class="preview-video" data-video-url="https://example.com/videos/resume-generator-demo.mp4"></div>
+                        <a href="https://onetwo346.github.io/Resume-cover-letter-" class="btn" target="_self">Create Resume</a>
+                    </div>
                 </div>
-                <div class="project" data-category="tool">
-                    <a href="https://onetwo346.github.io/Gift-idea-genius-" target="_self">
-                        <img src="giftidea.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Gift+Idea+Genius'" alt="Gift Idea Genius" loading="lazy">
+                <div class="project" data-category="tool" data-icon-url="giftidea.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Gift Idea Genius</h3>
-                        <p>Personalized gift suggestions.</p>
-                    </a>
+                        <p>Gift Ideas</p>
+                        <div class="preview-video" data-video-url="https://example.com/videos/gift-idea-genius-demo.mp4"></div>
+                        <a href="https://onetwo346.github.io/Gift-idea-genius-" class="btn" target="_self">Find Gifts</a>
+                    </div>
                 </div>
-                <div class="project" data-category="game">
-                    <a href="https://cosmichorizon.space" target="_self">
-                        <img src="cosmichorizon.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Cosmic+Horizon'" alt="Cosmic Horizon" loading="lazy">
+                <div class="project" data-category="game" data-icon-url="cosmichorizon.jpg">
+                    <div class="icon-3d-container"></div>
+
+                    <div class="project-content">
                         <h3>Cosmic Horizon</h3>
-                        <p>Retro-futuristic space exploration game.</p>
-                    </a>
+                        <p>Space Explorer</p>
+                        <div class="preview-video" data-video-url="https://example.com/videos/cosmic-horizon-demo.mp4"></div>
+                        <a href="https://cosmichorizon.space" class="btn" target="_self">Explore Space</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1912,5 +2026,13 @@ Discover the Word of God through a cosmic lens. Dive into scripture with powerfu
             });
         });
     </script>
+    <script type="module" src="app-preview.js"></script>
+    <script src="preview-popup.js"></script>
+    <script src="cursor-fix.js"></script>
+    <script src="cosmic-animations.js"></script>
+    <script src="link-fixer.js"></script>
+    <script src="direct-link-fix.js"></script>
+    <script src="force-link-fix.js"></script>
+    <script src="nav-scroll.js"></script>
 </body>
 </html> 

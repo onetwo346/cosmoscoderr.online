@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Simple drag-and-drop UI'
             ],
             technologies: ['JavaScript', 'File API'],
-            image: './switchbox.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/switchbox/',
             buttonLabel: 'Convert Files'
         },
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Cosmic visuals'
             ],
             technologies: ['JavaScript', 'Canvas'],
-            image: './xowars.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-xowars-url.com',
             buttonLabel: 'Play Game'
         },
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Group chats'
             ],
             technologies: ['JavaScript', 'WebSocket'],
-            image: './quickwrap.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-quickwrap-url.com',
             buttonLabel: 'Send Message'
         },
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Leaderboard'
             ],
             technologies: ['JavaScript', 'HTML', 'CSS'],
-            image: './wordgridquest.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-wordgridquest-url.com',
             buttonLabel: 'Play Game'
         },
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Client management'
             ],
             technologies: ['JavaScript', 'PDF API'],
-            image: './invoicepro.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-invoicepro-url.com',
             buttonLabel: 'Create Invoice'
         },
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Download and share'
             ],
             technologies: ['JavaScript', 'AI API'],
-            image: './dipimage.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-dipimage-url.com',
             buttonLabel: 'Generate Images'
         },
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Save favorites'
             ],
             technologies: ['JavaScript', 'REST API'],
-            image: './makethisrecipe.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-makethisrecipe-url.com',
             buttonLabel: 'Find Recipes'
         },
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Birth chart analysis'
             ],
             technologies: ['JavaScript', 'Astrology API'],
-            image: './horonum.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-horonum-url.com',
             buttonLabel: 'Get Insights'
         },
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Immersive storyline'
             ],
             technologies: ['JavaScript', 'HTML', 'CSS'],
-            image: './timeescape.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-timeescape-url.com',
             buttonLabel: 'Play Game'
         },
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Multiple languages'
             ],
             technologies: ['JavaScript', 'Web Speech API'],
-            image: './beeek.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-beeek-url.com',
             buttonLabel: 'Convert Text'
         },
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Export to PDF'
             ],
             technologies: ['JavaScript', 'PDF API'],
-            image: './resumebuilder.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-resume-url.com',
             buttonLabel: 'Create Resume'
         },
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Save favorites'
             ],
             technologies: ['JavaScript', 'AI API'],
-            image: './giftgenius.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-giftgenius-url.com',
             buttonLabel: 'Find Gifts'
         },
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Educational content'
             ],
             technologies: ['JavaScript', 'Three.js'],
-            image: './cosmichorizon.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://your-cosmichorizon-url.com',
             buttonLabel: 'Explore'
         },
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Save and resume puzzles'
             ],
             technologies: ['JavaScript', 'HTML Canvas', 'CSS Grid', 'File API'],
-            image: './pic.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://pic2puzz.space'
         },
         'Glow Radio': {
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Visualizer effects'
             ],
             technologies: ['JavaScript', 'Web Audio API', 'IndexedDB', 'Radio Browser API'],
-            image: './glowlogo.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/glow-radio-'
         },
         'AKAN WISDOM GENERATOR': {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Cultural context explanations'
             ],
             technologies: ['JavaScript', 'LocalStorage API', 'Share API'],
-            image: './akanlogo.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/wise-saying'
         },
         'RANDOM QUOTE': {
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Dark/light theme toggle'
             ],
             technologies: ['JavaScript', 'REST API', 'LocalStorage'],
-            image: './random.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/random-quote-generator-RQG'
         },
         'Fetch or Catch': {
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Special challenge modes'
             ],
             technologies: ['JavaScript', 'HTML Canvas', 'RequestAnimationFrame API'],
-            image: './fc.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/fetch-or-catch/'
         },
         'Baby Checker': {
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Medical information resources'
             ],
             technologies: ['JavaScript', 'LocalStorage', 'Notification API'],
-            image: './babychecker.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/BABYYCHECKER/'
         },
         'Cosmic Bible': {
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Night mode for comfortable reading'
             ],
             technologies: ['JavaScript', 'IndexedDB', 'Web Speech API'],
-            image: './cosmicbible.jpg',
+            image: './cosmoslogo.jpg',
             url: 'https://onetwo346.github.io/cb/'
         },
         'Earthquake Analyst': {
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Notification system for major events'
             ],
             technologies: ['JavaScript', 'Leaflet.js', 'USGS API', 'Chart.js'],
-            image: './earthquake.jpg',
+            image: './cosmoslogo.jpg',
             url: '#'
         }
     };
