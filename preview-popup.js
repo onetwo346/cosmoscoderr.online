@@ -1,5 +1,7 @@
 // Product Preview Popup System
 document.addEventListener('DOMContentLoaded', function() {
+    // Use a single fallback image for all products
+    const defaultImage = './cosmoslogo.jpg';
     // Product details database
     const productDetails = {
         'SwitchBox': {
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Simple drag-and-drop UI'
             ],
             technologies: ['JavaScript', 'File API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/switchbox/',
             buttonLabel: 'Convert Files'
         },
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Cosmic visuals'
             ],
             technologies: ['JavaScript', 'Canvas'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-xowars-url.com',
             buttonLabel: 'Play Game'
         },
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Group chats'
             ],
             technologies: ['JavaScript', 'WebSocket'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-quickwrap-url.com',
             buttonLabel: 'Send Message'
         },
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Leaderboard'
             ],
             technologies: ['JavaScript', 'HTML', 'CSS'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-wordgridquest-url.com',
             buttonLabel: 'Play Game'
         },
@@ -63,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Client management'
             ],
             technologies: ['JavaScript', 'PDF API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-invoicepro-url.com',
             buttonLabel: 'Create Invoice'
         },
@@ -76,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Download and share'
             ],
             technologies: ['JavaScript', 'AI API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-dipimage-url.com',
             buttonLabel: 'Generate Images'
         },
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Save favorites'
             ],
             technologies: ['JavaScript', 'REST API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-makethisrecipe-url.com',
             buttonLabel: 'Find Recipes'
         },
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Birth chart analysis'
             ],
             technologies: ['JavaScript', 'Astrology API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-horonum-url.com',
             buttonLabel: 'Get Insights'
         },
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Immersive storyline'
             ],
             technologies: ['JavaScript', 'HTML', 'CSS'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-timeescape-url.com',
             buttonLabel: 'Play Game'
         },
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Multiple languages'
             ],
             technologies: ['JavaScript', 'Web Speech API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-beeek-url.com',
             buttonLabel: 'Convert Text'
         },
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Export to PDF'
             ],
             technologies: ['JavaScript', 'PDF API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-resume-url.com',
             buttonLabel: 'Create Resume'
         },
@@ -154,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Save favorites'
             ],
             technologies: ['JavaScript', 'AI API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-giftgenius-url.com',
             buttonLabel: 'Find Gifts'
         },
@@ -167,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Educational content'
             ],
             technologies: ['JavaScript', 'Three.js'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://your-cosmichorizon-url.com',
             buttonLabel: 'Explore'
         },
@@ -182,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Save and resume puzzles'
             ],
             technologies: ['JavaScript', 'HTML Canvas', 'CSS Grid', 'File API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://pic2puzz.space'
         },
         'Glow Radio': {
@@ -196,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Visualizer effects'
             ],
             technologies: ['JavaScript', 'Web Audio API', 'IndexedDB', 'Radio Browser API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/glow-radio-'
         },
         'AKAN WISDOM GENERATOR': {
@@ -210,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Cultural context explanations'
             ],
             technologies: ['JavaScript', 'LocalStorage API', 'Share API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/wise-saying'
         },
         'RANDOM QUOTE': {
@@ -224,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Dark/light theme toggle'
             ],
             technologies: ['JavaScript', 'REST API', 'LocalStorage'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/random-quote-generator-RQG'
         },
         'Fetch or Catch': {
@@ -238,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Special challenge modes'
             ],
             technologies: ['JavaScript', 'HTML Canvas', 'RequestAnimationFrame API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/fetch-or-catch/'
         },
         'Baby Checker': {
@@ -252,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Medical information resources'
             ],
             technologies: ['JavaScript', 'LocalStorage', 'Notification API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/BABYYCHECKER/'
         },
         'Cosmic Bible': {
@@ -266,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Night mode for comfortable reading'
             ],
             technologies: ['JavaScript', 'IndexedDB', 'Web Speech API'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: 'https://onetwo346.github.io/cb/'
         },
         'Earthquake Analyst': {
@@ -280,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Notification system for major events'
             ],
             technologies: ['JavaScript', 'Leaflet.js', 'USGS API', 'Chart.js'],
-            image: './cosmoslogo.jpg',
+            image: defaultImage,
             url: '#'
         }
     };
@@ -305,15 +307,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get project title
             const title = project.querySelector('h3').textContent.trim();
             
+            // Get the button text for the action button
+            const buttonText = project.querySelector('.btn').textContent.trim();
+            
             // Get details from database or create fallback
-            const details = productDetails[title] || {
+            let details = productDetails[title] || {
                 title: title,
                 description: 'Explore this cosmic application and discover its features.',
                 features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
                 technologies: ['HTML', 'CSS', 'JavaScript'],
-                image: project.dataset.iconUrl || './cosmoslogo.jpg',
                 url: project.querySelector('.btn').getAttribute('href') || '#'
             };
+            
+            // Always use the data-icon-url from the project element if available
+            if (project.dataset.iconUrl) {
+                details.image = project.dataset.iconUrl;
+            }
+            
+            // Use the button text from the project if no custom buttonLabel is defined
+            if (!details.buttonLabel) {
+                details.buttonLabel = buttonText;
+            }
             
             // Show popup
             showPreviewPopup(details);
@@ -322,6 +336,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to show preview popup
     function showPreviewPopup(details) {
+        // Ensure image path is properly formatted
+        let imagePath = details.image || defaultImage;
+        
+        // If the image path doesn't start with http or ./, add ./ to make it relative to root
+        if (!imagePath.startsWith('http') && !imagePath.startsWith('./')) {
+            imagePath = './' + imagePath;
+        }
         
         // Create popup content
         popupContainer.innerHTML = `
@@ -331,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button class="preview-close">&times;</button>
                 </div>
                 <div class="preview-body">
-                    <div class="preview-image" style="background-image: url('${details.image}')"></div>
+                    <div class="preview-image" style="background-image: url('${imagePath}')"></div>
                     <div class="preview-details">
                         <div class="preview-description">${details.description}</div>
                         <div class="preview-features">

@@ -288,14 +288,19 @@
 }
 
 .app-2 {
-    background-image: url('../xowars.jpg');
     width: 50px;
     height: 50px;
     animation: floatApp2 20s linear infinite;
 }
 
+.no-image {
+    background-image: none;
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+    border: 1px solid rgba(0, 247, 255, 0.2);
+    background-color: rgba(0, 247, 255, 0.05);
+}
+
 .app-3 {
-    background-image: url('../cosmichorizon.jpg');
     width: 40px;
     height: 40px;
     animation: floatApp3 25s linear infinite;
