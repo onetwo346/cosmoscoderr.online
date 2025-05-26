@@ -29,7 +29,15 @@ class AppPreview {
             
             // Handle missing images gracefully
             try {
-                const texture = textureLoader.load(project.dataset.iconUrl, undefined, undefined, () => {
+                // Fix image path to ensure it loads correctly
+                let imagePath = project.dataset.iconUrl;
+                
+                // If the path doesn't start with http or /, add ./ to make it relative to root
+                if (!imagePath.startsWith('http') && !imagePath.startsWith('/')) {
+                    imagePath = './' + imagePath;
+                }
+                
+                const texture = textureLoader.load(imagePath, undefined, undefined, () => {
                     // On error, use a gradient material instead
                     material.dispose();
                     icon.material = new THREE.MeshBasicMaterial({
