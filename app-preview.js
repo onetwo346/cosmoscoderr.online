@@ -363,30 +363,12 @@ class AppPreview {
     }
 
     closeDetailPopup(container) {
-        // First remove the active class for animation
         container.classList.remove('active');
-        
-        // Immediately hide the container
-        container.style.display = 'none';
-        
-        // Clear the content immediately
-        container.innerHTML = '';
-        
-        // Remove any stray elements that might have been created
-        document.querySelectorAll('.detail-popup-content').forEach(el => {
-            if (el.parentNode && el.parentNode !== container) {
-                el.parentNode.removeChild(el);
-            }
-        });
-        
-        // Clean up any text nodes that might contain preview content
-        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-        let node;
-        while (node = walker.nextNode()) {
-            if (node.textContent && node.textContent.includes('Explore this cosmic application')) {
-                node.textContent = '';
-            }
-        }
+        // Add a small delay to allow the closing animation to complete
+        setTimeout(() => {
+            // Clear the popup content to prevent it from appearing elsewhere
+            container.innerHTML = '';
+        }, 300);
     }
 }
 
