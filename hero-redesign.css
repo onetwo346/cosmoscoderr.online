@@ -450,33 +450,79 @@
 
 @media (max-width: 768px) {
     .hero {
-        min-height: 600px;
+        min-height: 100vh;
+        height: auto;
+        padding: 2rem 0;
     }
-    
+
+    .star-field {
+        background-size: 275px 275px, 175px 175px, 125px 125px, 75px 75px;
+        background-position: 0 0, 20px 30px, 65px 135px, 35px 50px;
+        opacity: 0.8;
+    }
+
+    .glow-overlay {
+        background: 
+            radial-gradient(circle at 50% 30%, rgba(0, 247, 255, 0.15) 0%, transparent 60%),
+            radial-gradient(circle at 50% 70%, rgba(255, 0, 247, 0.15) 0%, transparent 60%);
+    }
+
     .category-pills {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.8rem;
-        align-items: center;
     }
-    
+
+    .category-pill {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
     .cta-container {
         flex-direction: column;
         width: 100%;
         max-width: 300px;
+        gap: 1rem;
     }
-    
+
     .cta-btn {
         width: 100%;
         text-align: center;
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
     }
-    
+
     .hero-sphere {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
+        margin: 2rem auto;
     }
-    
+
     .orbit-path {
-        width: 300px;
-        height: 300px;
+        width: 340px;
+        height: 340px;
+    }
+
+    .floating-app {
+        transform-origin: center;
+        will-change: transform;
+    }
+
+    .app-1 { width: 50px; height: 50px; }
+    .app-2 { width: 40px; height: 40px; }
+    .app-3 { width: 35px; height: 35px; }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+        text-align: center;
+        margin: 0 auto 2rem;
+        max-width: 90%;
     }
 }

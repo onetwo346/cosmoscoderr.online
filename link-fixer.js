@@ -13,13 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Tools
         'Earthquake Analyst': 'https://earthquakeanalyst.space/',
         'SwitchBox': 'https://onetwo346.github.io/switchbox/',
-        'Baby Checker': 'https://onetwo346.github.io/BABYYCHECKER/',
-        'Cosmic Bible': 'https://onetwo346.github.io/cb/',
-        'AKAN WISDOM GENERATOR': 'https://onetwo346.github.io/wise-saying',
-        'RANDOM QUOTE': 'https://onetwo346.github.io/random-quote-generator-RQG',
-        'Invoice Generator Pro': 'https://onetwo346.github.io/invoice-generator',
-        'Resume/Cover Letter': 'https://onetwo346.github.io/Resume-cover-letter-',
-        'Gift Idea Genius': 'https://onetwo346.github.io/Gift-idea-genius-',
         'Dip Image Generator': 'https://dipimagegenerator.lat',
         'Beeek': 'https://beeek.online',
         
