@@ -398,11 +398,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to close preview popup
     function closePreviewPopup() {
+        // First remove the active class for animation
         popupContainer.classList.remove('active');
-        // Add a small delay to allow the closing animation to complete
-        setTimeout(() => {
-            // Clear the popup content to prevent it from appearing elsewhere
-            popupContainer.innerHTML = '';
-        }, 300);
+        
+        // Immediately hide the container
+        popupContainer.style.display = 'none';
+        
+        // Clear the content immediately
+        popupContainer.innerHTML = '';
+        
+        // Remove any stray elements that might have been created
+        document.querySelectorAll('.preview-content').forEach(el => {
+            if (el.parentNode && el.parentNode !== popupContainer) {
+                el.parentNode.removeChild(el);
+            }
+        });
+        
+        // Clean up any text nodes that might contain preview content
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node;
+        while (node = walker.nextNode()) {
+            if (node.textContent && node.textContent.includes('Explore this cosmic application')) {
+                node.textContent = '';
+            }
+        }
     }
 });
