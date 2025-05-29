@@ -399,5 +399,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close preview popup
     function closePreviewPopup() {
         popupContainer.classList.remove('active');
+        // Add a small delay to allow the closing animation to complete
+        setTimeout(() => {
+            // Clear the popup content to prevent it from appearing elsewhere
+            popupContainer.innerHTML = '';
+        }, 300);
     }
 });

@@ -364,6 +364,11 @@ class AppPreview {
 
     closeDetailPopup(container) {
         container.classList.remove('active');
+        // Add a small delay to allow the closing animation to complete
+        setTimeout(() => {
+            // Clear the popup content to prevent it from appearing elsewhere
+            container.innerHTML = '';
+        }, 300);
     }
 }
 
