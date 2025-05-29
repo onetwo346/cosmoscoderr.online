@@ -6,6 +6,9 @@
     overflow: hidden;
     border-radius: 1rem 1rem 0 0;
     background: var(--dark-matter);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .icon-3d-container canvas {

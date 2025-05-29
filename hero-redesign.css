@@ -227,6 +227,7 @@
         0 0 50px rgba(0, 247, 255, 0.3);
     overflow: hidden;
     animation: spherePulse 8s ease-in-out infinite;
+    z-index: 2;
 }
 
 .sphere-glow {
@@ -237,6 +238,7 @@
     height: 200%;
     background: radial-gradient(circle at 50% 50%, rgba(0, 247, 255, 0.3), transparent 70%);
     animation: sphereGlow 8s ease-in-out infinite;
+    z-index: 1;
 }
 
 @keyframes spherePulse {
@@ -266,10 +268,16 @@
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 247, 255, 0.2);
+    border: 1px solid rgba(0, 247, 255, 0.3);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.1);
+    z-index: 1;
+    /* Add subtle rotation */
+    animation: orbitRotate 120s linear infinite;
+    /* Add subtle glow */
+    background: radial-gradient(ellipse at center, rgba(0, 247, 255, 0.03) 0%, transparent 70%);
 }
 
 .floating-app {
@@ -280,27 +288,33 @@
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+    z-index: 3;
+    /* Add glass effect */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Improve performance */
+    will-change: transform;
+    /* Prevent pixelation during animation */
+    image-rendering: high-quality;
 }
 
 .app-1 {
-    background-image: url('../pic2puzz.jpg');
-    animation: floatApp1 15s linear infinite;
+    background-image: url('./cosmoslogo.jpg');
+    animation: floatApp1 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    /* Add subtle breathing effect */
+    animation: floatApp1 30s cubic-bezier(0.4, 0, 0.2, 1) infinite, appBreathing 4s ease-in-out infinite;
 }
 
 .app-2 {
+    background-image: url('../xowars.jpg');
     width: 50px;
     height: 50px;
     animation: floatApp2 20s linear infinite;
 }
 
-.no-image {
-    background-image: none;
-    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
-    border: 1px solid rgba(0, 247, 255, 0.2);
-    background-color: rgba(0, 247, 255, 0.05);
-}
-
 .app-3 {
+    background-image: url('../cosmichorizon.jpg');
     width: 40px;
     height: 40px;
     animation: floatApp3 25s linear infinite;
@@ -308,10 +322,30 @@
 
 @keyframes floatApp1 {
     0% {
-        transform: translate(200px, 0) rotate(0deg);
+        transform: rotate(0deg) translateX(200px) rotate(0deg);
     }
     100% {
-        transform: translate(200px, 0) rotate(360deg);
+        transform: rotate(360deg) translateX(200px) rotate(-360deg);
+    }
+}
+
+@keyframes appBreathing {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+        transform: scale(1) rotate(0deg) translateX(200px) rotate(0deg);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 247, 255, 0.7);
+        transform: scale(1.05) rotate(180deg) translateX(200px) rotate(-180deg);
+    }
+}
+
+@keyframes orbitRotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 

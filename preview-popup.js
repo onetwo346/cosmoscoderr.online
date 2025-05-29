@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Canvas'],
             image: defaultImage,
-            url: '#',
+            url: 'https://your-xowars-url.com',
             buttonLabel: 'Play Game'
         },
         'Quick Wrap': {
@@ -170,8 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Three.js'],
             image: defaultImage,
-            url: 'https://cosmichorizon.space',
-            buttonLabel: 'Explore Space'
+            url: 'https://your-cosmichorizon-url.com',
+            buttonLabel: 'Explore'
         },
         'Pic2Puzz': {
             title: 'Pic2Puzz',
@@ -284,84 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['JavaScript', 'Leaflet.js', 'USGS API', 'Chart.js'],
             image: defaultImage,
             url: '#'
-        },
-        'Beeek': {
-            title: 'Beeek',
-            description: 'Transform text to speech with Beeek. Convert written content to natural-sounding voice with various options.',
-            features: [
-                'Text to speech conversion',
-                'Multiple voice options',
-                'Adjustable speech parameters'
-            ],
-            technologies: ['JavaScript', 'Web Speech API'],
-            image: defaultImage,
-            url: 'https://beeek.online',
-            buttonLabel: 'Convert Text'
-        },
-        'Time Escape': {
-            title: 'Time Escape',
-            description: 'Embark on a space adventure. Solve puzzles and escape through time in this cosmic game.',
-            features: [
-                'Puzzle adventure',
-                'Time-based challenges',
-                'Cosmic environment'
-            ],
-            technologies: ['JavaScript', 'Canvas'],
-            image: defaultImage,
-            url: 'https://onetwo346.github.io/space-shooting',
-            buttonLabel: 'Play Game'
-        },
-        'Glow Radio': {
-            title: 'Glow Radio',
-            description: 'Stream your favorite radio stations with this sleek, cosmic-themed radio player. Glow Radio offers access to thousands of stations worldwide with a beautiful, minimalist interface.',
-            features: [
-                'Access to global radio stations',
-                'Station search and favorites',
-                'Sleep timer functionality',
-                'Background playback',
-                'Visualizer effects'
-            ],
-            technologies: ['JavaScript', 'Web Audio API', 'IndexedDB', 'Radio Browser API'],
-            image: defaultImage,
-            url: 'https://onetwo346.github.io/glow-radio-'
-        },
-        'Earthquake Analyst': {
-            title: 'Earthquake Analyst',
-            description: 'Monitor and analyze seismic activity worldwide with real-time data visualization and historical comparisons.',
-            features: [
-                'Real-time earthquake data',
-                'Interactive global map',
-                'Detailed analytics',
-                'Notification system for major events'
-            ],
-            technologies: ['JavaScript', 'Leaflet.js', 'USGS API', 'Chart.js'],
-            image: defaultImage,
-            url: 'https://earthquakeanalyst.space/'
-        },
-        'Cosmic Bible': {
-            title: 'Cosmic Bible',
-            description: 'Experience scripture in a modern interface with search, bookmarks, and study tools.',
-            features: [
-                'Complete scripture text',
-                'Advanced search functionality',
-                'Bookmarking system',
-                'Study tools and notes'
-            ],
-            technologies: ['JavaScript', 'IndexedDB', 'Web Speech API'],
-            image: defaultImage,
-            url: 'https://onetwo346.github.io/cb/'
-        },
-        'Baby Checker': {
-            title: 'Baby Checker',
-            description: 'Explore astrological signs and meanings for your baby with this interactive tool.',
-            features: [
-                'Astrological sign analysis',
-                'Personality insights',
-                'Interactive interface'
-            ],
-            technologies: ['JavaScript', 'HTML5', 'CSS3'],
-            image: defaultImage,
-            url: 'https://onetwo346.github.io/BABYYCHECKER/'
         }
     };
 
