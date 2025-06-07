@@ -46,6 +46,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#0a0a12">
+    <meta name="color-scheme" content="dark">
     
     <!-- Enhanced PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -84,23 +85,108 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    </noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="app-preview.css">
     <link rel="stylesheet" href="cosmic-elements.css">
     <link rel="stylesheet" href="cosmic-tags.css">
     <link rel="stylesheet" href="hero-redesign.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     
     <style>
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            /* Disable hover effects on touch devices */
+            .project:hover,
+            .cta-btn:hover,
+            .nav-link:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            
+            /* Use active state for touch feedback */
+            .project:active,
+            .cta-btn:active,
+            .nav-link:active {
+                transform: scale(0.98) !important;
+                transition: transform 0.1s !important;
+            }
+        }
+        
+        /* Prevent text selection on interactive elements */
+        .nav-link,
+        .cta-btn,
+        .project h3,
+        .preview-close {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    
+        /* Cross-browser Normalization */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Prevent iOS text size adjust after orientation change */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        
+        /* Force scrollbar style for consistency */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: var(--dark-matter);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--event-horizon);
+            border-radius: 6px;
+            border: 3px solid var(--dark-matter);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neutron-star);
+        }
+        
         /* Cosmic Color Scheme */
         :root {
+            /* Primary Colors - using hex for consistency */
             --quantum-blue: #00f7ff;
             --plasma-pink: #ff00f7;
             --dark-matter: #0a0a12;
             --neutron-star: #1e1e3d;
             --event-horizon: #2a2a5a;
+            
+            /* Gradients - using fixed colors */
+            --primary-gradient: linear-gradient(45deg, #00f7ff, #ff00f7);
+            --hover-gradient: linear-gradient(45deg, #ff00f7, #00f7ff);
+            
+            /* Transparent Colors - using rgba */
+            --quantum-blue-10: rgba(0, 247, 255, 0.1);
+            --quantum-blue-20: rgba(0, 247, 255, 0.2);
+            --quantum-blue-30: rgba(0, 247, 255, 0.3);
+            --plasma-pink-10: rgba(255, 0, 247, 0.1);
+            --plasma-pink-20: rgba(255, 0, 247, 0.2);
+            --plasma-pink-30: rgba(255, 0, 247, 0.3);
+            
+            /* Fixed Text Colors */
+            --text-primary: rgba(255, 255, 255, 0.9);
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-tertiary: rgba(255, 255, 255, 0.6);
             --light-speed: 0.4s;
             --pulse: 0 0 20px currentColor;
         }
@@ -1228,16 +1314,17 @@
             position: relative;
             border: 2px solid transparent;
             background: linear-gradient(var(--dark-matter), var(--dark-matter)) padding-box,
-                        linear-gradient(45deg, var(--quantum-blue), var(--plasma-pink)) border-box;
+                        linear-gradient(var(--angle, 0deg), var(--quantum-blue), var(--plasma-pink)) border-box;
             animation: borderGlow 3s linear infinite;
         }
 
         @keyframes borderGlow {
-            0% { border-image: linear-gradient(0deg, var(--quantum-blue), var(--plasma-pink)) 1; }
-            50% { border-image: linear-gradient(180deg, var(--quantum-blue), var(--plasma-pink)) 1; }
-            100% { border-image: linear-gradient(360deg, var(--quantum-blue), var(--plasma-pink)) 1; }
+            0% { --angle: 0deg; }
+            50% { --angle: 180deg; }
+            100% { --angle: 360deg; }
         }
     </style>
+    <script src="js/cursor.js" defer></script>
 </head>
 <body>
     <!-- Quantum Field Background -->
@@ -1470,8 +1557,6 @@
 
                         <a href="https://onetwo346.github.io/switchbox/" class="btn" target="_blank">Convert Files</a>
                     </div>
-                
-                
                 </div>
                 <div class="project" data-category="game" data-icon-url="xowars.jpg">
                     <div class="project-image" style="background-image: url('./xowars.jpg');"></div>
@@ -1480,11 +1565,8 @@
                         <h3>XOWARS</h3>
                         <p>Strategic Battle</p>
 
-                        <a href="https://xowars.space/" class="btn" target="_self">Play Game</a>
-        
+                        <a href="https://xowars.space/" class="btn" target="_blank">Play Game</a>
                     </div>
-                
-                
                 </div>
                 <div class="project" data-category="web" data-icon-url="quickwrap.jpg">
                     <div class="project-image" style="background-image: url('./quickwrap.jpg');"></div>
@@ -1503,7 +1585,7 @@
                         <h3>Word Grid Quest</h3>
                         <p>Word Adventure</p>
 
-                        <a href="https://wordgridquest.xyz/" class="btn" target="_self">Play Game</a>
+                        <a href="https://wordgridquest.xyz/" class="btn" target="_blank">Play Game</a>
                     </div>
                 </div>
                 <div class="project" data-category="tool" data-icon-url="invoice.jpg">

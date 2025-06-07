@@ -62,7 +62,7 @@
 }
 
 .project-content p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -73,7 +73,7 @@
 .project-content .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background: linear-gradient(45deg, var(--quantum-blue), var(--plasma-pink));
+    background: var(--primary-gradient);
     color: white;
     text-decoration: none;
     border-radius: 2rem;
@@ -89,8 +89,8 @@
 
 .project-content .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
-    background: linear-gradient(45deg, var(--plasma-pink), var(--quantum-blue));
+    box-shadow: 0 5px 15px var(--quantum-blue-30);
+    background: var(--hover-gradient);
 }
 
 
@@ -133,8 +133,8 @@
     overflow-y: auto;
     background: linear-gradient(135deg, rgba(30, 30, 61, 0.95), rgba(10, 10, 18, 0.98));
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
-    border: 1px solid rgba(0, 247, 255, 0.2);
+    box-shadow: 0 0 30px var(--quantum-blue-30);
+    border: 1px solid var(--quantum-blue-20);
     display: flex;
     flex-direction: column;
     transform: scale(0.95);
@@ -151,7 +151,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+    border-bottom: 1px solid var(--quantum-blue-10);
 }
 
 .preview-title {
@@ -183,7 +183,7 @@
 }
 
 .preview-close:hover {
-    background: rgba(255, 0, 247, 0.1);
+    background: var(--plasma-pink-10);
     transform: rotate(90deg);
 }
 
@@ -222,7 +222,7 @@
 }
 
 .preview-description {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
     line-height: 1.8;
     margin-bottom: 25px;
     font-size: 16px;
@@ -246,7 +246,7 @@
 
 .features-list li {
     padding: 8px 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
 }
@@ -262,7 +262,7 @@
 
 .preview-footer {
     padding: 20px;
-    border-top: 1px solid rgba(0, 247, 255, 0.1);
+    border-top: 1px solid var(--quantum-blue-10);
     display: flex;
     justify-content: flex-end;
     gap: 15px;
@@ -280,7 +280,7 @@
 }
 
 .preview-btn-primary {
-    background: linear-gradient(45deg, var(--quantum-blue), var(--plasma-pink));
+    background: var(--primary-gradient);
     color: white;
     border: none;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -313,36 +313,71 @@
     box-shadow: 0 10px 25px rgba(0, 247, 255, 0.2);
 }
 
-@media (max-width: 768px) {
-    .preview-body {
-        grid-template-columns: 1fr;
-    }
-    
-    .preview-title {
-        font-size: 22px;
-    }
-    
-    .preview-description {
-        font-size: 14px;
-    }
+/* Consistent layout across all devices */
+.preview-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .controls {
-        padding: 0.5rem;
-        gap: 0.5rem;
-    }
-
-    .controls button {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
-    }
+.preview-image,
+.preview-details {
+    flex: 1 1 300px;
+    max-width: 600px;
+    min-width: 280px;
+    margin: 0.5rem;
 }
 
-@media (max-width: 480px) {
-    .icon-3d-container {
-        height: 150px;
-    }
+.preview-title {
+    font-size: clamp(20px, 4vw, 28px);
+    margin-bottom: 1rem;
+}
+
+.controls {
+    padding: clamp(0.5rem, 2vw, 1rem);
+    gap: clamp(0.5rem, 2vw, 1rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls button {
+    width: clamp(32px, 6vw, 40px);
+    height: clamp(32px, 6vw, 40px);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.icon-3d-container {
+    height: clamp(120px, 25vw, 180px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure content is always visible */
+.preview-content {
+    max-height: 90vh;
+    width: clamp(300px, 90%, 1200px);
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+/* Keep buttons consistent */
+.preview-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.preview-btn {
+    min-width: 120px;
+    padding: 0.8rem 1.5rem;
+    white-space: nowrap;
+    text-align: center;
 }
