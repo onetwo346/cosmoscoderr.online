@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Canvas'],
             image: defaultImage,
-            url: 'https://your-xowars-url.com',
+            url: 'https://xowars.space/',
             buttonLabel: 'Play Game'
         },
         'Quick Wrap': {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'WebSocket'],
             image: defaultImage,
-            url: 'https://your-quickwrap-url.com',
+            url: 'https://quickwrap.space/',
             buttonLabel: 'Send Message'
         },
         'Word Grid Quest': {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'HTML', 'CSS'],
             image: defaultImage,
-            url: 'https://your-wordgridquest-url.com',
+            url: 'https://wordgridquest.xyz/',
             buttonLabel: 'Play Game'
         },
         'Invoice Generator Pro': {
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'PDF API'],
             image: defaultImage,
-            url: 'https://your-invoicepro-url.com',
+            url: 'https://onetwo346.github.io/invoice-generator/',
             buttonLabel: 'Create Invoice'
         },
         'Dip Image Generator': {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'AI API'],
             image: defaultImage,
-            url: 'https://your-dipimage-url.com',
+            url: 'https://dipimagegenerator.lat/',
             buttonLabel: 'Generate Images'
         },
         'Make This Recipe': {
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'REST API'],
             image: defaultImage,
-            url: 'https://your-makethisrecipe-url.com',
+            url: 'https://onetwo346.github.io/Make-this-recipe-/',
             buttonLabel: 'Find Recipes'
         },
         'Horonum': {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Astrology API'],
             image: defaultImage,
-            url: 'https://your-horonum-url.com',
+            url: 'https://onetwo346.github.io/horonum/',
             buttonLabel: 'Get Insights'
         },
         'Time Escape': {
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'HTML', 'CSS'],
             image: defaultImage,
-            url: 'https://your-timeescape-url.com',
+            url: 'https://onetwo346.github.io/space-shooting/',
             buttonLabel: 'Play Game'
         },
         'Beeek': {
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Web Speech API'],
             image: defaultImage,
-            url: 'https://your-beeek-url.com',
+            url: 'https://beeek.online/',
             buttonLabel: 'Convert Text'
         },
         'Resume/Cover Letter': {
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'PDF API'],
             image: defaultImage,
-            url: 'https://your-resume-url.com',
+            url: 'https://onetwo346.github.io/Resume-cover-letter-/',
             buttonLabel: 'Create Resume'
         },
         'Gift Idea Genius': {
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'AI API'],
             image: defaultImage,
-            url: 'https://your-giftgenius-url.com',
+            url: 'https://onetwo346.github.io/Gift-idea-genius-/',
             buttonLabel: 'Find Gifts'
         },
         'Cosmic Horizon': {
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Three.js'],
             image: defaultImage,
-            url: 'https://your-cosmichorizon-url.com',
+            url: 'https://cosmichorizon.space/',
             buttonLabel: 'Explore'
         },
         'Pic2Puzz': {
