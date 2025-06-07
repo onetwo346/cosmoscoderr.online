@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ],
             technologies: ['JavaScript', 'Leaflet.js', 'USGS API', 'Chart.js'],
             image: defaultImage,
-            url: '#'
+            url: 'https://earthquakeanalyst.space'
         }
     };
 
