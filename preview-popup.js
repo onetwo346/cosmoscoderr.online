@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://onetwo346.github.io/switchbox',
             buttonLabel: 'Convert Files'
         },
+        'Baby Name Picker': {
+            title: 'Baby Name Picker',
+            description: 'Welcome to Baby Name Picker!Stuck on choosing the perfect name?.',
+            features: [
+                '🎲 Random Name Generator',
+                '👦👧 Gender Selection',
+                '📚 Name Meaning & Origin'
+            ],
+            technologies: ['JavaScript', 'File API'],
+            image: defaultImage,
+            url: 'https://onetwo346.github.io/baby-name-picker/',
+            buttonLabel: 'Pick Names'
+        },
         'XOWARS': {
             title: 'XOWARS',
             description: 'Engage in strategic battles in XOWARS. Outsmart your opponent and claim victory in this cosmic-themed game.',
