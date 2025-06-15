@@ -17,12 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://onetwo346.github.io/switchbox',
             buttonLabel: 'Convert Files'
         },
-        
-        
         'BABY NAME PICKER': {
             title: 'BABY NAME PICKER',
             description: '👶 Welcome to Baby Name Picker!
-Stuck on choosing the perfect name? Whether you're expecting a little prince, princess, or keeping it a surprise — we've got you covered! Spin the name wheel, get inspired, and discover baby names you'll fall in love with. Let the magic begin! ✨.',
+       Stuck on choosing the perfect name? Whether you're expecting a little prince, princess, or keeping it a surprise — we've got you covered! Spin the name wheel, get inspired, and discover baby names you'll fall in love with. Let the magic begin! ✨.',
             features: [
                 '🎲 Random Name Generator',
                 '👦👧 Gender Selection',
@@ -33,11 +31,6 @@ Stuck on choosing the perfect name? Whether you're expecting a little prince, pr
             url: 'https://onetwo346.github.io/baby-name-picker/',
             buttonLabel: 'Pick Name'
         },
-        
-        
-        
-        
-        
         'XOWARS': {
             title: 'XOWARS',
             description: 'Engage in strategic battles in XOWARS. Outsmart your opponent and claim victory in this cosmic-themed game.',
@@ -51,11 +44,7 @@ Stuck on choosing the perfect name? Whether you're expecting a little prince, pr
             url: 'https://xowars.space',
             buttonLabel: 'Play Game'
         },
-        
-        
-        
-        
-        'Quick Wrap': {
+         'Quick Wrap': {
             title: 'Quick Wrap',
             description: 'Securely chat with friends and colleagues using Quick Wrap. End-to-end encryption for all your conversations.',
             features: [
