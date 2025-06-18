@@ -30,6 +30,30 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://onetwo346.github.io/baby-name-picker/',
             buttonLabel: 'Pick Names'
         },
+
+       
+        'Bunny Hop': {
+            title: 'Bunny Hop',
+            description: '🐰 Hop Hop Bunny Guide your bunny through fun jumps, dodge tree stumps, and grab carrots in this fast and cute adventure!.',
+            features: [
+                '🥕 Carrot Collecting Fun',
+                '🌳 Obstacle Hopping',
+                '🎮 Easy Controls '
+            ],
+            technologies: ['Web Game'],
+            image: defaultImage,
+            url: 'https://onetwo346.github.io/bunny-hop/',
+            buttonLabel: 'Play Game'
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
         'XOWARS': {
             title: 'XOWARS',
             description: 'Engage in strategic battles in XOWARS. Outsmart your opponent and claim victory in this cosmic-themed game.',
