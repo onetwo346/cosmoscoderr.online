@@ -1,45 +1,5 @@
 /* 3D Icon Container */
-.icon-3d-container {
-    width: 100%;
-    height: 120px; /* Fixed height for 3D containers */
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem 1rem 0 0;
-    background: var(--dark-matter);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.icon-3d-container canvas {
-    width: 100% !important;
-    height: 100% !important;
-    transition: transform 0.3s ease;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Removed .icon-3d-container and related canvas styles */
 
 /* Project Content */
 .project-content {
@@ -92,12 +52,6 @@
     box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
     background: linear-gradient(45deg, var(--plasma-pink), var(--quantum-blue));
 }
-
-
-
-
-
-
 
 /* Project Preview Popup */
 .preview-popup {
@@ -257,8 +211,6 @@
     margin-right: 10px;
     font-size: 18px;
 }
-
-
 
 .preview-footer {
     padding: 20px;
