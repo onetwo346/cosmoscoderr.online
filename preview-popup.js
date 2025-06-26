@@ -46,7 +46,23 @@ document.addEventListener('DOMContentLoaded', function() {
             buttonLabel: 'Play Game'
         },
         
-        
+        'Math Explorer': {
+            title: 'Math Explorer',
+            description: 'Math Explorer is a space-themed adventure where players solve math problems across 20 creative levels, each representing a different realm of mathematical mastery.',
+            features: [
+                '20 progressive levels covering addition, subtraction, multiplication, division, and more',
+                  'Unique themes: Jungle, Desert, Ocean, Arctic, Space, and beyond',
+                  'Covers advanced topics like fractions, equations, geometry, and sequences',
+                  'Interactive “Begin Mission” button for immersive play',
+                  'Visually engaging with a cosmic journey vibe',
+                'Fun way to test and sharpen math skills for all ages',
+                'Perfect for students, teachers, or casual learners'
+            ],
+            technologies: ['Web Game'],
+            image: defaultImage,
+            url: 'https://onetwo346.github.io/math-guru/',
+            buttonLabel: 'Start Game'
+        },
         
         
         
