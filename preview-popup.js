@@ -63,6 +63,29 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://onetwo346.github.io/math-guru/',
             buttonLabel: 'Start Game'
         },
+
+
+      'Star Script Editor': {
+            title: 'Star Script Pro',
+            description: 'StarScript Pro is a lightweight online tool for writing scripts and formatted text with a clean, distraction-free interface simpler than Word, built just for quick script writing.',
+            features: [
+                '🖋️ Minimalist Interface – Focus only on your words, with zero clutter',
+                  🌓 Dark Mode UI – Write comfortably any time of day with a stylish black-and-blue theme',
+                  ⚡ Live Typing Area – Instantly see your script as it develops in a centralized editor',
+                  🧠 Auto-Formatting – Mimics professional screenplay formatting (character names, dialogues, actions)',
+                  💾 Browser-Based – No downloads needed. Just open and start writing',
+             🔄 Cross-Device Friendly – Works on desktop and mobile browsers',
+             🆓 Free & Open Access – No login, no limits, just your story.'
+            ],
+            technologies: ['Web Game'],
+            image: defaultImage,
+            url: 'https://onetwo346.github.io/script/',
+            buttonLabel: 'Edit Files'
+        },
+
+
+
+
         
         
         
