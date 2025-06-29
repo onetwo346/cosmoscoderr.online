@@ -297,6 +297,7 @@
     will-change: transform;
     /* Prevent pixelation during animation */
     image-rendering: high-quality;
+    pointer-events: none !important;
 }
 
 .app-1 {

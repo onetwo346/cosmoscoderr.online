@@ -30,8 +30,37 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://onetwo346.github.io/baby-name-picker/',
             buttonLabel: 'Pick Names'
         },
-
-       
+        'Slang Translator': {
+            title: 'Slang Translator',
+            description: 'Decode and understand modern slang terms with this comprehensive slang translator. Perfect for staying up-to-date with contemporary language.',
+            features: [
+                'Extensive slang dictionary',
+                'Real-time translation',
+                'Context-aware definitions',
+                'Popular slang updates',
+                'Easy-to-use interface'
+            ],
+            technologies: ['JavaScript', 'REST API', 'LocalStorage'],
+            image: defaultImage,
+            url: 'https://onetwo346.github.io/Slang-decoder-/',
+            buttonLabel: 'Launch Translator'
+        },
+        'Star Script Editor': {
+            title: 'Star Script Editor',
+            description: 'A professional code editor with cosmic design. Write, edit, and manage your scripts with syntax highlighting and advanced features.',
+            features: [
+                'Syntax highlighting for multiple languages',
+                'Auto-completion and suggestions',
+                'File management system',
+                'Dark/light theme options',
+                'Real-time error detection',
+                'Code formatting tools'
+            ],
+            technologies: ['JavaScript', 'Monaco Editor', 'Web APIs'],
+            image: defaultImage,
+            url: 'https://onetwo346.github.io/script/',
+            buttonLabel: 'Edit Files'
+        },
         'Bunny Hop': {
             title: 'Bunny Hop',
             description: '🐰 Hop Hop Bunny Guide your bunny through fun jumps, dodge tree stumps, and grab carrots in this fast and cute adventure!.',
@@ -53,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 '20 progressive levels covering addition, subtraction, multiplication, division, and more',
                   'Unique themes: Jungle, Desert, Ocean, Arctic, Space, and beyond',
                   'Covers advanced topics like fractions, equations, geometry, and sequences',
-                  'Interactive “Begin Mission” button for immersive play',
+                  'Interactive "Begin Mission" button for immersive play',
                   'Visually engaging with a cosmic journey vibe',
                 'Fun way to test and sharpen math skills for all ages',
                 'Perfect for students, teachers, or casual learners'
