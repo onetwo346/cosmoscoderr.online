@@ -1857,6 +1857,32 @@
             .modal-title { font-size: 1.3rem; }
             .close-modal { font-size: 1.3rem; width: 32px; height: 32px; }
         }
+
+        /* Make latest news cards smaller */
+        .blog-posts {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+            gap: 1.1rem !important;
+        }
+        .blog-post {
+            padding: 1rem 0.7rem 1rem 0.7rem !important;
+            max-width: 260px !important;
+            margin: 0 auto !important;
+        }
+        .blog-post h3 {
+            font-size: 1.05rem !important;
+            margin-bottom: 0.4rem !important;
+        }
+        .blog-post .date {
+            font-size: 0.8rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        .blog-post p {
+            font-size: 0.85rem !important;
+            margin-bottom: 0.7rem !important;
+        }
+        .blog-post .read-more {
+            font-size: 0.9rem !important;
+        }
     </style>
 
     <script>
@@ -2682,6 +2708,18 @@
             
             // Blog posts data
             const blogPosts = [
+                { 
+                    title: "AI-Powered Game Generator Launched", 
+                    date: "April 22, 2025", 
+                    summary: "Create custom games instantly with our revolutionary AI game builder.", 
+                    fullContent: "<p>Introducing the AI-Powered Game Generator - a breakthrough tool that creates unique games based on your descriptions! Simply describe the type of game you want, and our AI will generate a fully playable game with custom graphics, mechanics, and scoring systems.</p><p>The tool supports various genres including puzzle games, arcade games, strategy games, and more. Each generated game is optimized for performance and includes cosmic-themed elements to match our store's aesthetic.</p>"
+                },
+                { 
+                    title: "Cosmic Marketplace Beta Release", 
+                    date: "April 20, 2025", 
+                    summary: "A new platform for developers to showcase and sell their cosmic creations.", 
+                    fullContent: "<p>The Cosmic Marketplace is now in beta! This new platform allows independent developers to publish and monetize their space-themed applications, games, and tools. Features include secure payment processing, developer analytics, and a built-in community for feedback and collaboration.</p><p>Early adopters get special benefits including reduced commission rates and priority support. The marketplace will officially launch next month with enhanced features and a larger developer community.</p>"
+                },
                 { 
                     title: "New App: Stellar UI Builder Released", 
                     date: "April 15, 2025", 
