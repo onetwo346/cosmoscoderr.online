@@ -50,7 +50,45 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseenter', showCursor);
     addHoverToElements();
 
+    // --- Fix: Ensure cursor works inside modals/popups ---
+    function attachCursorToModals() {
+        document.querySelectorAll('.detail-popup, .preview-popup, .detail-popup-content, .preview-content').forEach(modal => {
+            modal.addEventListener('mousemove', updateCursor);
+            modal.addEventListener('mouseenter', showCursor);
+            modal.addEventListener('mouseleave', hideCursor);
+        });
+    }
+    attachCursorToModals();
+    // Use a single MutationObserver for both hover and modal logic
+    const modalObserver = new MutationObserver(attachCursorToModals);
+    modalObserver.observe(document.body, { childList: true, subtree: true });
+    // --- End fix ---
+
     // Update hover effects when content changes (for dynamic elements)
     const observer = new MutationObserver(addHoverToElements);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Fallback: Always show cursor when modal is open
+    function forceShowCursor() {
+        cursor.style.opacity = '1';
+        cursorVisible = true;
+    }
+    document.addEventListener('mousemove', (e) => {
+        forceShowCursor();
+        updateCursor(e);
+    });
+    // Also attach to modals
+    function attachCursorToModals() {
+        document.querySelectorAll('.video-modal-overlay, .video-modal, .modal-content, .video-player').forEach(modal => {
+            modal.addEventListener('mousemove', (e) => {
+                forceShowCursor();
+                updateCursor(e);
+            });
+            modal.addEventListener('mouseenter', forceShowCursor);
+            modal.addEventListener('mouseleave', hideCursor);
+        });
+    }
+    attachCursorToModals();
+    // Use a single MutationObserver for both hover and modal logic
     observer.observe(document.body, { childList: true, subtree: true });
 });

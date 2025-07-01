@@ -13,26 +13,26 @@
 
 .project-content h3 {
     color: var(--quantum-blue);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
     font-family: 'Orbitron', sans-serif;
-    height: 30px; /* Fixed height for titles */
+    height: 25px; /* Fixed height for titles */
     display: flex;
     align-items: center;
 }
 
 .project-content p {
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    height: 50px; /* Fixed height for descriptions */
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    height: 45px; /* Fixed height for descriptions */
     overflow: hidden;
 }
 
 .project-content .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     background: linear-gradient(45deg, var(--quantum-blue), var(--plasma-pink));
     color: white;
     text-decoration: none;
@@ -42,7 +42,8 @@
     text-align: center;
     margin-top: auto; /* Push button to bottom */
     font-family: 'Orbitron', sans-serif;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
+    font-size: 0.85rem;
     align-self: center; /* Center the button */
     width: 80%; /* Consistent width */
 }
@@ -110,7 +111,7 @@
 
 .preview-title {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
     font-family: 'Orbitron', sans-serif;
     background: linear-gradient(90deg, var(--quantum-blue), var(--plasma-pink));
     -webkit-background-clip: text;
@@ -177,9 +178,9 @@
 
 .preview-description {
     color: rgba(255, 255, 255, 0.9);
-    line-height: 1.8;
-    margin-bottom: 25px;
-    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .preview-features {
@@ -188,8 +189,8 @@
 
 .preview-features h3 {
     color: var(--quantum-blue);
-    margin-bottom: 15px;
-    font-size: 20px;
+    margin-bottom: 12px;
+    font-size: 18px;
 }
 
 .features-list {

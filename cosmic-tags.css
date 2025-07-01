@@ -20,12 +20,12 @@
 }
 
 .cosmic-tag {
-    padding: 0.5rem 1.2rem;
+    padding: 0.4rem 1rem;
     border-radius: 50px;
     font-weight: 600;
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
     box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
     transition: all 0.3s ease;
     cursor: pointer;
@@ -80,7 +80,7 @@
     }
     
     .cosmic-tag {
-        font-size: 0.8rem;
-        padding: 0.4rem 1rem;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
     }
 }
