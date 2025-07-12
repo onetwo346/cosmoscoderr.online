@@ -2037,6 +2037,247 @@
             transform: scale(1.07);
             box-shadow: 0 0 32px 4px #ff00f766;
         }
+
+        /* Cosmic Search Styles - Mind Blowing Redesign */
+        .cosmic-search {
+            position: relative;
+            margin: 0 2rem;
+            flex: 0 0 auto;
+            max-width: 220px;
+        }
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 20, 40, 0.55);
+            border-radius: 2.5em;
+            box-shadow: 0 0 24px 4px #00f7ff44, 0 0 0 2px rgba(255,0,247,0.12);
+            border: 2px solid rgba(0,247,255,0.25);
+            backdrop-filter: blur(16px) saturate(1.5);
+            -webkit-backdrop-filter: blur(16px) saturate(1.5);
+            padding: 0.25em 0.5em 0.25em 1em;
+            position: relative;
+            overflow: hidden;
+            max-width: 220px;
+            min-width: 0;
+            transition: box-shadow 0.3s, border 0.3s;
+            animation: cosmicGlow 2.5s infinite alternate;
+        }
+        @keyframes cosmicGlow {
+            0% { box-shadow: 0 0 24px 4px #00f7ff44, 0 0 0 2px #ff00f733; }
+            100% { box-shadow: 0 0 36px 8px #ff00f766, 0 0 0 2px #00f7ff55; }
+        }
+        .search-input {
+            flex: 1 1 100px;
+            min-width: 0;
+            width: 100px;
+            background: transparent;
+            border: none;
+            color: var(--quantum-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            padding: 0.3em 0.2em;
+            outline: none;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 6px #00f7ff55;
+        }
+        .search-input::placeholder {
+            color: #b6faff;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        .search-icon, .search-ai {
+            background: linear-gradient(135deg, #00f7ff 60%, #ff00f7 100%);
+            border: none;
+            color: #fff;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.3em;
+            box-shadow: 0 0 10px #00f7ff55;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            outline: none;
+            position: relative;
+        }
+        .search-icon {
+            animation: pulseIcon 1.5s infinite alternate;
+        }
+        @keyframes pulseIcon {
+            0% { box-shadow: 0 0 10px #00f7ff55; transform: scale(1); }
+            100% { box-shadow: 0 0 18px #ff00f7aa; transform: scale(1.13); }
+        }
+        .search-icon:active, .search-ai:active {
+            transform: scale(0.93);
+        }
+        .search-icon:hover, .search-ai:hover {
+            box-shadow: 0 0 18px #ff00f7cc, 0 0 8px #00f7ff99;
+            transform: scale(1.12);
+        }
+        /* Responsive: even more compact on mobile */
+        @media (max-width: 768px) {
+            .cosmic-search, .search-wrapper { max-width: 140px; }
+            .search-input { width: 50px; font-size: 0.85rem; }
+            .search-icon, .search-ai { width: 24px; height: 24px; font-size: 0.95rem; }
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 18, 0.95);
+            border: 1px solid var(--quantum-blue);
+            border-radius: 15px;
+            margin-top: 1rem;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                        0 0 30px rgba(0, 247, 255, 0.2);
+            display: none;
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-results.active {
+            display: block;
+            animation: searchResultsFadeIn 0.3s ease;
+        }
+
+        @keyframes searchResultsFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-result-item:hover {
+            background: rgba(0, 247, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .result-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-right: 1rem;
+            object-fit: cover;
+            border: 2px solid var(--quantum-blue);
+        }
+
+        .result-content {
+            flex: 1;
+        }
+
+        .result-title {
+            color: var(--quantum-blue);
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .result-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .cosmic-search {
+                max-width: 110px;
+            }
+            .search-wrapper {
+                max-width: 110px;
+                padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+            }
+            .search-input {
+                width: 50px;
+                font-size: 0.8rem;
+            }
+            .search-icon,
+            .search-ai {
+                width: 22px;
+                height: 22px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Search Particle Effects */
+        .search-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--quantum-blue);
+            border-radius: 50%;
+            animation: particleFloat 2s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: var(--delay); }
+        .particle:nth-child(2) { left: 30%; animation-delay: calc(var(--delay) + 0.2s); }
+        .particle:nth-child(3) { left: 50%; animation-delay: calc(var(--delay) + 0.4s); }
+        .particle:nth-child(4) { left: 70%; animation-delay: calc(var(--delay) + 0.6s); }
+        .particle:nth-child(5) { left: 90%; animation-delay: calc(var(--delay) + 0.8s); }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* AI Search Animation */
+        .search-ai.ai-processing {
+            animation: aiProcessing 1.5s ease-in-out;
+        }
+
+        @keyframes aiProcessing {
+            0% {
+                transform: scale(1);
+                color: var(--quantum-blue);
+            }
+            50% {
+                transform: scale(1.2);
+                color: var(--plasma-pink);
+            }
+            100% {
+                transform: scale(1);
+                color: var(--quantum-blue);
+            }
+        }
     </style>
 
     <script>
@@ -2218,8 +2459,8 @@
     }
     .cosmic-orb-modal {
       position: relative;
-      width: 850px;
-      height: 900px;
+      width: 500px;
+      height: 520px;
       background: radial-gradient(ellipse at 60% 40%, rgba(0,247,255,0.10) 0%, rgba(10,10,30,0.95) 80%);
       display: flex;
       flex-direction: column;
@@ -2228,9 +2469,9 @@
       border-radius: 50%;
       box-shadow: 0 0 60px 20px #00f7ff, 0 0 120px 40px #ff00f7;
       animation: orbGlow 3s infinite alternate;
-      padding: 60px 50px 50px 50px;
+      padding: 40px 30px 30px 30px;
       box-sizing: border-box;
-      overflow: hidden;
+      overflow: auto;
     }
     @keyframes orbGlow {
       0% { box-shadow: 0 0 60px 20px #00f7ff, 0 0 120px 40px #ff00f7; }
@@ -2238,8 +2479,8 @@
     }
     .cosmic-orb-img-wrapper {
       position: relative;
-      width: 280px;
-      height: 280px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       overflow: visible;
       margin-bottom: 1em;
@@ -2249,8 +2490,8 @@
       flex-shrink: 0;
     }
     .cosmic-orb-img {
-      width: 260px;
-      height: 260px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 0 22px #00f7ff, 0 0 44px #ff00f7;
@@ -2276,8 +2517,8 @@
       text-align: center;
       color: #fff;
       margin-top: 0.5em;
-      font-size: 1.25em;
-      line-height: 1.7;
+      font-size: 1em;
+      line-height: 1.5;
       max-width: 98%;
       display: flex;
       flex-direction: column;
@@ -2394,6 +2635,21 @@
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#projects" class="nav-link">Apps</a>
                 <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <!-- Moved search bar below nav-links -->
+        </div>
+        <div class="nav-search-row" style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
+            <div class="cosmic-search">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" placeholder="Search the cosmos..." />
+                    <button class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="search-ai">
+                        <i class="fas fa-robot"></i>
+                    </button>
+                </div>
+                <div class="search-results"></div>
             </div>
         </div>
     </nav>
@@ -2783,6 +3039,33 @@
                         <p>Space Explorer</p>
                         <div class="preview-video" data-video-url="https://example.com/videos/cosmic-horizon-demo.mp4"></div>
                         <a href="https://cosmichorizon.space" class="btn" target="_self">Explore Space</a>
+                    </div>
+                </div>
+
+                <div class="project" data-category="web" data-icon-url="vac.jpg">
+                    <div class="project-image" style="background-image: url('./vac.jpg');"></div>
+                    <div class="project-content">
+                        <h3>Vacation Ideas</h3>
+                        <p>Discover Dream Destinations</p>
+                        <a href="https://onetwo346.github.io/vacation-ideas-/" class="btn" target="_self">Plan Adventure</a>
+                    </div>
+                </div>
+
+                <div class="project" data-category="web" data-icon-url="jod.jpg">
+                    <div class="project-image" style="background-image: url('./jod.jpg');"></div>
+                    <div class="project-content">
+                        <h3>Jokes of the Day</h3>
+                        <p>Daily Dose of Laughter</p>
+                        <a href="https://onetwo346.github.io/jokes-of-the-day/" class="btn" target="_self">Get Laughing</a>
+                    </div>
+                </div>
+
+                <div class="project" data-category="tool" data-icon-url="skin.jpg">
+                    <div class="project-image" style="background-image: url('./skin.jpg');"></div>
+                    <div class="project-content">
+                        <h3>Skin Analyst</h3>
+                        <p>Analyze Skin Health</p>
+                        <a href="https://onetwo346.github.io/skin-analyst/" class="btn" target="_self">Check Skin</a>
                     </div>
                 </div>
             </div>
@@ -3294,6 +3577,7 @@
     <script src="threejs-space-background.js"></script>
     <script src="advanced-animations.js"></script>
     <script src="performance-optimizer.js"></script>
+    <script src="cosmic-search-ai.js"></script>
     
     <!-- Cosmic Scroll-to-Top Button -->
     <button id="scrollToTop" class="cosmic-scroll-top" aria-label="Scroll to top">

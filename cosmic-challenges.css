@@ -1,0 +1,285 @@
+/* ===========================================
+   COSMIC CHALLENGES SYSTEM - SIMPLIFIED
+   =========================================== */
+
+/* Main Challenges Container */
+.cosmic-challenges-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Challenges Header */
+.challenges-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.challenges-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.challenges-subtitle {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin: 0;
+    font-weight: 300;
+}
+
+/* Daily Challenge Card */
+.daily-challenge-card {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.daily-challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+}
+
+.daily-app-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.app-icon {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.app-details {
+    flex: 1;
+}
+
+.app-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.3rem 0;
+}
+
+.app-description {
+    color: #e0e6ff;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.daily-badge {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(245, 87, 108, 0.3);
+}
+
+.challenge-mission {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mission-text {
+    color: #e0e6ff;
+    font-size: 0.9rem;
+}
+
+.launch-btn {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+    white-space: nowrap;
+}
+
+.launch-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+}
+
+/* Quick Stats */
+.quick-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    flex: 1;
+    position: relative;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #e0e6ff;
+    font-weight: 500;
+}
+
+.streak-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+/* Badges Preview */
+.badges-preview {
+    text-align: center;
+}
+
+.badges-preview-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 1rem 0;
+}
+
+.mini-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.mini-badge {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a5568, #2d3748);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(74, 85, 104, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mini-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 85, 104, 0.4);
+}
+
+.mini-badge.locked {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.mini-badge.unlocked {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    box-shadow: 0 5px 15px rgba(245, 87, 108, 0.3);
+    opacity: 1;
+    filter: none;
+}
+
+.mini-badge.unlocked:hover {
+    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cosmic-challenges-container {
+        padding: 0 1rem;
+        margin: 2rem auto;
+    }
+    
+    .challenges-title {
+        font-size: 2rem;
+    }
+    
+    .daily-challenge-card {
+        padding: 1.5rem;
+    }
+    
+    .daily-app-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .challenge-mission {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .quick-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .mini-badges {
+        gap: 0.5rem;
+    }
+    
+    .mini-badge {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+} 

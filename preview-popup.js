@@ -366,6 +366,55 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['JavaScript', 'Leaflet.js', 'USGS API', 'Chart.js'],
             image: defaultImage,
             url: 'https://earthquakeanalyst.space'
+        },
+        'Vacation Ideas': {
+            title: 'Vacation Ideas',
+            description: 'Your personal travel inspiration companion! Shake your device or click to discover amazing vacation destinations tailored to your interests. Features adventure, relaxation, cultural experiences, and nature getaways.',
+            features: [
+                'Shake-to-Generate Travel Ideas',
+                'Multiple Travel Categories (Adventure, Relax, Culture, Nature)',
+                'Save Favorite Destinations',
+                'Trip Counter & Statistics',
+                'Share Travel Plans with Friends'
+            ],
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Device Motion API', 'LocalStorage'],
+            image: 'vacation.jpg',
+            buttonLabel: 'Plan Adventure',
+            url: 'https://onetwo346.github.io/vacation-ideas-/'
+        },
+
+        'Jokes of the Day': {
+            title: 'Jokes of the Day',
+            description: 'Never-ending stream of laughter! Experience an infinite collection of handpicked jokes that auto-play every 5 seconds. Pause, favorite, and share the ones that make you laugh out loud.',
+            features: [
+                'Auto-playing Joke Stream',
+                'Keyboard Controls (P for Pause)',
+                'Favorite Joke Collection',
+                'One-Click Sharing',
+                'Multiple Joke Categories',
+                'No Repeats Guaranteed'
+            ],
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Web Animations API', 'Share API'],
+            image: 'jokes.jpg',
+            buttonLabel: 'Get Laughing',
+            url: 'https://onetwo346.github.io/jokes-of-the-day/'
+        },
+
+        'Skin Analyst': {
+            title: 'Skin Analyst',
+            description: 'Advanced dermatological analysis tool. Get comprehensive insights about your skin health, including acne analysis, hydration levels, anti-aging indicators, and pigmentation assessment.',
+            features: [
+                'Real-time AI Analysis',
+                'Comprehensive Skin Health Score',
+                'Multiple Analysis Modes',
+                'Detailed Reports & History',
+                'Personalized Recommendations',
+                'Export Analysis Results'
+            ],
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'AI Analysis Engine', 'Camera API'],
+            image: 'skin.jpg',
+            buttonLabel: 'Check Skin',
+            url: 'https://onetwo346.github.io/skin-analyst/'
         }
     };
 
@@ -374,24 +423,53 @@ document.addEventListener('DOMContentLoaded', function() {
     popupContainer.className = 'preview-popup';
     document.body.appendChild(popupContainer);
 
+    // Improved helper function to detect mobile devices
+    function isMobileDevice() {
+        // Touch support (covers most modern mobile devices)
+        const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // User agent check (covers older devices and some edge cases)
+        const ua = navigator.userAgent;
+        const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+        // Screen size fallback (optional, for very small screens)
+        const isSmallScreen = window.innerWidth <= 800 && window.innerHeight <= 900;
+        // Combine checks for best accuracy
+        return (hasTouch && isMobileUA) || isMobileUA || (hasTouch && isSmallScreen);
+    }
+
     // Add click event to all project cards
     document.querySelectorAll('.project').forEach(project => {
         // Get the main action button to prevent conflicts
         const actionButton = project.querySelector('.btn');
-        
+
+        // On mobile: make the button a direct link (no popup)
+        if (actionButton) {
+            actionButton.addEventListener('click', function(e) {
+                if (isMobileDevice()) {
+                    // Let the link work normally (open in new tab or same tab)
+                    // No popup
+                    // Do nothing here, allow default
+                } else {
+                    // On desktop, stop propagation so card click doesn't trigger
+                    e.stopPropagation();
+                }
+            });
+        }
+
         // Add click event to the project card
         project.addEventListener('click', function(e) {
-            // Don't trigger if clicking on the main action button
-            if (e.target === actionButton || actionButton.contains(e.target)) {
+            // On mobile: if clicking the button, do not show popup
+            if (isMobileDevice() && (e.target === actionButton || (actionButton && actionButton.contains(e.target)))) {
+                // Let the button handle navigation
                 return;
             }
-            
+            // On desktop: don't trigger if clicking on the main action button
+            if (!isMobileDevice() && (e.target === actionButton || (actionButton && actionButton.contains(e.target)))) {
+                return;
+            }
             // Get project title
             const title = project.querySelector('h3').textContent.trim();
-            
             // Get the button text for the action button
             const buttonText = project.querySelector('.btn').textContent.trim();
-            
             // Get details from database or create fallback
             let details = productDetails[title] || {
                 title: title,
@@ -400,17 +478,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 technologies: ['HTML', 'CSS', 'JavaScript'],
                 url: project.querySelector('.btn').getAttribute('href') || '#'
             };
-            
             // Always use the data-icon-url from the project element if available
             if (project.dataset.iconUrl) {
                 details.image = project.dataset.iconUrl;
             }
-            
             // Use the button text from the project if no custom buttonLabel is defined
             if (!details.buttonLabel) {
                 details.buttonLabel = buttonText;
             }
-            
             // Show popup
             showPreviewPopup(details);
         });

@@ -266,6 +266,23 @@
     box-shadow: 0 10px 25px rgba(0, 247, 255, 0.2);
 }
 
+/* Ensure search bar below nav links is right-aligned and spaced */
+.nav-search-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .nav-search-row {
+    justify-content: center;
+    margin-top: 0.7rem;
+  }
+}
+
 @media (max-width: 768px) {
     .preview-body {
         grid-template-columns: 1fr;

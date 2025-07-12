@@ -9,7 +9,7 @@ class AppPreview {
     // Modern Detail Popup functionality
     initDetailPopup() {
         // Project details data
-        const projectDetails = {
+        const productDetails = {
             'Pic2Puzz': {
                 title: 'Pic2Puzz',
                 description: 'Transform your images into interactive puzzles with Pic2Puzz. This application allows you to upload any image and convert it into a customizable puzzle with varying difficulty levels.',
@@ -93,6 +93,52 @@ class AppPreview {
                 technologies: ['JavaScript', 'LocalStorage', 'Notification API'],
                 image: './babychecker.jpg',
                 url: 'https://onetwo346.github.io/BABYYCHECKER/'
+            },
+            'Vacation Ideas': {
+                title: 'Vacation Ideas',
+                description: 'Your personal travel inspiration companion! Shake your device or click to discover amazing vacation destinations tailored to your interests. Features adventure, relaxation, cultural experiences, and nature getaways.',
+                features: [
+                    'Shake-to-Generate Travel Ideas',
+                    'Multiple Travel Categories (Adventure, Relax, Culture, Nature)',
+                    'Save Favorite Destinations',
+                    'Trip Counter & Statistics',
+                    'Share Travel Plans with Friends'
+                ],
+                technologies: ['HTML5', 'CSS3', 'JavaScript', 'Device Motion API', 'LocalStorage'],
+                image: 'vacation.jpg',
+                buttonLabel: 'Plan Adventure'
+            },
+
+            'Jokes of the Day': {
+                title: 'Jokes of the Day',
+                description: 'Never-ending stream of laughter! Experience an infinite collection of handpicked jokes that auto-play every 5 seconds. Pause, favorite, and share the ones that make you laugh out loud.',
+                features: [
+                    'Auto-playing Joke Stream',
+                    'Keyboard Controls (P for Pause)',
+                    'Favorite Joke Collection',
+                    'One-Click Sharing',
+                    'Multiple Joke Categories',
+                    'No Repeats Guaranteed'
+                ],
+                technologies: ['HTML5', 'CSS3', 'JavaScript', 'Web Animations API', 'Share API'],
+                image: 'jokes.jpg',
+                buttonLabel: 'Get Laughing'
+            },
+
+            'Skin Analyst': {
+                title: 'Skin Analyst',
+                description: 'Advanced AI-powered dermatological analysis tool. Get comprehensive insights about your skin health, including acne analysis, hydration levels, anti-aging indicators, and pigmentation assessment.',
+                features: [
+                    'Real-time AI Analysis',
+                    'Comprehensive Skin Health Score',
+                    'Multiple Analysis Modes',
+                    'Detailed Reports & History',
+                    'Personalized Recommendations',
+                    'Export Analysis Results'
+                ],
+                technologies: ['HTML5', 'CSS3', 'JavaScript', 'AI Analysis Engine', 'Camera API'],
+                image: 'skin.jpg',
+                buttonLabel: 'Check Skin'
             }
             // Add more project details as needed
         };
@@ -101,6 +147,19 @@ class AppPreview {
         const popupContainer = document.createElement('div');
         popupContainer.className = 'detail-popup';
         document.body.appendChild(popupContainer);
+
+        // Improved helper function to detect mobile devices
+        function isMobileDevice() {
+            // Touch support (covers most modern mobile devices)
+            const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            // User agent check (covers older devices and some edge cases)
+            const ua = navigator.userAgent;
+            const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            // Screen size fallback (optional, for very small screens)
+            const isSmallScreen = window.innerWidth <= 800 && window.innerHeight <= 900;
+            // Combine checks for best accuracy
+            return (hasTouch && isMobileUA) || isMobileUA || (hasTouch && isSmallScreen);
+        }
 
         // Add click event to all project cards
         document.querySelectorAll('.project').forEach(project => {
@@ -112,10 +171,17 @@ class AppPreview {
             const iconContainer = project.querySelector('.icon-3d-container');
             const actionButton = project.querySelector('.btn');
             
-            // Make sure we don't interfere with the button click
+            // On mobile: make the button a direct link (no popup)
             if (actionButton) {
-                actionButton.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                actionButton.addEventListener('click', function(e) {
+                    if (isMobileDevice()) {
+                        // Let the link work normally (open in new tab or same tab)
+                        // No popup
+                        // Do nothing here, allow default
+                    } else {
+                        // On desktop, stop propagation so card click doesn't trigger
+                        e.stopPropagation();
+                    }
                 });
             }
             
@@ -123,14 +189,18 @@ class AppPreview {
             [projectContent, iconContainer].forEach(element => {
                 if (element) {
                     element.addEventListener('click', (e) => {
-                        // Don't trigger if clicking on the action button
-                        if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
+                        // On mobile: if clicking the button, do not show popup
+                        if (isMobileDevice() && (e.target.classList.contains('btn') || e.target.closest('.btn'))) {
+                            // Let the button handle navigation
                             return;
                         }
-                        
+                        // On desktop: don't trigger if clicking on the main action button
+                        if (!isMobileDevice() && (e.target.classList.contains('btn') || e.target.closest('.btn'))) {
+                            return;
+                        }
                         // Get project title
                         const title = project.querySelector('h3').textContent.trim();
-                        const details = projectDetails[title] || {
+                        const details = productDetails[title] || {
                             title: title,
                             description: 'Explore this cosmic application and discover its features.',
                             features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
@@ -138,7 +208,6 @@ class AppPreview {
                             image: project.dataset.iconUrl || './cosmoslogo.jpg',
                             url: project.querySelector('.btn').getAttribute('href') || '#'
                         };
-                        
                         // Create popup content
                         this.showDetailPopup(details, popupContainer);
                     });
