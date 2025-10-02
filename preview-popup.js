@@ -431,6 +431,38 @@ document.addEventListener('DOMContentLoaded', function() {
             image: 'IMG_3740.jpeg',
             buttonLabel: 'Explore Library',
             url: 'https://bookshrine.space/'
+        },
+        'Space Calculator': {
+            title: 'Space Calculator',
+            description: 'Your cosmic computing companion! A comprehensive calculator featuring basic arithmetic, scientific functions, universal unit converter, and orbital mechanics calculations - all with a beautiful space-themed interface.',
+            features: [
+                '🔢 Basic Calculator - Essential arithmetic operations',
+                '🧮 Scientific Mode - Advanced functions, constants, and memory operations',
+                '🌍 Unit Converter - Convert between 9 scientific categories of units',
+                '🛰️ Orbital Mechanics - Calculate orbital velocities and periods',
+                '⚡ Real-time calculations with scientific precision',
+                '🌌 Space-themed interface with responsive design'
+            ],
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Mathematical APIs', 'Unit Conversion Engine'],
+            image: 'IMG_0335.jpeg',
+            buttonLabel: 'Calculate',
+            url: 'https://onetwo346.github.io/SPACE-CALCU/'
+        },
+        'BƆ Ni Tsi': {
+            title: 'BƆ Ni Tsi',
+            description: 'Welcome to the ultimate head hitting game! A fun and addictive arcade-style game where you tap to hit heads and score points. Customize your experience by uploading your own head image and choose from multiple difficulty levels.',
+            features: [
+                '🔨 Ultimate Head Hitting Action - Tap anywhere to hit heads',
+                '📁 Custom Head Upload - Upload your own JPG, PNG, or GIF images',
+                '🎮 Multiple Difficulty Levels - Easy, Medium, and Hard modes',
+                '⏱️ Time-Based Gameplay - Race against the clock to score high',
+                '🏆 Score Tracking - Compete for the highest scores',
+                '🎯 Simple Controls - Easy tap-to-play mechanics'
+            ],
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Canvas API', 'File Upload API'],
+            image: 'IMG_0336.jpeg',
+            buttonLabel: 'Play Game',
+            url: 'https://onetwo346.github.io/B-Ni-Tsi/'
         }
     };
 
