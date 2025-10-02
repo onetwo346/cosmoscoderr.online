@@ -1,0 +1,458 @@
+/* VIBRANT THEME ENHANCEMENTS */
+/* Enhanced button styles with vibrant colors and animations */
+
+/* Night Theme Button Enhancements */
+.project-content .btn {
+    background: linear-gradient(45deg, var(--primary), var(--accent)) !important;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-content .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.project-content .btn:hover::before {
+    left: 100%;
+}
+
+.project-content .btn:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 
+        0 12px 35px rgba(0, 255, 255, 0.4),
+        0 0 30px rgba(255, 0, 128, 0.3) !important;
+    background: linear-gradient(45deg, var(--accent), var(--cosmic-purple)) !important;
+    border-color: var(--primary);
+}
+
+/* Day Theme Button Enhancements */
+[data-theme="day"] .project-content .btn {
+    background: linear-gradient(45deg, var(--primary), var(--accent)) !important;
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    border: 2px solid var(--primary);
+}
+
+[data-theme="day"] .project-content .btn::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+[data-theme="day"] .project-content .btn:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    background: linear-gradient(45deg, var(--accent), var(--vibrant-purple)) !important;
+    box-shadow: 
+        0 12px 35px rgba(255, 23, 68, 0.5),
+        0 0 40px rgba(255, 107, 53, 0.4) !important;
+    border-color: var(--accent);
+}
+
+/* Enhanced Project Cards */
+.project {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(0, 255, 255, 0.1), 
+        rgba(255, 0, 128, 0.1), 
+        rgba(138, 43, 226, 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.project:hover::before {
+    opacity: 1;
+}
+
+.project:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 
+        0 20px 40px rgba(0, 255, 255, 0.2),
+        0 0 30px rgba(255, 0, 128, 0.15);
+}
+
+/* Day Theme Project Cards */
+[data-theme="day"] .project::before {
+    background: linear-gradient(45deg, 
+        rgba(255, 107, 53, 0.15), 
+        rgba(255, 23, 68, 0.15), 
+        rgba(156, 39, 176, 0.15)
+    );
+}
+
+[data-theme="day"] .project:hover {
+    border-color: var(--primary);
+    box-shadow: 
+        0 20px 40px rgba(255, 107, 53, 0.3),
+        0 0 40px rgba(255, 23, 68, 0.2);
+}
+
+/* Enhanced Navigation Links */
+.nav-link {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+    text-shadow: 0 0 8px currentColor;
+    transform: translateY(-2px);
+}
+
+/* Day Theme Navigation */
+[data-theme="day"] .nav-link::before {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+[data-theme="day"] .nav-link:hover {
+    color: var(--primary);
+    text-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+}
+
+/* Enhanced Modal Styles */
+.modal-content {
+    border: 3px solid transparent;
+    background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                linear-gradient(45deg, var(--primary), var(--accent)) border-box;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="day"] .modal-content {
+    background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                linear-gradient(45deg, var(--primary), var(--accent)) border-box;
+}
+
+/* Enhanced Scroll Indicator */
+.scroll-indicator {
+    animation: scrollPulse 3s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%, 100% { 
+        opacity: 0.7; 
+        transform: translateX(-50%) translateY(0px);
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(-5px);
+        filter: drop-shadow(0 0 10px var(--primary));
+    }
+}
+
+/* Enhanced Accessibility */
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #00ffff;
+        --accent: #ff0080;
+        --text: #ffffff;
+        --background: #000000;
+    }
+    
+    [data-theme="day"] {
+        --primary: #ff4500;
+        --accent: #ff1744;
+        --text: #000000;
+        --background: #ffffff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .theme-toggle::before,
+    [data-theme="day"] body::after,
+    body::after {
+        animation: none !important;
+    }
+}
+
+/* Focus indicators for better accessibility */
+.theme-toggle:focus,
+.nav-link:focus,
+.project-content .btn:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+[data-theme="day"] .theme-toggle:focus,
+[data-theme="day"] .nav-link:focus,
+[data-theme="day"] .project-content .btn:focus {
+    outline-color: var(--primary);
+}
+
+/* Enhanced loading animations */
+@keyframes vibrantGlow {
+    0%, 100% { 
+        box-shadow: 0 0 20px var(--primary);
+        filter: brightness(1);
+    }
+    50% { 
+        box-shadow: 0 0 40px var(--accent), 0 0 60px var(--primary);
+        filter: brightness(1.2);
+    }
+}
+
+.project:hover .project-content .btn {
+    animation: vibrantGlow 2s ease-in-out infinite;
+}
+
+[data-theme="day"] .project:hover .project-content .btn {
+    animation: vibrantGlow 2s ease-in-out infinite;
+}
+
+/* Enhanced particle effects for interactive elements */
+.interactive-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleBurst 0.8s ease-out forwards;
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: scale(0) translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translate(var(--dx, 0), var(--dy, 0));
+        opacity: 0;
+    }
+}
+
+/* Color scheme for better contrast */
+:root {
+    --text-high-contrast: #ffffff;
+    --text-medium-contrast: rgba(255, 255, 255, 0.9);
+    --text-low-contrast: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="day"] {
+    --text-high-contrast: #000000;
+    --text-medium-contrast: rgba(0, 0, 0, 0.9);
+    --text-low-contrast: rgba(0, 0, 0, 0.7);
+}
+
+/* Apply contrast levels */
+h1, h2, h3, .nav-logo {
+    color: var(--text-high-contrast) !important;
+}
+
+p, .nav-link {
+    color: var(--text-medium-contrast) !important;
+}
+
+.text-muted {
+    color: var(--text-low-contrast) !important;
+}
+
+/* OFFLINE MODE STYLES */
+.offline-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 165, 0, 0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10000;
+    animation: offlinePulse 2s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+}
+
+.online-indicator {
+    background: rgba(0, 255, 0, 0.9);
+    animation: onlineGlow 1s ease-in-out;
+}
+
+@keyframes offlinePulse {
+    0%, 100% { 
+        opacity: 0.8; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.05);
+    }
+}
+
+@keyframes onlineGlow {
+    0% { 
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+    100% { 
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    }
+}
+
+/* Offline content styling */
+.offline-content {
+    opacity: 0.7;
+    filter: grayscale(20%);
+    transition: all 0.3s ease;
+}
+
+.offline-content:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+/* Cached content indicator */
+.cached-indicator {
+    position: relative;
+}
+
+.cached-indicator::after {
+    content: '📦';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Offline mode app cards */
+.offline-mode .project {
+    border: 2px dashed rgba(255, 165, 0, 0.3);
+    background: rgba(255, 165, 0, 0.05);
+}
+
+.offline-mode .project:hover {
+    border-color: rgba(255, 165, 0, 0.6);
+    background: rgba(255, 165, 0, 0.1);
+}
+
+/* Loading states for offline mode */
+.offline-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.offline-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: offlineShimmer 2s infinite;
+}
+
+@keyframes offlineShimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Offline navigation */
+.offline-mode .nav-link {
+    opacity: 0.8;
+}
+
+.offline-mode .nav-link:hover {
+    opacity: 1;
+}
+
+/* Connection status in footer */
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+}
+
+.connection-status.offline {
+    color: #ffa500;
+}
+
+.connection-status.online {
+    color: #00ff00;
+}
+
+/* Offline mode specific animations */
+.offline-mode .cosmic-planet {
+    animation-duration: 30s;
+    opacity: 0.6;
+}
+
+.offline-mode .star-point {
+    animation-duration: 5s;
+    opacity: 0.7;
+}
+
+/* Responsive offline indicators */
+@media (max-width: 768px) {
+    .offline-indicator {
+        top: 10px;
+        right: 10px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .connection-status {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+}

@@ -30,6 +30,15 @@
     overflow: hidden;
 }
 
+/* Project Buttons Container */
+.project-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: auto; /* Push buttons to bottom */
+    width: 100%;
+}
+
 .project-content .btn {
     display: inline-block;
     padding: 0.6rem 1.2rem;
@@ -40,12 +49,13 @@
     font-weight: bold;
     transition: all 0.3s ease;
     text-align: center;
-    margin-top: auto; /* Push button to bottom */
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 0.8px;
     font-size: 0.85rem;
     align-self: center; /* Center the button */
-    width: 80%; /* Consistent width */
+    width: 100%; /* Full width */
+    border: none;
+    cursor: pointer;
 }
 
 .project-content .btn:hover {
@@ -53,6 +63,8 @@
     box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
     background: linear-gradient(45deg, var(--plasma-pink), var(--quantum-blue));
 }
+
+
 
 /* Project Preview Popup */
 .preview-popup {
@@ -315,4 +327,11 @@
     .icon-3d-container {
         height: 150px;
     }
+}
+
+@media (max-width: 768px) {
+    .project-buttons {
+        gap: 0.4rem;
+    }
+    
 }

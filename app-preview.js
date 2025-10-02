@@ -139,6 +139,21 @@ class AppPreview {
                 technologies: ['HTML5', 'CSS3', 'JavaScript', 'AI Analysis Engine', 'Camera API'],
                 image: 'skin.jpg',
                 buttonLabel: 'Check Skin'
+            },
+            'Book Shrine': {
+                title: 'Book Shrine',
+                description: 'Your digital library for exploring and reading books. Dive into a world of knowledge with our vast collection of PDF books and AI-powered chatbot for enhanced learning experiences.',
+                features: [
+                    'Vast Collection of PDF Books',
+                    'AI-Powered Chatbot Assistant',
+                    'Digital Library Management',
+                    'Interactive Reading Experience',
+                    'Knowledge Discovery Tools',
+                    'Personalized Recommendations'
+                ],
+                technologies: ['HTML5', 'CSS3', 'JavaScript', 'AI Chatbot', 'PDF.js', 'Web Storage'],
+                image: './IMG_3740.jpeg',
+                url: 'https://bookshrine.space/'
             }
             // Add more project details as needed
         };
