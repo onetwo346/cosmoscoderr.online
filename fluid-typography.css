@@ -1,0 +1,254 @@
+/* ========================================
+   FLUID TYPOGRAPHY SYSTEM
+   Responsive, Mobile-Optimized Font Scaling
+   ======================================== */
+
+/* Base fluid typography using clamp for smooth scaling */
+:root {
+    /* Fluid font sizes using clamp(min, preferred, max) */
+    --fluid-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);        /* 14px → 16px */
+    --fluid-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);   /* 13px → 15px */
+    --fluid-md: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);             /* 16px → 18px */
+    --fluid-lg: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);         /* 18px → 22px */
+    --fluid-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.625rem);         /* 20px → 26px */
+    --fluid-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);                /* 24px → 32px */
+    --fluid-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.5rem);        /* 30px → 40px */
+    --fluid-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);            /* 36px → 48px */
+    --fluid-5xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);              /* 40px → 56px */
+    --fluid-6xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);                /* 48px → 64px */
+    
+    /* Line heights for better readability */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    
+    /* Letter spacing */
+    --letter-spacing-tight: -0.025em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.025em;
+    --letter-spacing-wider: 0.05em;
+}
+
+/* Apply fluid typography to body */
+body {
+    font-size: var(--fluid-base) !important;
+    line-height: var(--line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Headings with fluid scaling */
+h1, .h1 {
+    font-size: var(--fluid-5xl) !important;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    font-weight: 700;
+}
+
+h2, .h2 {
+    font-size: var(--fluid-4xl) !important;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    font-weight: 600;
+}
+
+h3, .h3 {
+    font-size: var(--fluid-3xl) !important;
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    font-weight: 600;
+}
+
+h4, .h4 {
+    font-size: var(--fluid-2xl) !important;
+    line-height: var(--line-height-normal);
+    font-weight: 600;
+}
+
+h5, .h5 {
+    font-size: var(--fluid-xl) !important;
+    line-height: var(--line-height-normal);
+    font-weight: 500;
+}
+
+h6, .h6 {
+    font-size: var(--fluid-lg) !important;
+    line-height: var(--line-height-normal);
+    font-weight: 500;
+}
+
+/* Paragraph and text elements */
+p, .text-base {
+    font-size: var(--fluid-base);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: 1em;
+}
+
+/* Small text */
+small, .text-sm {
+    font-size: var(--fluid-sm);
+    line-height: var(--line-height-normal);
+}
+
+/* Large text */
+.text-lg {
+    font-size: var(--fluid-lg);
+    line-height: var(--line-height-normal);
+}
+
+/* Extra large text */
+.text-xl {
+    font-size: var(--fluid-xl);
+    line-height: var(--line-height-normal);
+}
+
+/* Navigation links - Perfect sizing */
+.nav-link {
+    font-size: var(--fluid-md) !important;
+    letter-spacing: var(--letter-spacing-wide);
+    white-space: nowrap;
+}
+
+/* Logo text */
+.nav-logo {
+    font-size: var(--fluid-xl) !important;
+    letter-spacing: var(--letter-spacing-wider);
+}
+
+/* Buttons */
+button, .btn, .cta-btn {
+    font-size: var(--fluid-base) !important;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Hero title - Large and impactful */
+.hero-title, .title-line {
+    font-size: var(--fluid-6xl) !important;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+/* Tagline */
+.tagline, .subtitle {
+    font-size: var(--fluid-lg) !important;
+    line-height: var(--line-height-normal);
+}
+
+/* App cards and descriptions */
+.app-card h3, .app-title {
+    font-size: var(--fluid-2xl) !important;
+}
+
+.app-card p, .app-description {
+    font-size: var(--fluid-base);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Tags and badges */
+.tag, .badge, .category-tag {
+    font-size: var(--fluid-sm) !important;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Search input */
+.search-input, input[type="search"] {
+    font-size: var(--fluid-base) !important;
+}
+
+/* Mobile optimization - smaller screens */
+@media (max-width: 768px) {
+    :root {
+        /* Slightly smaller on mobile for better fit */
+        --fluid-base: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);  /* 13px → 15px */
+        --fluid-6xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);                  /* 32px → 48px */
+    }
+    
+    /* Ensure nav links don't overflow */
+    .nav-link {
+        font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem) !important;
+        padding: 0.6rem 0.8rem !important;
+    }
+    
+    .nav-links {
+        gap: 1rem !important;
+    }
+    
+    /* Hero adjustments */
+    .hero-title, .title-line {
+        font-size: var(--fluid-4xl) !important;
+    }
+    
+    /* Buttons slightly smaller */
+    button, .btn, .cta-btn {
+        font-size: var(--fluid-sm) !important;
+        padding: 0.625rem 1.25rem !important;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    :root {
+        --fluid-base: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);  /* 12px → 14px */
+    }
+    
+    .nav-link {
+        font-size: 0.875rem !important;
+        padding: 0.5rem 0.6rem !important;
+    }
+    
+    .hero-title, .title-line {
+        font-size: var(--fluid-3xl) !important;
+    }
+}
+
+/* Tablet landscape - maintain good readability */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-link {
+        font-size: clamp(0.9375rem, 0.875rem + 0.3125vw, 1.0625rem) !important;
+    }
+}
+
+/* Large desktop - prevent fonts from getting too big */
+@media (min-width: 1920px) {
+    :root {
+        /* Cap maximum sizes on very large screens */
+        --fluid-base: 1rem;
+        --fluid-6xl: 4rem;
+    }
+}
+
+/* Accessibility - respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    body {
+        letter-spacing: var(--letter-spacing-wide);
+    }
+}
+
+/* Ensure text remains readable with transforms */
+.nav-link, button, .btn {
+    transform-origin: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Prevent layout shift */
+* {
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+}
+
+/* Optimize font rendering on retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}

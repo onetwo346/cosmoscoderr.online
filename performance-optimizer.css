@@ -1,0 +1,392 @@
+/* ========================================
+   PERFORMANCE OPTIMIZATION CSS
+   Fast Loading, No Buffering, Smooth Experience
+   ======================================== */
+
+/* ===== GPU ACCELERATION ===== */
+/* Force hardware acceleration for smooth animations */
+.cosmic-nav,
+.nav-link,
+.cta-btn,
+.app-card,
+.hero-section,
+.filter-btn,
+.theme-toggle,
+.modal,
+.popup {
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+}
+
+/* ===== REDUCE PAINT OPERATIONS ===== */
+/* Contain layout and paint to improve performance */
+.app-card,
+.cosmic-nav,
+.hero-section,
+section {
+    contain: layout style paint;
+}
+
+/* ===== OPTIMIZE ANIMATIONS ===== */
+/* Use transform and opacity only for animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px) translateZ(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) translateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Optimize existing animations */
+* {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== LAZY LOADING SUPPORT ===== */
+/* Prepare elements for lazy loading */
+img[loading="lazy"],
+iframe[loading="lazy"] {
+    content-visibility: auto;
+}
+
+/* ===== REDUCE REFLOWS ===== */
+/* Prevent layout thrashing */
+img,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== OPTIMIZE FILTERS AND EFFECTS ===== */
+/* Simplify expensive CSS operations on lower-end devices */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== CRITICAL CSS OPTIMIZATIONS ===== */
+/* Optimize rendering path */
+html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+body {
+    /* Optimize font loading */
+    font-display: swap;
+    
+    /* Prevent font flashing */
+    text-rendering: optimizeSpeed;
+}
+
+/* ===== REDUCE SHADOW COMPLEXITY ===== */
+/* Simplify shadows for better performance */
+@media (max-width: 768px) {
+    .app-card,
+    .nav-link,
+    button,
+    .modal {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Disable glow effects on mobile for performance */
+    .nav-link:hover,
+    button:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+    }
+}
+
+/* ===== OPTIMIZE GRADIENTS ===== */
+/* Limit gradient complexity */
+@media (max-width: 768px) {
+    body::before,
+    body::after,
+    [data-theme="day"] body::before,
+    [data-theme="day"] body::after {
+        opacity: 0.3 !important;
+        animation: none !important;
+    }
+}
+
+/* ===== CONTENT VISIBILITY ===== */
+/* Use content-visibility for off-screen content */
+section:not(.hero-section) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+.app-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+}
+
+/* ===== SCROLL OPTIMIZATION ===== */
+/* Smooth scrolling with performance in mind */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Use passive scroll listeners hint */
+* {
+    touch-action: manipulation;
+}
+
+/* ===== IMAGE OPTIMIZATION ===== */
+/* Optimize image rendering */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Prevent layout shift from images */
+img[width][height] {
+    height: auto;
+}
+
+/* ===== REDUCE BLUR OPERATIONS ===== */
+/* Backdrop filters are expensive, optimize them */
+@supports (backdrop-filter: blur(10px)) {
+    .modal,
+    .popup,
+    .cosmic-nav {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* Disable on low-end devices */
+@media (max-width: 768px) {
+    .modal,
+    .popup,
+    .cosmic-nav {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+/* ===== OPTIMIZE PARTICLE EFFECTS ===== */
+/* Reduce particle complexity on mobile */
+@media (max-width: 1024px) {
+    body::after,
+    [data-theme="day"] body::after {
+        opacity: 0.2 !important;
+        background-size: 200px 200px, 300px 300px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body::after,
+    [data-theme="day"] body::after {
+        display: none !important;
+    }
+}
+
+/* ===== 3D OPTIMIZATIONS ===== */
+/* Optimize 3D transforms */
+.space-environment,
+.cosmic-planet,
+.constellation {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+/* Disable 3D on low-end devices */
+@media (max-width: 768px) {
+    .space-environment {
+        transform: none !important;
+        opacity: 0.3 !important;
+    }
+}
+
+/* ===== REDUCE COMPOSITE LAYERS ===== */
+/* Prevent excessive layer creation */
+.nav-link::before,
+.nav-link::after {
+    will-change: auto;
+}
+
+.app-card:not(:hover) {
+    will-change: auto;
+}
+
+/* ===== OPTIMIZE MENU TRANSITIONS ===== */
+/* Fast, smooth menu animations */
+.nav-links {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links.active {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== PREVENT JANK ===== */
+/* Optimize hover states */
+.nav-link,
+.app-card,
+button {
+    transition-property: transform, opacity, background-color, color;
+    transition-duration: 0.3s;
+}
+
+/* ===== LOADING OPTIMIZATION ===== */
+/* Show content progressively */
+@keyframes progressiveLoad {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.app-card,
+section {
+    animation: progressiveLoad 0.4s ease-out forwards;
+}
+
+/* ===== REDUCE MEMORY USAGE ===== */
+/* Optimize visibility of hidden elements */
+.hidden,
+[hidden],
+[aria-hidden="true"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* ===== NETWORK OPTIMIZATION ===== */
+/* Preload critical resources hint */
+/* Apply these HTML attributes to images: */
+/* Critical images: loading="eager" fetchpriority="high" */
+/* Non-critical images: loading="lazy" decoding="async" */
+.critical-image {
+    will-change: transform;
+}
+
+.non-critical-image {
+    content-visibility: auto;
+}
+
+/* ===== RENDERING OPTIMIZATION ===== */
+/* Use CSS containment for better performance */
+.app-grid,
+.projects-grid {
+    contain: layout style;
+}
+
+/* ===== REDUCE PAINT AREAS ===== */
+/* Isolate expensive operations */
+.animated-background {
+    isolation: isolate;
+}
+
+/* ===== BUTTON OPTIMIZATION ===== */
+button,
+.cta-btn,
+.filter-btn {
+    /* Prevent text selection */
+    user-select: none;
+    -webkit-user-select: none;
+    
+    /* Optimize tap */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== REDUCE LAYOUT SHIFTS ===== */
+/* Reserve space for dynamic content */
+.app-grid {
+    min-height: 300px;
+}
+
+/* ===== OPTIMIZE SEARCH ===== */
+.search-input {
+    will-change: auto;
+}
+
+.search-input:focus {
+    will-change: border-color, box-shadow;
+}
+
+/* ===== PERFORMANCE MONITORING ===== */
+/* Help browser optimize rendering */
+.performance-critical {
+    contain: strict;
+    content-visibility: auto;
+}
+
+/* ===== REDUCE JAVASCRIPT TRIGGERS ===== */
+/* Use CSS instead of JS where possible */
+.smooth-scroll {
+    scroll-behavior: smooth;
+}
+
+/* ===== OPTIMIZE FOR MOBILE NETWORKS ===== */
+@media (max-width: 768px) {
+    /* Reduce animation complexity */
+    * {
+        animation-duration: 0.2s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Simplify transforms */
+    .app-card:hover {
+        transform: translateY(-4px) !important;
+    }
+    
+    .nav-link:hover {
+        transform: translateY(-1px) !important;
+    }
+}
+
+/* ===== BATTERY SAVING MODE ===== */
+@media (prefers-reduced-motion: reduce) {
+    /* Minimal animations for battery saving */
+    .cosmic-planet,
+    .constellation,
+    .morphing-shape,
+    .liquid-blob {
+        animation: none !important;
+    }
+}
+
+/* ===== PRINT OPTIMIZATION ===== */
+@media print {
+    /* Remove unnecessary elements for printing */
+    .cosmic-nav,
+    .theme-toggle,
+    .space-environment,
+    .particle-system,
+    video,
+    iframe {
+        display: none !important;
+    }
+}
