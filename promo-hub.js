@@ -415,7 +415,7 @@ style.textContent = `
         box-shadow: 
             0 0 20px rgba(255, 255, 255, 0.8),
             inset 0 0 20px rgba(255, 255, 255, 0.4);
-        font-size: 1.8rem;
+        font-size: 1.1rem;
         letter-spacing: 1px;
         text-transform: uppercase;
     }
@@ -482,7 +482,7 @@ style.textContent = `
             0 0 20px rgba(255, 255, 255, 0.8),
             inset 0 0 20px rgba(255, 255, 255, 0.4);
         font-weight: 900;
-        font-size: 1.8rem;
+        font-size: 1.1rem;
         letter-spacing: 1px;
         text-transform: uppercase;
     }

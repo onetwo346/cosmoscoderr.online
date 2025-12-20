@@ -216,8 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://beeek.online',
             buttonLabel: 'Convert Text'
         },
-        'Resume/Cover Letter': {
-            title: 'Resume/Cover Letter',
+        'Resume Builder': {
+            title: 'Resume Builder',
             description: 'Build your career with professional resumes and cover letters. Easy templates and expert tips included.',
             features: [
                 'Professional templates',
@@ -297,8 +297,8 @@ document.addEventListener('DOMContentLoaded', function() {
             image: defaultImage,
             url: 'https://onetwo346.github.io/wise-saying'
         },
-        'RANDOM QUOTE': {
-            title: 'RANDOM QUOTE',
+        'Random Quote': {
+            title: 'Random Quote',
             description: 'Find inspiration with this random quote generator featuring thousands of quotes from philosophers, authors, scientists, and other notable figures throughout history.',
             features: [
                 'Filter by category or author',

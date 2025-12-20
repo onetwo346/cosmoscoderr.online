@@ -1,0 +1,221 @@
+/* CHRISTMAS THEME - ELEGANT & MINIMAL */
+
+/* ============================================
+   GENTLE SNOWFALL - Clean & Subtle
+   ============================================ */
+.snowflakes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    pointer-events: none;
+    z-index: 9997;
+    animation: gentleSnowfall linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes gentleSnowfall {
+    0% {
+        transform: translateY(-10px) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(100vh) translateX(20px);
+        opacity: 0;
+    }
+}
+
+/* Fewer, more subtle snowflakes */
+.snowflake:nth-child(1) { left: 5%; animation-duration: 15s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: 2s; }
+.snowflake:nth-child(3) { left: 25%; animation-duration: 16s; animation-delay: 4s; }
+.snowflake:nth-child(4) { left: 35%; animation-duration: 20s; animation-delay: 1s; }
+.snowflake:nth-child(5) { left: 45%; animation-duration: 17s; animation-delay: 3s; }
+.snowflake:nth-child(6) { left: 55%; animation-duration: 19s; animation-delay: 5s; }
+.snowflake:nth-child(7) { left: 65%; animation-duration: 14s; animation-delay: 2.5s; }
+.snowflake:nth-child(8) { left: 75%; animation-duration: 21s; animation-delay: 0.5s; }
+.snowflake:nth-child(9) { left: 85%; animation-duration: 16s; animation-delay: 3.5s; }
+.snowflake:nth-child(10) { left: 95%; animation-duration: 18s; animation-delay: 1.5s; }
+
+/* ============================================
+   MINIMAL CHRISTMAS ACCENT - Top Border Only
+   ============================================ */
+.christmas-accent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        #c41e3a 0%, 
+        #228b22 25%, 
+        #ffd700 50%, 
+        #228b22 75%, 
+        #c41e3a 100%);
+    z-index: 10002;
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ============================================
+   ELEGANT FLOATING BADGE
+   ============================================ */
+.christmas-badge {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(20, 20, 40, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 30px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10001;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.christmas-badge .badge-icon {
+    font-size: 1rem;
+}
+
+.christmas-badge .badge-text {
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.christmas-badge .countdown {
+    display: flex;
+    gap: 6px;
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.christmas-badge .countdown span {
+    background: rgba(255, 215, 0, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+}
+
+/* ============================================
+   SUBTLE GLOW EFFECTS ON EXISTING ELEMENTS
+   ============================================ */
+body.christmas-mode .nav-logo,
+body.christmas-mode .hero-title {
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.2),
+        0 0 40px rgba(196, 30, 58, 0.1);
+}
+
+/* Subtle festive tint on cards */
+body.christmas-mode .project {
+    border-color: rgba(196, 30, 58, 0.1);
+}
+
+body.christmas-mode .project:hover {
+    border-color: rgba(196, 30, 58, 0.3);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(196, 30, 58, 0.1),
+        0 0 30px rgba(34, 139, 34, 0.1);
+}
+
+/* ============================================
+   CHRISTMAS TOGGLE - Small & Elegant
+   ============================================ */
+.christmas-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(20, 20, 40, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    cursor: pointer;
+    z-index: 10003;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.christmas-toggle:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* ============================================
+   BODY - MINIMAL ADJUSTMENTS
+   ============================================ */
+body.christmas-mode {
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .christmas-badge {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 0.6rem;
+    }
+    
+    .christmas-badge .countdown {
+        display: none;
+    }
+    
+    .christmas-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .snowflake {
+        display: none;
+    }
+    
+    .christmas-accent {
+        animation: none;
+    }
+}

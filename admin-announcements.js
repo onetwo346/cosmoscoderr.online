@@ -1,6 +1,6 @@
 /* ========================================
-   ADMIN ANNOUNCEMENT POPUP SYSTEM
-   Separate file for easy admin management
+   ADMIN ANNOUNCEMENT - FOOTER MARQUEE
+   Elegant scrolling banner at the bottom
    ======================================== */
 
 // ADMIN CONFIGURATION - Edit this section to change the announcement
@@ -9,140 +9,157 @@ const ADMIN_CONFIG = {
     enabled: true,
     
     // Announcement message (supports HTML)
-    message: "🎮 <strong>Exciting News!</strong> Download games on your laptops will be available soon. Stay tuned!",
-    
-    // Popup styling
-    type: "info", // Options: "info", "success", "warning", "announcement"
+    message: "<strong>Exciting News!</strong> Download games on your laptops will be available soon. Stay tuned!",
     
     // Display settings
-    displayDuration: 8000, // How long to show (in milliseconds) - 8 seconds
     showOnce: false, // If true, shows only once per session
-    
-    // Position
-    position: "top", // Options: "top", "center", "bottom"
-    
-    // Animation
-    animation: "slideDown", // Options: "slideDown", "fadeIn", "bounce", "pulse"
     
     // Close button
     showCloseButton: true,
-    autoClose: true, // Auto-close after displayDuration
     
     // Icon
-    icon: "🚀" // Emoji or leave empty for none
+    icon: "🚀", // Emoji or leave empty for none
+    
+    // Scroll speed (seconds for one complete scroll)
+    scrollSpeed: 45,
+    
+    // Auto close after X seconds (0 = never auto close)
+    autoCloseAfter: 30
 };
 
 // ===== DO NOT EDIT BELOW THIS LINE (unless you know what you're doing) =====
 
-class AnnouncementPopup {
+class FooterMarquee {
     constructor(config) {
         this.config = config;
-        this.popup = null;
-        this.sessionKey = 'cosmoscoderr_announcement_shown';
+        this.marquee = null;
+        this.sessionKey = 'cosmoscoderr_announcement_closed';
     }
     
     init() {
         // Check if announcement is enabled
         if (!this.config.enabled) return;
         
-        // Check if should show only once
-        if (this.config.showOnce && this.hasBeenShown()) return;
+        // Check if user closed it this session
+        if (this.config.showOnce && this.hasBeenClosed()) return;
         
         // Wait for DOM to be ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.show());
         } else {
-            // Delay slightly to not interfere with page load
-            setTimeout(() => this.show(), 1000);
+            setTimeout(() => this.show(), 500);
         }
     }
     
-    hasBeenShown() {
+    hasBeenClosed() {
         return sessionStorage.getItem(this.sessionKey) === 'true';
     }
     
-    markAsShown() {
+    markAsClosed() {
         sessionStorage.setItem(this.sessionKey, 'true');
     }
     
     show() {
-        // Create popup element
-        this.createPopup();
+        this.createMarquee();
+        document.body.appendChild(this.marquee);
         
-        // Add to DOM
-        document.body.appendChild(this.popup);
-        
-        // Trigger animation
+        // Trigger entrance animation
         setTimeout(() => {
-            this.popup.classList.add('active');
+            this.marquee.classList.add('entering');
         }, 100);
         
-        // Auto-close if enabled
-        if (this.config.autoClose) {
+        // Auto close after specified time
+        if (this.config.autoCloseAfter > 0) {
             setTimeout(() => {
                 this.close();
-            }, this.config.displayDuration);
-        }
-        
-        // Mark as shown if showOnce is enabled
-        if (this.config.showOnce) {
-            this.markAsShown();
+            }, this.config.autoCloseAfter * 1000);
         }
     }
     
-    createPopup() {
+    createMarquee() {
         // Create container
-        this.popup = document.createElement('div');
-        this.popup.className = `admin-announcement-popup ${this.config.position} ${this.config.animation} ${this.config.type}`;
+        this.marquee = document.createElement('div');
+        this.marquee.className = 'announcement-footer-marquee';
+        this.marquee.id = 'announcement-footer-marquee';
         
-        // Create content wrapper
-        const content = document.createElement('div');
-        content.className = 'announcement-content';
+        // Create scrolling track
+        const track = document.createElement('div');
+        track.className = 'marquee-track';
         
-        // Add icon if provided
-        if (this.config.icon) {
-            const icon = document.createElement('span');
-            icon.className = 'announcement-icon';
-            icon.textContent = this.config.icon;
-            content.appendChild(icon);
+        // Create content items for seamless infinite scroll
+        const createContentItem = () => {
+            const content = document.createElement('div');
+            content.className = 'marquee-content';
+            
+            // Add icon
+            if (this.config.icon) {
+                const icon = document.createElement('span');
+                icon.className = 'marquee-icon';
+                icon.textContent = this.config.icon;
+                content.appendChild(icon);
+            }
+            
+            // Add message
+            const message = document.createElement('span');
+            message.className = 'marquee-message';
+            message.innerHTML = this.config.message;
+            content.appendChild(message);
+            
+            return content;
+        };
+        
+        // Add multiple copies for seamless loop
+        for (let i = 0; i < 4; i++) {
+            track.appendChild(createContentItem());
+            
+            // Add separator
+            const separator = document.createElement('span');
+            separator.className = 'marquee-separator';
+            track.appendChild(separator);
         }
         
-        // Add message
-        const message = document.createElement('div');
-        message.className = 'announcement-message';
-        message.innerHTML = this.config.message;
-        content.appendChild(message);
+        this.marquee.appendChild(track);
         
-        // Add close button if enabled
+        // Add close button
         if (this.config.showCloseButton) {
             const closeBtn = document.createElement('button');
-            closeBtn.className = 'announcement-close';
-            closeBtn.innerHTML = '&times;';
+            closeBtn.className = 'marquee-close';
+            closeBtn.innerHTML = '×';
             closeBtn.setAttribute('aria-label', 'Close announcement');
-            closeBtn.onclick = () => this.close();
-            content.appendChild(closeBtn);
+            closeBtn.setAttribute('type', 'button');
+            
+            // Use addEventListener for better reliability
+            const self = this;
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                self.close();
+            }, true);
+            
+            this.marquee.appendChild(closeBtn);
         }
-        
-        this.popup.appendChild(content);
     }
     
     close() {
-        if (!this.popup) return;
+        if (!this.marquee) return;
         
-        // Remove active class for exit animation
-        this.popup.classList.remove('active');
+        this.marquee.classList.remove('entering');
+        this.marquee.classList.add('exiting');
+        
+        // Mark as closed
+        this.markAsClosed();
         
         // Remove from DOM after animation
         setTimeout(() => {
-            if (this.popup && this.popup.parentNode) {
-                this.popup.parentNode.removeChild(this.popup);
+            if (this.marquee && this.marquee.parentNode) {
+                this.marquee.parentNode.removeChild(this.marquee);
             }
-        }, 400);
+        }, 500);
     }
 }
 
 // Initialize announcement system
-const announcementSystem = new AnnouncementPopup(ADMIN_CONFIG);
+const announcementSystem = new FooterMarquee(ADMIN_CONFIG);
 announcementSystem.init();
 
 // Expose globally for manual control if needed

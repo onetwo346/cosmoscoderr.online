@@ -96,7 +96,7 @@ Then access: `http://localhost:8080`
 ✅ **Horonum** - Discover Astrology  
 ✅ **Time Escape** - Space Adventure  
 ✅ **Beeek** - Voice Magic  
-✅ **Resume/Cover Letter** - Career Builder  
+✅ **Resume Builder** - Career Builder  
 ✅ **Gift Idea Genius** - Gift Ideas  
 ✅ **Cosmic Horizon** - Space Explorer  
 ✅ **Vacation Ideas** - Discover Dream Destinations  
