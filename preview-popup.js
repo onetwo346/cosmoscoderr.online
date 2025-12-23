@@ -283,20 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
             image: defaultImage,
             url: 'https://onetwo346.github.io/glow-radio-'
         },
-        'AKAN WISDOM GENERATOR': {
-            title: 'AKAN WISDOM GENERATOR',
-            description: 'Discover ancient wisdom from the Akan culture of West Africa. This generator provides proverbs, sayings, and philosophical insights from this rich cultural tradition.',
-            features: [
-                'Daily wisdom updates',
-                'Categories of wisdom',
-                'Share to social media',
-                'Save favorites',
-                'Cultural context explanations'
-            ],
-            technologies: ['JavaScript', 'LocalStorage API', 'Share API'],
-            image: defaultImage,
-            url: 'https://onetwo346.github.io/wise-saying'
-        },
         'Random Quote': {
             title: 'Random Quote',
             description: 'Find inspiration with this random quote generator featuring thousands of quotes from philosophers, authors, scientists, and other notable figures throughout history.',
@@ -448,22 +434,6 @@ document.addEventListener('DOMContentLoaded', function() {
             buttonLabel: 'Calculate',
             url: 'https://onetwo346.github.io/SPACE-CALCU/'
         },
-        'BƆ Ni Tsi': {
-            title: 'BƆ Ni Tsi',
-            description: 'Welcome to the ultimate head hitting game! A fun and addictive arcade-style game where you tap to hit heads and score points. Customize your experience by uploading your own head image and choose from multiple difficulty levels.',
-            features: [
-                '🔨 Ultimate Head Hitting Action - Tap anywhere to hit heads',
-                '📁 Custom Head Upload - Upload your own JPG, PNG, or GIF images',
-                '🎮 Multiple Difficulty Levels - Easy, Medium, and Hard modes',
-                '⏱️ Time-Based Gameplay - Race against the clock to score high',
-                '🏆 Score Tracking - Compete for the highest scores',
-                '🎯 Simple Controls - Easy tap-to-play mechanics'
-            ],
-            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Canvas API', 'File Upload API'],
-            image: 'IMG_0336.jpeg',
-            buttonLabel: 'Play Game',
-            url: 'https://onetwo346.github.io/B-Ni-Tsi/'
-        }
     };
 
     // Create popup container
