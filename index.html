@@ -297,6 +297,21 @@
             }
         }
 
+        @media (max-width: 960px) {
+            body::before {
+                animation-duration: 25s;
+            }
+            body::after {
+                animation-duration: 30s;
+            }
+            [data-theme="day"] body::before {
+                animation-duration: 25s;
+            }
+            [data-theme="day"] body::after {
+                animation-duration: 30s;
+            }
+        }
+
         /* Day Theme Text Enhancements */
         [data-theme="day"] h1, 
         [data-theme="day"] h2, 
