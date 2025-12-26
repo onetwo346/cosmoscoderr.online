@@ -2,7 +2,7 @@
 
 class OfflineMode {
     constructor() {
-        this.cacheName = 'cosmic-app-store-v1';
+        this.cacheName = 'cosmic-app-store-v2';
         this.offlinePages = [
             '/',
             '/index.html',
@@ -428,7 +428,7 @@ class OfflineMode {
 
 // Service Worker
 const serviceWorkerCode = `
-const CACHE_NAME = 'cosmic-app-store-v1';
+const CACHE_NAME = 'cosmic-app-store-v2';
 const OFFLINE_URL = '/offline.html';
 
 // Install event - cache resources

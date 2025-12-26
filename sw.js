@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cosmic-app-store-v1';
+const CACHE_NAME = 'cosmic-app-store-v2';
 const OFFLINE_URL = '/offline.html';
 
 // Install event - cache resources
