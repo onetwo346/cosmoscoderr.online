@@ -1,7 +1,42 @@
 // Product Preview Popup System
+
+// GLOBAL CLICK INTERCEPTOR - runs immediately, before DOMContentLoaded
+// This captures all clicks on .btn inside .project and prevents navigation
+(function() {
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.project .btn');
+        if (!btn) return;
+        
+        // Stop the click from doing anything
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Get the URL and title
+        const project = btn.closest('.project');
+        const title = project?.querySelector('h3, .app-title')?.textContent?.trim() || 'App';
+        const url = btn.getAttribute('data-app-url') || btn.getAttribute('href');
+        
+        if (!url || url === '#' || url === 'javascript:void(0)') return;
+        
+        // Check if mobile
+        const isMobile = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isIPad = /iPad/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        
+        if (isMobile && !isIPad) {
+            window.open(url, '_blank');
+        } else if (typeof window.openAppInModal === 'function') {
+            window.openAppInModal(url, title);
+        } else {
+            // Fallback if modal function not ready yet
+            window.open(url, '_blank');
+        }
+    }, true); // CAPTURE PHASE
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Use a single fallback image for all products
     const defaultImage = './cosmoslogo.jpg';
+    
     // Product details database
     const productDetails = {
         'SwitchBox': {
@@ -544,81 +579,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Use event delegation to handle both existing and dynamically created project cards
-    document.body.addEventListener('click', function(e) {
-        // Find if click is on or within a project card
+    // Store URLs in data-app-url for buttons that have href
+    // The global click interceptor at the top of this file handles the actual click behavior
+    document.querySelectorAll('.project .btn').forEach(btn => {
+        const href = btn.getAttribute('href');
+        if (href && href !== '#' && href !== 'javascript:void(0)') {
+            btn.setAttribute('data-app-url', href);
+        }
+    });
+    
+    // Handle card clicks (not button) for preview popup
+    document.addEventListener('click', function(e) {
+        // Skip if clicking a button
+        if (e.target.closest('.btn')) return;
+        
         const project = e.target.closest('.project');
         if (!project) return;
-
-        // Get the main action button
+        
+        const title = project.querySelector('h3, .app-title').textContent.trim();
         const actionButton = project.querySelector('.btn');
+        const buttonText = actionButton ? actionButton.textContent.trim() : 'Launch App';
         
-        // Check if clicking on the button itself
-        const clickedButton = e.target.closest('.btn');
+        let details = productDetails[title] || {
+            title: title,
+            description: project.querySelector('p, .app-description')?.textContent.trim() || 'Explore this cosmic application and discover its features.',
+            features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
+            technologies: ['HTML', 'CSS', 'JavaScript'],
+            url: actionButton ? (actionButton.getAttribute('data-app-url') || actionButton.getAttribute('href') || '#') : '#'
+        };
         
-        if (clickedButton && actionButton && clickedButton === actionButton) {
-            // Clicking the button - ALWAYS prevent default first
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Get project details
-            const title = project.querySelector('h3, .app-title').textContent.trim();
-            const buttonText = actionButton.textContent.trim();
-            const url = actionButton.getAttribute('href') || '#';
-            
-            if (isMobileDevice()) {
-                // On mobile: open in new tab directly
-                window.open(url, '_blank');
-            } else {
-                // On desktop/iPad: open in iframe modal
-                let details = productDetails[title] || {
-                    title: title,
-                    description: project.querySelector('p, .app-description')?.textContent.trim() || 'Explore this cosmic application and discover its features.',
-                    features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
-                    technologies: ['HTML', 'CSS', 'JavaScript'],
-                    url: url
-                };
-                
-                // Always use the data-icon-url from the project element if available
-                if (project.dataset.iconUrl) {
-                    details.image = project.dataset.iconUrl;
-                }
-                
-                // Use the button text from the project if no custom buttonLabel is defined
-                if (!details.buttonLabel) {
-                    details.buttonLabel = buttonText;
-                }
-                
-                // Open directly in modal (skip preview popup)
-                openAppInModal(url, title);
-            }
-        } else if (!clickedButton) {
-            // Clicking on the card itself (not the button) - show preview popup
-            const title = project.querySelector('h3, .app-title').textContent.trim();
-            const actionButton = project.querySelector('.btn');
-            const buttonText = actionButton ? actionButton.textContent.trim() : 'Launch App';
-            
-            let details = productDetails[title] || {
-                title: title,
-                description: project.querySelector('p, .app-description')?.textContent.trim() || 'Explore this cosmic application and discover its features.',
-                features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
-                technologies: ['HTML', 'CSS', 'JavaScript'],
-                url: actionButton ? actionButton.getAttribute('href') || '#' : '#'
-            };
-            
-            // Always use the data-icon-url from the project element if available
-            if (project.dataset.iconUrl) {
-                details.image = project.dataset.iconUrl;
-            }
-            
-            // Use the button text from the project if no custom buttonLabel is defined
-            if (!details.buttonLabel) {
-                details.buttonLabel = buttonText;
-            }
-            
-            // Show popup
-            showPreviewPopup(details);
+        // Always use the data-icon-url from the project element if available
+        if (project.dataset.iconUrl) {
+            details.image = project.dataset.iconUrl;
         }
+        
+        // Use the button text from the project if no custom buttonLabel is defined
+        if (!details.buttonLabel) {
+            details.buttonLabel = buttonText;
+        }
+        
+        // Show popup
+        showPreviewPopup(details);
     });
 
     // Function to show preview popup
