@@ -31,36 +31,32 @@ document.addEventListener('DOMContentLoaded', function() {
         const link = project.querySelector('a.btn');
         
         if (link) {
-            // If the link is empty or just a hash, update it
+            // If the link is empty or just a hash, update it with the correct URL
+            // Don't set target="_blank" - let preview-popup.js handle modal vs new tab
             if (link.getAttribute('href') === '#' || link.getAttribute('href') === '') {
                 if (appUrlMap[title]) {
                     link.setAttribute('href', appUrlMap[title]);
-                    link.setAttribute('target', '_blank');
                     console.log(`Fixed link for: ${title}`);
                 }
             }
             
-            // Ensure all links open in a new tab
-            link.setAttribute('target', '_blank');
-            
-            // Add event listener to handle clicks
-            link.addEventListener('click', function(e) {
-                // If the link is still empty, prevent the default action
-                if (this.getAttribute('href') === '#' || this.getAttribute('href') === '') {
-                    e.preventDefault();
-                    console.log(`No valid URL for: ${title}`);
-                    alert(`Sorry, ${title} is currently unavailable.`);
-                }
-            });
+            // Note: Don't set target="_blank" here - let preview-popup.js handle
+            // opening apps in the in-app modal for desktop/iPad users
         }
     });
     
     // Fix featured app links in the cosmic-animations.js generated content
+    // Only fix empty/hash hrefs, don't force target="_blank" - let modal system handle it
     document.querySelectorAll('.featured-app-btn').forEach(btn => {
-        const appTitle = btn.closest('.featured-app').querySelector('h3').textContent.trim();
-        if (appUrlMap[appTitle]) {
-            btn.setAttribute('href', appUrlMap[appTitle]);
-            btn.setAttribute('target', '_blank');
+        const featuredApp = btn.closest('.featured-app');
+        if (featuredApp) {
+            const appTitle = featuredApp.querySelector('h3')?.textContent.trim();
+            if (appTitle && appUrlMap[appTitle]) {
+                const currentHref = btn.getAttribute('href');
+                if (!currentHref || currentHref === '#') {
+                    btn.setAttribute('href', appUrlMap[appTitle]);
+                }
+            }
         }
     });
     
