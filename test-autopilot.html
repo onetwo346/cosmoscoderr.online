@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Autopilot Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="browser-autopilot.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .project {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #8b5cf6;
+        }
+
+        .project p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .instructions {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .instructions h2 {
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+
+        .instructions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .instructions li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #d1d5db;
+        }
+
+        .instructions li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        .keyboard-shortcuts {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .keyboard-shortcuts h2 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .shortcut {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shortcut:last-child {
+            border-bottom: none;
+        }
+
+        .key {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Browser Autopilot Test Page</h1>
+        <p class="info">Test the new Browser Autopilot feature with these sample apps</p>
+
+        <div class="instructions">
+            <h2>📋 How to Use Browser Autopilot</h2>
+            <ul>
+                <li>The autopilot control panel appears in the bottom-right corner</li>
+                <li>Click "Start" to begin automatic browsing through all apps</li>
+                <li>Use "Pause" to temporarily stop, "Stop" to end completely</li>
+                <li>Adjust speed slider to control how long each app is displayed (2-15 seconds)</li>
+                <li>Choose between "Popup Preview" or "Live Preview" modes</li>
+                <li>Enable "Loop Continuously" to restart from the beginning</li>
+                <li>Enable "Auto-open Apps" to automatically open each app in a new tab</li>
+                <li>Use Previous/Next buttons to manually navigate</li>
+                <li>Drag the control panel to reposition it anywhere on screen</li>
+                <li>Click minimize to collapse the panel</li>
+            </ul>
+        </div>
+
+        <div class="keyboard-shortcuts">
+            <h2>⌨️ Keyboard Shortcuts</h2>
+            <div class="shortcut">
+                <span>Start/Stop Autopilot</span>
+                <span class="key">Ctrl + Shift + A</span>
+            </div>
+            <div class="shortcut">
+                <span>Pause/Resume</span>
+                <span class="key">Ctrl + Shift + P</span>
+            </div>
+            <div class="shortcut">
+                <span>Previous App</span>
+                <span class="key">Ctrl + Shift + ←</span>
+            </div>
+            <div class="shortcut">
+                <span>Next App</span>
+                <span class="key">Ctrl + Shift + →</span>
+            </div>
+        </div>
+
+        <h2 style="margin: 40px 0 20px; text-align: center; color: #8b5cf6;">Sample Apps</h2>
+        
+        <div class="projects-grid">
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>SwitchBox</h3>
+                <p>Convert files quickly and easily with SwitchBox. Supports multiple formats and provides a seamless experience.</p>
+                <a href="https://onetwo346.github.io/switchbox" class="btn" target="_blank">Convert Files</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Baby Name Picker</h3>
+                <p>Welcome to Baby Name Picker! Stuck on choosing the perfect name? Let us help you find the ideal name for your little one.</p>
+                <a href="https://onetwo346.github.io/baby-name-picker/" class="btn" target="_blank">Pick Names</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Star Script Editor</h3>
+                <p>A professional code editor with cosmic design. Write, edit, and manage your scripts with syntax highlighting.</p>
+                <a href="https://onetwo346.github.io/script/" class="btn" target="_blank">Edit Files</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Math Explorer</h3>
+                <p>Math Explorer is a space-themed adventure where players solve math problems across 20 creative levels.</p>
+                <a href="https://onetwo346.github.io/math-guru/" class="btn" target="_blank">Start Game</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>XOWARS</h3>
+                <p>Engage in strategic battles in XOWARS. Outsmart your opponent and claim victory in this cosmic-themed game.</p>
+                <a href="https://xowars.space" class="btn" target="_blank">Play Game</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Quick Wrap</h3>
+                <p>Securely chat with friends and colleagues using Quick Wrap. End-to-end encryption for all your conversations.</p>
+                <a href="https://quickwrap.space" class="btn" target="_blank">Send Message</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Invoice Generator Pro</h3>
+                <p>Create professional invoices in seconds. Customize, download, and send invoices with ease.</p>
+                <a href="https://onetwo346.github.io/invoice-generator" class="btn" target="_blank">Create Invoice</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Horonum</h3>
+                <p>Discover personalized astrology insights with Horonum. Get daily, weekly, and monthly forecasts.</p>
+                <a href="https://onetwo346.github.io/horonum" class="btn" target="_blank">Get Insights</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Resume Builder</h3>
+                <p>Build your career with professional resumes and cover letters. Easy templates and expert tips included.</p>
+                <a href="https://onetwo346.github.io/Resume-cover-letter-" class="btn" target="_blank">Create Resume</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Gift Idea Genius</h3>
+                <p>Find the perfect gift for any occasion. Get AI-powered suggestions tailored to your recipient.</p>
+                <a href="https://onetwo346.github.io/Gift-idea-genius-" class="btn" target="_blank">Find Gifts</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Cosmic Horizon</h3>
+                <p>Explore the universe with Cosmic Horizon. Discover new worlds, stars, and cosmic phenomena.</p>
+                <a href="https://cosmichorizon.space" class="btn" target="_blank">Explore</a>
+            </div>
+
+            <div class="project" data-icon-url="./cosmoslogo.jpg">
+                <h3>Pic2Puzz</h3>
+                <p>Transform your images, gifs and vids into interactive puzzles with Pic2Puzz.</p>
+                <a href="https://pic2puzz.space" class="btn" target="_blank">Create Puzzle</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="browser-autopilot.js"></script>
+</body>
+</html>

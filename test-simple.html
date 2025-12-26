@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Autopilot Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="browser-autopilot.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a12;
+            color: #fff;
+            padding: 40px;
+        }
+        .project {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #8b5cf6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        #status {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(16, 185, 129, 0.9);
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 99999;
+        }
+    </style>
+</head>
+<body>
+    <div id="status">✓ Page Loaded - Checking Autopilot...</div>
+    
+    <h1>Simple Autopilot Test</h1>
+    <p>If autopilot is working, you should see a control panel in the bottom-right corner.</p>
+
+    <div class="project" data-icon-url="./cosmoslogo.jpg">
+        <h3>Test App 1</h3>
+        <p>This is the first test application.</p>
+        <a href="https://example.com" class="btn" target="_blank">Launch</a>
+    </div>
+
+    <div class="project" data-icon-url="./cosmoslogo.jpg">
+        <h3>Test App 2</h3>
+        <p>This is the second test application.</p>
+        <a href="https://example.com" class="btn" target="_blank">Launch</a>
+    </div>
+
+    <div class="project" data-icon-url="./cosmoslogo.jpg">
+        <h3>Test App 3</h3>
+        <p>This is the third test application.</p>
+        <a href="https://example.com" class="btn" target="_blank">Launch</a>
+    </div>
+
+    <script>
+        console.log('=== AUTOPILOT DEBUG ===');
+        console.log('1. Page loaded');
+        console.log('2. Projects found:', document.querySelectorAll('.project').length);
+    </script>
+    <script src="browser-autopilot.js"></script>
+    <script>
+        setTimeout(() => {
+            console.log('3. Checking if autopilot loaded...');
+            if (window.browserAutopilot) {
+                console.log('✓ Autopilot object exists!');
+                console.log('4. Control panel:', document.querySelector('.autopilot-control-panel'));
+                document.getElementById('status').textContent = '✓ Autopilot Loaded Successfully!';
+                document.getElementById('status').style.background = 'rgba(16, 185, 129, 0.9)';
+            } else {
+                console.error('✗ Autopilot object NOT found!');
+                document.getElementById('status').textContent = '✗ Autopilot Failed to Load';
+                document.getElementById('status').style.background = 'rgba(239, 68, 68, 0.9)';
+            }
+        }, 500);
+    </script>
+</body>
+</html>

@@ -10,6 +10,7 @@ self.addEventListener('install', event => {
                 '/',
                 '/index.html',
                 '/offline.html',
+                // CSS Files
                 '/app-preview.css',
                 '/cosmic-elements.css',
                 '/cosmic-tags.css',
@@ -17,6 +18,23 @@ self.addEventListener('install', event => {
                 '/enhanced-effects.css',
                 '/cosmic-video-gallery.css',
                 '/vibrant-theme-enhancements.css',
+                '/blog-smooth-interactions.css',
+                '/voice-control.css',
+                '/browser-autopilot.css',
+                '/in-app-modal.css',
+                '/featured-apps.css',
+                '/futuristic-sections.css',
+                '/neon-cyberpunk-theme.css',
+                '/holiday-themes.css',
+                '/christmas-theme.css',
+                '/admin-announcements.css',
+                '/cosmic-challenges.css',
+                '/cosmic-search-ai.css',
+                '/auth-dashboard.css',
+                '/new-ui-styles.css',
+                '/fluid-typography.css',
+                '/performance-optimizer.css',
+                // JavaScript Files
                 '/vibrant-interactions.js',
                 '/cosmic-animations.js',
                 '/advanced-animations.js',
@@ -32,8 +50,38 @@ self.addEventListener('install', event => {
                 '/force-link-fix.js',
                 '/direct-link-fix.js',
                 '/link-fixer.js',
-                '/cursor-fix.js'
-            ]);
+                '/cursor-fix.js',
+                '/browser-autopilot.js',
+                '/voice-control.js',
+                '/holiday-blog.js',
+                '/promo-hub.js',
+                '/app-preview.js',
+                '/futuristic-effects.js',
+                '/new-ui-script.js',
+                '/neon-cyberpunk-theme.js',
+                '/holiday-loop.js',
+                '/christmas-theme.js',
+                '/admin-announcements.js',
+                '/chatbot-system.js',
+                '/community-hub-effects.js',
+                '/auth-dashboard.js',
+                '/offline-mode.js',
+                // Images
+                '/cosmoslogo.jpg',
+                '/cosmologo.jpg',
+                '/akanlogo.jpg',
+                '/glowlogo.jpg',
+                '/pic.jpg',
+                '/random.jpg',
+                '/fc.jpg',
+                '/babychecker.jpg',
+                '/vac.jpg',
+                '/jod.jpg',
+                '/skin.jpg'
+            ]).catch(error => {
+                console.warn('⚠️ Some resources failed to cache:', error);
+                // Continue anyway - partial cache is better than no cache
+            });
         }).then(() => {
             console.log('✅ Service Worker installed and resources cached');
             return self.skipWaiting();

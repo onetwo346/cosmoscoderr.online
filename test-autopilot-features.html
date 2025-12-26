@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autopilot Feature Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="browser-autopilot.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0a0a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .test-header h1 {
+            color: #8b5cf6;
+            margin-bottom: 10px;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 200px;
+        }
+        .project {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .project:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: translateY(-5px);
+        }
+        .project h3 {
+            color: #8b5cf6;
+            margin: 0 0 10px 0;
+        }
+        .project p {
+            color: #9ca3af;
+            margin: 0 0 15px 0;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+        .feature-checklist {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(15, 15, 35, 0.95);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+        }
+        .feature-checklist h3 {
+            color: #8b5cf6;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+        .feature-item i {
+            color: #10b981;
+        }
+        .keyboard-shortcuts {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        .keyboard-shortcuts h4 {
+            color: #8b5cf6;
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+        .shortcut {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .shortcut kbd {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="feature-checklist">
+        <h3><i class="fas fa-check-circle"></i> Feature Checklist</h3>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Start/Stop/Pause Controls</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Previous/Next Navigation</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Speed Control (1-20s)</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Preview Modes (None/Popup/Live)</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Loop Continuously</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Auto-open Apps</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Shuffle Mode</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Jump to App (4 modes)</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Page Tour Mode</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Category Filters</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Favorites System</span>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-check"></i>
+            <span>Statistics Tracking</span>
+        </div>
+        
+        <div class="keyboard-shortcuts">
+            <h4>Keyboard Shortcuts</h4>
+            <div class="shortcut">
+                <span>Start/Stop</span>
+                <kbd>Ctrl+Shift+A</kbd>
+            </div>
+            <div class="shortcut">
+                <span>Pause</span>
+                <kbd>Ctrl+Shift+P</kbd>
+            </div>
+            <div class="shortcut">
+                <span>Previous</span>
+                <kbd>Ctrl+Shift+←</kbd>
+            </div>
+            <div class="shortcut">
+                <span>Next</span>
+                <kbd>Ctrl+Shift+→</kbd>
+            </div>
+            <div class="shortcut">
+                <span>Favorite</span>
+                <kbd>Ctrl+Shift+F</kbd>
+            </div>
+            <div class="shortcut">
+                <span>Shuffle</span>
+                <kbd>Ctrl+Shift+S</kbd>
+            </div>
+            <div class="shortcut">
+                <span>Page Tour</span>
+                <kbd>Ctrl+Shift+T</kbd>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-header">
+        <h1><i class="fas fa-robot"></i> Browser Autopilot - Feature Test</h1>
+        <p>All features should work correctly. Check the control panel in the bottom-right corner.</p>
+    </div>
+
+    <div class="test-grid">
+        <div class="project" data-category="game">
+            <h3>Space Explorer</h3>
+            <p>An exciting space exploration game with stunning graphics and immersive gameplay.</p>
+            <a href="https://example.com/space" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Code Editor Pro</h3>
+            <p>Professional code editor with syntax highlighting and intelligent autocomplete.</p>
+            <a href="https://example.com/editor" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Digital Art Studio</h3>
+            <p>Create beautiful digital artwork with powerful drawing and painting tools.</p>
+            <a href="https://example.com/art" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Puzzle Master</h3>
+            <p>Challenge your mind with hundreds of brain-teasing puzzles and riddles.</p>
+            <a href="https://example.com/puzzle" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Task Manager</h3>
+            <p>Organize your tasks and boost productivity with this powerful management tool.</p>
+            <a href="https://example.com/tasks" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Music Composer</h3>
+            <p>Compose and produce music with professional-grade virtual instruments.</p>
+            <a href="https://example.com/music" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Racing Simulator</h3>
+            <p>Experience realistic racing with authentic physics and stunning tracks.</p>
+            <a href="https://example.com/racing" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Data Analyzer</h3>
+            <p>Analyze and visualize complex data sets with advanced statistical tools.</p>
+            <a href="https://example.com/data" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Video Editor</h3>
+            <p>Edit videos like a pro with timeline editing and special effects.</p>
+            <a href="https://example.com/video" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Strategy Empire</h3>
+            <p>Build your empire and conquer the world in this epic strategy game.</p>
+            <a href="https://example.com/strategy" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Cloud Storage</h3>
+            <p>Store and sync your files securely across all your devices.</p>
+            <a href="https://example.com/cloud" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>3D Modeler</h3>
+            <p>Create stunning 3D models and animations with intuitive tools.</p>
+            <a href="https://example.com/3d" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Adventure Quest</h3>
+            <p>Embark on an epic adventure filled with quests, treasures, and mysteries.</p>
+            <a href="https://example.com/adventure" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Password Manager</h3>
+            <p>Keep your passwords secure and easily accessible across all devices.</p>
+            <a href="https://example.com/passwords" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Photo Editor</h3>
+            <p>Transform your photos with professional editing tools and filters.</p>
+            <a href="https://example.com/photo" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Card Battle Arena</h3>
+            <p>Collect cards and battle opponents in this strategic card game.</p>
+            <a href="https://example.com/cards" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Note Taking App</h3>
+            <p>Capture ideas and organize notes with rich formatting and sync.</p>
+            <a href="https://example.com/notes" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Animation Studio</h3>
+            <p>Bring your characters to life with frame-by-frame animation tools.</p>
+            <a href="https://example.com/animation" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Survival Island</h3>
+            <p>Survive on a deserted island by gathering resources and crafting tools.</p>
+            <a href="https://example.com/survival" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Budget Tracker</h3>
+            <p>Track expenses and manage your budget with detailed insights.</p>
+            <a href="https://example.com/budget" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Graphic Designer</h3>
+            <p>Design logos, posters, and graphics with professional templates.</p>
+            <a href="https://example.com/design" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Tower Defense</h3>
+            <p>Defend your base from waves of enemies with strategic tower placement.</p>
+            <a href="https://example.com/tower" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Email Client</h3>
+            <p>Manage multiple email accounts with a clean and efficient interface.</p>
+            <a href="https://example.com/email" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Podcast Studio</h3>
+            <p>Record, edit, and publish podcasts with professional audio tools.</p>
+            <a href="https://example.com/podcast" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Sports Manager</h3>
+            <p>Manage your favorite sports team and lead them to championship glory.</p>
+            <a href="https://example.com/sports" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>Calendar Planner</h3>
+            <p>Plan your schedule and never miss important events or meetings.</p>
+            <a href="https://example.com/calendar" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Web Designer</h3>
+            <p>Build beautiful websites with drag-and-drop design tools.</p>
+            <a href="https://example.com/web" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Multiplayer Arena</h3>
+            <p>Compete against players worldwide in fast-paced multiplayer battles.</p>
+            <a href="https://example.com/arena" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="tool">
+            <h3>File Converter</h3>
+            <p>Convert files between different formats quickly and easily.</p>
+            <a href="https://example.com/convert" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="creative">
+            <h3>Typography Tool</h3>
+            <p>Create beautiful text designs with hundreds of fonts and effects.</p>
+            <a href="https://example.com/typography" class="btn">Launch App</a>
+        </div>
+
+        <div class="project" data-category="game">
+            <h3>Mystery Detective</h3>
+            <p>Solve intriguing mysteries and uncover hidden clues in this detective game.</p>
+            <a href="https://example.com/mystery" class="btn">Launch App</a>
+        </div>
+    </div>
+
+    <script src="browser-autopilot.js"></script>
+</body>
+</html>

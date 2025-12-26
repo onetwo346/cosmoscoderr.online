@@ -1,0 +1,245 @@
+/* Professional Voice Control Styling */
+
+/* Voice Control Section */
+.voice-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.voice-btn {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 247, 0.1));
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    color: var(--text);
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.voice-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.voice-btn:hover::before {
+    left: 100%;
+}
+
+.voice-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.3);
+}
+
+.voice-btn:active {
+    transform: translateY(0);
+}
+
+.voice-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.voice-btn:disabled:hover {
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: none;
+}
+
+.voice-btn i {
+    font-size: 1rem;
+}
+
+.voice-btn span {
+    font-size: 0.85rem;
+}
+
+/* Start Voice Button - Special styling */
+.start-voice {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 200, 255, 0.15));
+    border-color: var(--primary);
+}
+
+.start-voice:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(0, 200, 255, 0.25));
+    box-shadow: 0 4px 16px rgba(0, 240, 255, 0.4);
+}
+
+/* Stop Voice Button */
+.stop-voice {
+    background: linear-gradient(135deg, rgba(255, 0, 100, 0.1), rgba(255, 0, 150, 0.1));
+    border-color: rgba(255, 0, 100, 0.3);
+}
+
+.stop-voice:hover:not(:disabled) {
+    border-color: #ff0066;
+    box-shadow: 0 4px 12px rgba(255, 0, 100, 0.3);
+}
+
+/* Help Button - Full width */
+.help-voice {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.help-voice:hover {
+    border-color: #ffd700;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+/* Voice Indicator - Professional Design */
+.voice-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(10, 10, 30, 0.6), rgba(20, 20, 40, 0.6));
+    border-radius: 0.75rem;
+    margin-top: 0.75rem;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.voice-indicator i {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.voice-indicator .voice-status {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* Listening state */
+.voice-indicator.voice-listening {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 200, 255, 0.15));
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.voice-indicator.voice-listening i {
+    color: var(--primary);
+    animation: micPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.5); }
+}
+
+/* Error state */
+.voice-indicator.voice-error {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 50, 50, 0.1));
+    border-color: #ff4444;
+}
+
+.voice-indicator.voice-error i {
+    color: #ff4444;
+}
+
+/* Idle state */
+.voice-indicator.voice-idle {
+    background: linear-gradient(135deg, rgba(10, 10, 30, 0.6), rgba(20, 20, 40, 0.6));
+    border-color: rgba(0, 240, 255, 0.2);
+}
+
+/* Continuous Mode Checkbox - Enhanced */
+.continuous-voice-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.setting-group.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.setting-group.checkbox-group label:hover {
+    background: rgba(0, 240, 255, 0.05);
+}
+
+/* Voice Section Content */
+#voice-section {
+    padding: 0.75rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .voice-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .help-voice {
+        grid-column: 1;
+    }
+    
+    .voice-btn {
+        padding: 0.7rem 1rem;
+    }
+    
+    .voice-indicator {
+        padding: 0.6rem;
+    }
+}
+
+/* Animation for voice command recognition */
+@keyframes commandRecognized {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.voice-indicator.command-recognized {
+    animation: commandRecognized 0.3s ease;
+}
+
+/* Tooltip for voice buttons */
+.voice-btn[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.4rem 0.6rem;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+    margin-bottom: 0.5rem;
+    pointer-events: none;
+    z-index: 1000;
+}
