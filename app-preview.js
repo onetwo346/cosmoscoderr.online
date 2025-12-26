@@ -171,19 +171,8 @@ class AppPreview {
             const iconContainer = project.querySelector('.icon-3d-container');
             const actionButton = project.querySelector('.btn');
             
-            // On mobile: make the button a direct link (no popup)
-            if (actionButton) {
-                actionButton.addEventListener('click', function(e) {
-                    if (isMobileDevice()) {
-                        // Let the link work normally (open in new tab or same tab)
-                        // No popup
-                        // Do nothing here, allow default
-                    } else {
-                        // On desktop, stop propagation so card click doesn't trigger
-                        e.stopPropagation();
-                    }
-                });
-            }
+            // Button clicks are handled by preview-popup.js with capture phase
+            // Don't add any handlers here to avoid conflicts
             
             // Add click handlers to different parts of the card
             [projectContent, iconContainer].forEach(element => {
