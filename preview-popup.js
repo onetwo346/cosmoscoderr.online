@@ -4,16 +4,21 @@
 // This captures all clicks on .btn inside .project and prevents navigation
 (function() {
     document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.project .btn');
+        // Check if clicked element is a .btn or inside a .btn
+        const btn = e.target.closest('.btn');
         if (!btn) return;
         
-        // Stop the click from doing anything
+        // Check if this btn is inside a .project
+        const project = btn.closest('.project');
+        if (!project) return;
+        
+        // Stop the click from doing anything - MUST happen before any other code
         e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation();
         
         // Get the URL and title
-        const project = btn.closest('.project');
-        const title = project?.querySelector('h3, .app-title')?.textContent?.trim() || 'App';
+        const title = project.querySelector('h3, .app-title')?.textContent?.trim() || 'App';
         const url = btn.getAttribute('data-app-url') || btn.getAttribute('href');
         
         if (!url || url === '#' || url === 'javascript:void(0)') return;

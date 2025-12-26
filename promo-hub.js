@@ -159,7 +159,7 @@ class PromoHub {
                 </div>
                 <p class="app-description">${game.description}</p>
                 <div class="app-category">${game.category}</div>
-                <a href="${game.url}" target="_blank" class="app-button btn">
+                <a href="${game.url}" class="app-button btn" data-app-url="${game.url}">
                     VIEW APP
                 </a>
             </div>
