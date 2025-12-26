@@ -95,12 +95,14 @@
     <link rel="stylesheet" href="vibrant-theme-enhancements.css">
     <link rel="stylesheet" href="futuristic-sections.css">
     <link rel="stylesheet" href="featured-apps.css">
+    <link rel="stylesheet" href="in-app-modal.css">
     <link rel="stylesheet" href="auth-dashboard.css">
     <link rel="stylesheet" href="performance-optimizer.css">
     <link rel="stylesheet" href="admin-announcements.css">
     <link rel="stylesheet" href="fluid-typography.css">
-    <link rel="stylesheet" href="christmas-theme.css">
+    <link rel="stylesheet" href="holiday-themes.css">
     <link rel="stylesheet" href="neon-cyberpunk-theme.css">
+    <link rel="stylesheet" href="browser-autopilot.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="vibrant-interactions.js"></script>
@@ -4813,9 +4815,10 @@
 
         /* Cosmic Search Styles - Mind Blowing Redesign */
         .cosmic-search {
-            position: relative;
-            margin: 0 2rem;
-            flex: 0 0 auto;
+            position: fixed;
+            top: 190px;
+            right: 2rem;
+            z-index: 9999;
             max-width: 220px;
         }
         .search-wrapper {
@@ -5382,6 +5385,8 @@
       }
     });
     </script>
+    <link rel="stylesheet" href="blog-smooth-interactions.css">
+    <link rel="stylesheet" href="voice-control.css">
 </head>
 <body>
     <!-- 3D Space Environment -->
@@ -5511,21 +5516,24 @@
             </div>
             <!-- Moved search bar below nav-links -->
         </div>
-        <div class="nav-search-row" style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
-            <div class="cosmic-search">
-                <div class="search-wrapper">
-                    <input type="text" class="search-input" placeholder="Search..." />
-                    <button class="search-icon">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button class="search-ai">
-                        <i class="fas fa-robot"></i>
-                    </button>
-                </div>
-                <div class="search-results"></div>
-            </div>
+        <div class="nav-search-row" style="display: none;">
+            <!-- Search moved to fixed position below nav -->
         </div>
     </nav>
+
+    <!-- Cosmic Search - Positioned Below Nav -->
+    <div class="cosmic-search">
+        <div class="search-wrapper">
+            <input type="text" class="search-input" placeholder="Search..." />
+            <button class="search-icon">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="search-ai">
+                <i class="fas fa-robot"></i>
+            </button>
+        </div>
+        <div class="search-results"></div>
+    </div>
 
     <!-- Authentication Modals -->
     <div class="auth-modal" id="authModal" style="display: none;">
@@ -6342,17 +6350,6 @@
                         <p>Analyze Skin Health</p>
                         <div class="project-buttons">
                             <a href="https://onetwo346.github.io/skin-analyst/" class="btn" target="_self">Check Skin</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project" data-category="web" data-icon-url="IMG_3740.jpeg">
-                    <div class="project-image" style="background-image: url('./IMG_3740.jpeg');"></div>
-                    <div class="project-content">
-                        <h3>Book Shrine</h3>
-                        <p>Digital Library & AI Chat</p>
-                        <div class="project-buttons">
-                            <a href="https://bookshrine.space/" class="btn" target="_blank">Explore Library</a>
                         </div>
                     </div>
                 </div>
@@ -8331,10 +8328,14 @@
     <script src="chatbot-system.js"></script>
     <script src="community-hub-effects.js"></script>
     <script src="auth-dashboard.js"></script>
-    <script src="christmas-theme.js"></script>
+    <script src="holiday-loop.js"></script>
     <script src="neon-cyberpunk-theme.js"></script>
+    <script src="voice-control.js"></script>
+    <script src="browser-autopilot.js"></script>
+    <script src="holiday-blog.js"></script>
     
 
 
 </body>
+</html>
 </html> 

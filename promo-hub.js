@@ -32,14 +32,6 @@ class PromoHub {
                 image: this.appImages['GLOW RADIO']
             },
             {
-                name: "AKAN WISDOM GENERATOR",
-                description: "Discover ancient wisdom from the Akan culture of West Africa. Get proverbs, sayings, and philosophical insights from this rich cultural tradition.",
-                url: "https://onetwo346.github.io/wise-saying",
-                category: "APP",
-                rating: 4.9,
-                image: this.appImages['AKAN WISDOM GENERATOR']
-            },
-            {
                 name: "RANDOM QUOTE",
                 description: "Find inspiration with this random quote generator featuring thousands of quotes from philosophers, authors, scientists, and notable figures.",
                 url: "https://onetwo346.github.io/random-quote-generator-RQG",
@@ -150,8 +142,9 @@ class PromoHub {
     
     createGameCard(game) {
         const card = document.createElement('div');
-        card.className = 'featured-app-card';
+        card.className = 'featured-app-card project';
         card.setAttribute('data-app', game.name.toLowerCase().replace(/\s+/g, '-'));
+        card.setAttribute('data-icon-url', game.image);
         
         card.innerHTML = `
             <div class="card-gradient-bg"></div>
@@ -166,9 +159,9 @@ class PromoHub {
                 </div>
                 <p class="app-description">${game.description}</p>
                 <div class="app-category">${game.category}</div>
-                <button class="app-button" onclick="window.open('${game.url}', '_blank')">
+                <a href="${game.url}" target="_blank" class="app-button btn">
                     VIEW APP
-                </button>
+                </a>
             </div>
         `;
         

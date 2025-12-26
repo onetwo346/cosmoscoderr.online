@@ -402,22 +402,6 @@ document.addEventListener('DOMContentLoaded', function() {
             buttonLabel: 'Check Skin',
             url: 'https://onetwo346.github.io/skin-analyst/'
         },
-        'Book Shrine': {
-            title: 'Book Shrine',
-            description: 'Your digital library for exploring and reading books. Dive into a world of knowledge with our vast collection of PDF books and AI-powered chatbot for enhanced learning experiences.',
-            features: [
-                'Vast Collection of PDF Books',
-                'AI-Powered Chatbot Assistant',
-                'Digital Library Management',
-                'Interactive Reading Experience',
-                'Knowledge Discovery Tools',
-                'Personalized Recommendations'
-            ],
-            technologies: ['HTML5', 'CSS3', 'JavaScript', 'AI Chatbot', 'PDF.js', 'Web Storage'],
-            image: 'IMG_3740.jpeg',
-            buttonLabel: 'Explore Library',
-            url: 'https://bookshrine.space/'
-        },
         'Space Calculator': {
             title: 'Space Calculator',
             description: 'Your cosmic computing companion! A comprehensive calculator featuring basic arithmetic, scientific functions, universal unit converter, and orbital mechanics calculations - all with a beautiful space-themed interface.',
@@ -441,72 +425,200 @@ document.addEventListener('DOMContentLoaded', function() {
     popupContainer.className = 'preview-popup';
     document.body.appendChild(popupContainer);
 
-    // Improved helper function to detect mobile devices
+    // Improved helper function to detect mobile devices (excluding iPad)
     function isMobileDevice() {
+        const ua = navigator.userAgent;
+        // Exclude iPad from mobile detection
+        const isIPad = /iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIPad) return false; // Treat iPad as desktop
+        
         // Touch support (covers most modern mobile devices)
         const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         // User agent check (covers older devices and some edge cases)
-        const ua = navigator.userAgent;
-        const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+        const isMobileUA = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
         // Screen size fallback (optional, for very small screens)
         const isSmallScreen = window.innerWidth <= 800 && window.innerHeight <= 900;
         // Combine checks for best accuracy
         return (hasTouch && isMobileUA) || isMobileUA || (hasTouch && isSmallScreen);
     }
 
-    // Add click event to all project cards
-    document.querySelectorAll('.project').forEach(project => {
-        // Get the main action button to prevent conflicts
-        const actionButton = project.querySelector('.btn');
+    // Create in-app iframe modal container
+    const appModalContainer = document.createElement('div');
+    appModalContainer.className = 'in-app-modal';
+    document.body.appendChild(appModalContainer);
 
-        // On mobile: make the button a direct link (no popup)
-        if (actionButton) {
-            actionButton.addEventListener('click', function(e) {
-                if (isMobileDevice()) {
-                    // Let the link work normally (open in new tab or same tab)
-                    // No popup
-                    // Do nothing here, allow default
-                } else {
-                    // On desktop, stop propagation so card click doesn't trigger
-                    e.stopPropagation();
-                }
-            });
+    // Function to open app in iframe modal (for desktop and iPad)
+    window.openAppInModal = function(url, title) {
+        appModalContainer.innerHTML = `
+            <div class="in-app-modal-content">
+                <div class="in-app-modal-header">
+                    <div class="in-app-modal-title">
+                        <span class="app-icon">📱</span>
+                        <h2>${title}</h2>
+                    </div>
+                    <div class="in-app-modal-controls">
+                        <button class="modal-control-btn refresh-app" title="Refresh">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                            </svg>
+                        </button>
+                        <button class="modal-control-btn open-external" title="Open in New Tab">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15 3 21 3 21 9"/>
+                                <line x1="10" y1="14" x2="21" y2="3"/>
+                            </svg>
+                        </button>
+                        <button class="modal-control-btn close-app-modal" title="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="in-app-modal-body">
+                    <iframe src="${url}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+        `;
+        
+        // Show modal with animation
+        requestAnimationFrame(() => {
+            appModalContainer.classList.add('active');
+        });
+        
+        // Add event listeners
+        const closeBtn = appModalContainer.querySelector('.close-app-modal');
+        const refreshBtn = appModalContainer.querySelector('.refresh-app');
+        const openExternalBtn = appModalContainer.querySelector('.open-external');
+        const iframe = appModalContainer.querySelector('iframe');
+        
+        closeBtn.addEventListener('click', closeAppModal);
+        refreshBtn.addEventListener('click', () => {
+            const modalBody = appModalContainer.querySelector('.in-app-modal-body');
+            modalBody.classList.remove('loaded');
+            iframe.src = iframe.src; // Refresh iframe
+        });
+        openExternalBtn.addEventListener('click', () => {
+            window.open(url, '_blank');
+        });
+        
+        // Hide loading indicator when iframe loads
+        iframe.addEventListener('load', () => {
+            const modalBody = appModalContainer.querySelector('.in-app-modal-body');
+            modalBody.classList.add('loaded');
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', handleEscapeKey);
+        
+        // Close when clicking outside (only on the backdrop, not the modal content)
+        appModalContainer.addEventListener('click', (e) => {
+            // Only close if clicking directly on the modal backdrop
+            if (e.target === appModalContainer) {
+                closeAppModal();
+            }
+        });
+        
+        // Prevent clicks on modal content from bubbling to backdrop
+        const modalContent = appModalContainer.querySelector('.in-app-modal-content');
+        modalContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
+    // Function to close app modal
+    function closeAppModal() {
+        appModalContainer.classList.remove('active');
+        document.removeEventListener('keydown', handleEscapeKey);
+        setTimeout(() => {
+            appModalContainer.innerHTML = '';
+        }, 300);
+    }
+
+    // Handle escape key
+    function handleEscapeKey(e) {
+        if (e.key === 'Escape' && appModalContainer.classList.contains('active')) {
+            closeAppModal();
         }
+    }
 
-        // Add click event to the project card
-        project.addEventListener('click', function(e) {
-            // On mobile: if clicking the button, do not show popup
-            if (isMobileDevice() && (e.target === actionButton || (actionButton && actionButton.contains(e.target)))) {
-                // Let the button handle navigation
-                return;
+    // Use event delegation to handle both existing and dynamically created project cards
+    document.body.addEventListener('click', function(e) {
+        // Find if click is on or within a project card
+        const project = e.target.closest('.project');
+        if (!project) return;
+
+        // Get the main action button
+        const actionButton = project.querySelector('.btn');
+        
+        // Check if clicking on the button itself
+        const clickedButton = e.target.closest('.btn');
+        
+        if (clickedButton && actionButton && clickedButton === actionButton) {
+            // Clicking the button - ALWAYS prevent default first
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get project details
+            const title = project.querySelector('h3, .app-title').textContent.trim();
+            const buttonText = actionButton.textContent.trim();
+            const url = actionButton.getAttribute('href') || '#';
+            
+            if (isMobileDevice()) {
+                // On mobile: open in new tab directly
+                window.open(url, '_blank');
+            } else {
+                // On desktop/iPad: open in iframe modal
+                let details = productDetails[title] || {
+                    title: title,
+                    description: project.querySelector('p, .app-description')?.textContent.trim() || 'Explore this cosmic application and discover its features.',
+                    features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
+                    technologies: ['HTML', 'CSS', 'JavaScript'],
+                    url: url
+                };
+                
+                // Always use the data-icon-url from the project element if available
+                if (project.dataset.iconUrl) {
+                    details.image = project.dataset.iconUrl;
+                }
+                
+                // Use the button text from the project if no custom buttonLabel is defined
+                if (!details.buttonLabel) {
+                    details.buttonLabel = buttonText;
+                }
+                
+                // Open directly in modal (skip preview popup)
+                openAppInModal(url, title);
             }
-            // On desktop: don't trigger if clicking on the main action button
-            if (!isMobileDevice() && (e.target === actionButton || (actionButton && actionButton.contains(e.target)))) {
-                return;
-            }
-            // Get project title
-            const title = project.querySelector('h3').textContent.trim();
-            // Get the button text for the action button
-            const buttonText = project.querySelector('.btn').textContent.trim();
-            // Get details from database or create fallback
+        } else if (!clickedButton) {
+            // Clicking on the card itself (not the button) - show preview popup
+            const title = project.querySelector('h3, .app-title').textContent.trim();
+            const actionButton = project.querySelector('.btn');
+            const buttonText = actionButton ? actionButton.textContent.trim() : 'Launch App';
+            
             let details = productDetails[title] || {
                 title: title,
-                description: 'Explore this cosmic application and discover its features.',
+                description: project.querySelector('p, .app-description')?.textContent.trim() || 'Explore this cosmic application and discover its features.',
                 features: ['Interactive user interface', 'Cosmic design elements', 'Responsive layout'],
                 technologies: ['HTML', 'CSS', 'JavaScript'],
-                url: project.querySelector('.btn').getAttribute('href') || '#'
+                url: actionButton ? actionButton.getAttribute('href') || '#' : '#'
             };
+            
             // Always use the data-icon-url from the project element if available
             if (project.dataset.iconUrl) {
                 details.image = project.dataset.iconUrl;
             }
+            
             // Use the button text from the project if no custom buttonLabel is defined
             if (!details.buttonLabel) {
                 details.buttonLabel = buttonText;
             }
+            
             // Show popup
             showPreviewPopup(details);
-        });
+        }
     });
 
     // Function to show preview popup
@@ -541,7 +653,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="preview-footer">
                     <button class="preview-btn preview-btn-secondary close-preview">Close</button>
-                    <a href="${details.url}" target="_blank" class="preview-btn preview-btn-primary">${details.buttonLabel || 'Launch App'}</a>
+                    <button class="preview-btn preview-btn-primary launch-app-btn" data-url="${details.url}" data-title="${details.title}">${details.buttonLabel || 'Launch App'}</button>
                 </div>
             </div>
         `;
@@ -555,6 +667,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add close button event listeners
         popupContainer.querySelector('.preview-close').addEventListener('click', closePreviewPopup);
         popupContainer.querySelector('.close-preview').addEventListener('click', closePreviewPopup);
+        
+        // Add launch app button listener
+        const launchBtn = popupContainer.querySelector('.launch-app-btn');
+        launchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            const title = this.getAttribute('data-title');
+            
+            if (isMobileDevice()) {
+                // On mobile phones, open in new tab
+                window.open(url, '_blank');
+            } else {
+                // On desktop and iPad, open in iframe modal
+                closePreviewPopup(); // Close the preview popup first
+                setTimeout(() => {
+                    openAppInModal(url, title);
+                }, 300);
+            }
+        });
         
         // Close when clicking outside the content
         popupContainer.addEventListener('click', function(e) {
