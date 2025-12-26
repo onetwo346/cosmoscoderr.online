@@ -1,8 +1,46 @@
-const CACHE_NAME = 'cosmic-app-store-v2';
+// Service Worker DISABLED - was causing caching issues
+// This file now just unregisters itself and clears old caches
+
+self.addEventListener('install', event => {
+    console.log('🔧 Service Worker: Clearing all caches...');
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    console.log('🗑️ Deleting cache:', cacheName);
+                    return caches.delete(cacheName);
+                })
+            );
+        }).then(() => {
+            return self.skipWaiting();
+        })
+    );
+});
+
+self.addEventListener('activate', event => {
+    console.log('🚀 Service Worker: Activated, taking control...');
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => caches.delete(cacheName))
+            );
+        }).then(() => {
+            return self.clients.claim();
+        })
+    );
+});
+
+// Pass all requests through to network - no caching
+self.addEventListener('fetch', event => {
+    event.respondWith(fetch(event.request));
+});
+
+/* OLD CACHING CODE DISABLED:
+const CACHE_NAME = 'cosmic-app-store-v3';
 const OFFLINE_URL = '/offline.html';
 
 // Install event - cache resources
-self.addEventListener('install', event => {
+self.addEventListener('install-disabled', event => {
     console.log('🔧 Service Worker installing...');
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
@@ -246,4 +284,4 @@ self.addEventListener('message', event => {
     }
 });
 
-console.log('🌌 Cosmic App Store Service Worker loaded');
+*/

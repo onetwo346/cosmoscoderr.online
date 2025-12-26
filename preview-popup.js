@@ -1,5 +1,122 @@
 // Product Preview Popup System
 
+// GLOBAL MODAL SYSTEM - Define openAppInModal immediately so it's available for the click interceptor
+(function() {
+    // Create modal container as soon as possible
+    let appModalContainer = null;
+    
+    function ensureModalContainer() {
+        if (!appModalContainer) {
+            appModalContainer = document.createElement('div');
+            appModalContainer.className = 'in-app-modal';
+            if (document.body) {
+                document.body.appendChild(appModalContainer);
+            } else {
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.body.appendChild(appModalContainer);
+                });
+            }
+        }
+        return appModalContainer;
+    }
+    
+    function closeAppModal() {
+        const container = ensureModalContainer();
+        container.classList.remove('active');
+        setTimeout(() => {
+            container.innerHTML = '';
+        }, 300);
+    }
+    
+    function handleEscapeKey(e) {
+        if (e.key === 'Escape') {
+            const container = ensureModalContainer();
+            if (container.classList.contains('active')) {
+                closeAppModal();
+            }
+        }
+    }
+    
+    // Define openAppInModal globally
+    window.openAppInModal = function(url, title) {
+        const container = ensureModalContainer();
+        container.innerHTML = `
+            <div class="in-app-modal-content">
+                <div class="in-app-modal-header">
+                    <div class="in-app-modal-title">
+                        <span class="app-icon">📱</span>
+                        <h2>${title}</h2>
+                    </div>
+                    <div class="in-app-modal-controls">
+                        <button class="modal-control-btn refresh-app" title="Refresh">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                            </svg>
+                        </button>
+                        <button class="modal-control-btn open-external" title="Open in New Tab">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15 3 21 3 21 9"/>
+                                <line x1="10" y1="14" x2="21" y2="3"/>
+                            </svg>
+                        </button>
+                        <button class="modal-control-btn close-app-modal" title="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="in-app-modal-body">
+                    <iframe src="${url}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+        `;
+        
+        // Show modal with animation
+        requestAnimationFrame(() => {
+            container.classList.add('active');
+        });
+        
+        // Add event listeners
+        const closeBtn = container.querySelector('.close-app-modal');
+        const refreshBtn = container.querySelector('.refresh-app');
+        const openExternalBtn = container.querySelector('.open-external');
+        const iframe = container.querySelector('iframe');
+        
+        closeBtn.addEventListener('click', closeAppModal);
+        refreshBtn.addEventListener('click', () => {
+            const modalBody = container.querySelector('.in-app-modal-body');
+            modalBody.classList.remove('loaded');
+            iframe.src = iframe.src;
+        });
+        openExternalBtn.addEventListener('click', () => {
+            window.open(url, '_blank');
+        });
+        
+        iframe.addEventListener('load', () => {
+            const modalBody = container.querySelector('.in-app-modal-body');
+            modalBody.classList.add('loaded');
+        });
+        
+        document.addEventListener('keydown', handleEscapeKey);
+        
+        container.addEventListener('click', (e) => {
+            if (e.target === container) {
+                closeAppModal();
+            }
+        });
+        
+        const modalContent = container.querySelector('.in-app-modal-content');
+        modalContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    };
+    
+    window.closeAppModal = closeAppModal;
+})();
+
 // GLOBAL CLICK INTERCEPTOR - runs immediately, before DOMContentLoaded
 // This captures all clicks on .btn inside .project and prevents navigation
 (function() {
@@ -29,11 +146,8 @@
         
         if (isMobile && !isIPad) {
             window.open(url, '_blank');
-        } else if (typeof window.openAppInModal === 'function') {
-            window.openAppInModal(url, title);
         } else {
-            // Fallback if modal function not ready yet
-            window.open(url, '_blank');
+            window.openAppInModal(url, title);
         }
     }, true); // CAPTURE PHASE
 })();
@@ -482,107 +596,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return (hasTouch && isMobileUA) || isMobileUA || (hasTouch && isSmallScreen);
     }
 
-    // Create in-app iframe modal container
-    const appModalContainer = document.createElement('div');
-    appModalContainer.className = 'in-app-modal';
-    document.body.appendChild(appModalContainer);
-
-    // Function to open app in iframe modal (for desktop and iPad)
-    window.openAppInModal = function(url, title) {
-        appModalContainer.innerHTML = `
-            <div class="in-app-modal-content">
-                <div class="in-app-modal-header">
-                    <div class="in-app-modal-title">
-                        <span class="app-icon">📱</span>
-                        <h2>${title}</h2>
-                    </div>
-                    <div class="in-app-modal-controls">
-                        <button class="modal-control-btn refresh-app" title="Refresh">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-                            </svg>
-                        </button>
-                        <button class="modal-control-btn open-external" title="Open in New Tab">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                <polyline points="15 3 21 3 21 9"/>
-                                <line x1="10" y1="14" x2="21" y2="3"/>
-                            </svg>
-                        </button>
-                        <button class="modal-control-btn close-app-modal" title="Close">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="18" y1="6" x2="6" y2="18"/>
-                                <line x1="6" y1="6" x2="18" y2="18"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="in-app-modal-body">
-                    <iframe src="${url}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-                </div>
-            </div>
-        `;
-        
-        // Show modal with animation
-        requestAnimationFrame(() => {
-            appModalContainer.classList.add('active');
-        });
-        
-        // Add event listeners
-        const closeBtn = appModalContainer.querySelector('.close-app-modal');
-        const refreshBtn = appModalContainer.querySelector('.refresh-app');
-        const openExternalBtn = appModalContainer.querySelector('.open-external');
-        const iframe = appModalContainer.querySelector('iframe');
-        
-        closeBtn.addEventListener('click', closeAppModal);
-        refreshBtn.addEventListener('click', () => {
-            const modalBody = appModalContainer.querySelector('.in-app-modal-body');
-            modalBody.classList.remove('loaded');
-            iframe.src = iframe.src; // Refresh iframe
-        });
-        openExternalBtn.addEventListener('click', () => {
-            window.open(url, '_blank');
-        });
-        
-        // Hide loading indicator when iframe loads
-        iframe.addEventListener('load', () => {
-            const modalBody = appModalContainer.querySelector('.in-app-modal-body');
-            modalBody.classList.add('loaded');
-        });
-        
-        // Close on escape key
-        document.addEventListener('keydown', handleEscapeKey);
-        
-        // Close when clicking outside (only on the backdrop, not the modal content)
-        appModalContainer.addEventListener('click', (e) => {
-            // Only close if clicking directly on the modal backdrop
-            if (e.target === appModalContainer) {
-                closeAppModal();
-            }
-        });
-        
-        // Prevent clicks on modal content from bubbling to backdrop
-        const modalContent = appModalContainer.querySelector('.in-app-modal-content');
-        modalContent.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-    }
-
-    // Function to close app modal
-    function closeAppModal() {
-        appModalContainer.classList.remove('active');
-        document.removeEventListener('keydown', handleEscapeKey);
-        setTimeout(() => {
-            appModalContainer.innerHTML = '';
-        }, 300);
-    }
-
-    // Handle escape key
-    function handleEscapeKey(e) {
-        if (e.key === 'Escape' && appModalContainer.classList.contains('active')) {
-            closeAppModal();
-        }
-    }
+    // Modal functions are now defined globally at the top of this file
+    // No duplicate code needed here
 
     // Store URLs in data-app-url for buttons that have href
     // The global click interceptor at the top of this file handles the actual click behavior
