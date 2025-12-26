@@ -70,8 +70,8 @@ class CosmicSearch {
                 </div>
             `;
         } else {
-            this.searchResults.innerHTML = results.map(result => `
-                <div class="search-result-item" onclick="window.location.href='${result.link}'">
+            this.searchResults.innerHTML = results.map((result, index) => `
+                <div class="search-result-item" data-index="${index}">
                     <img src="${result.icon}" alt="${result.title}" class="result-icon">
                     <div class="result-content">
                         <div class="result-title">${result.title}</div>
@@ -79,6 +79,23 @@ class CosmicSearch {
                     </div>
                 </div>
             `).join('');
+            
+            // Add click handlers to each result
+            const resultItems = this.searchResults.querySelectorAll('.search-result-item');
+            resultItems.forEach((item, index) => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const result = results[index];
+                    if (typeof window.openAppInModal === 'function') {
+                        window.openAppInModal(result.link, result.title);
+                        this.hideResults();
+                        this.searchInput.value = '';
+                    } else {
+                        console.error('openAppInModal function not found');
+                        window.open(result.link, '_blank');
+                    }
+                });
+            });
         }
 
         this.showResults();
