@@ -260,7 +260,7 @@ class AppPreview {
                 </div>
                 <div class="detail-popup-footer">
                     <button class="detail-btn detail-btn-secondary close-detail">Close</button>
-                    <a href="${details.url}" target="_blank" class="detail-btn detail-btn-primary">Launch App</a>
+                    <button class="detail-btn detail-btn-primary launch-app-btn" data-url="${details.url}" data-title="${details.title}">Launch App</button>
                 </div>
             </div>
         `;
@@ -280,6 +280,34 @@ class AppPreview {
         container.querySelector('.close-detail').addEventListener('click', () => {
             this.closeDetailPopup(container);
         });
+
+        // Add launch app button event listener - use modal on desktop, new tab on mobile
+        const launchBtn = container.querySelector('.launch-app-btn');
+        if (launchBtn) {
+            launchBtn.addEventListener('click', () => {
+                const url = launchBtn.getAttribute('data-url');
+                const title = launchBtn.getAttribute('data-title');
+                
+                // Check if mobile device
+                const isMobile = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const isIPad = /iPad/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                
+                if (isMobile && !isIPad) {
+                    // Mobile: open in new tab
+                    window.open(url, '_blank');
+                } else {
+                    // Desktop/iPad: use in-app modal
+                    this.closeDetailPopup(container);
+                    setTimeout(() => {
+                        if (typeof window.openAppInModal === 'function') {
+                            window.openAppInModal(url, title);
+                        } else {
+                            window.open(url, '_blank');
+                        }
+                    }, 300);
+                }
+            });
+        }
 
         // Add cosmic cursor effect inside popup
         const popupContent = container.querySelector('.detail-popup-content');
