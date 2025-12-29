@@ -199,6 +199,19 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'https://onetwo346.github.io/Slang-decoder-/',
             buttonLabel: 'Launch Translator'
         },
+        'Draw 2 Animate': {
+            title: 'Draw 2 Animate',
+            description: 'Sketch and animate your scenes with Draw 2 Animate. Export frame-by-frame animation directly from the browser.',
+            features: [
+                'Frame-by-frame animation editor',
+                'Onion skinning',
+                'Export to GIF/MP4'
+            ],
+            technologies: ['JavaScript', 'Canvas', 'Web Animations'],
+            image: '65053a73-241d-488c-be45-e11f69f1e962-md.jpg',
+            url: 'https://onetwo346.github.io/draw-2-animate/intro.html',
+            buttonLabel: 'Animate Now'
+        },
         'Star Script Editor': {
             title: 'Star Script Editor',
             description: 'A professional code editor with cosmic design. Write, edit, and manage your scripts with syntax highlighting and advanced features.',
