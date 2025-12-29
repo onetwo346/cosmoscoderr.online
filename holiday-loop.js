@@ -5,8 +5,18 @@ class HolidayLoop {
     constructor() {
         this.holidays = [
             {
-                name: 'new-year',
+                name: 'boxing-day',
                 start: { month: 12, day: 26 },
+                end: { month: 12, day: 26 },
+                displayName: 'Boxing Day',
+                greeting: 'Happy Boxing Day! 🎁',
+                emoji: '🎁',
+                description: 'A day for giving, sharing, and spending time with loved ones!',
+                colors: { primary: '#ff6b35', secondary: '#00bcd4', accent: '#ffd700' }
+            },
+            {
+                name: 'new-year',
+                start: { month: 12, day: 31 },
                 end: { month: 1, day: 7 },
                 displayName: 'New Year',
                 greeting: 'Happy New Year! 🎆',

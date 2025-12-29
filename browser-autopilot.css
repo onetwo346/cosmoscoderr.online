@@ -40,11 +40,22 @@
     height: 60px;
     border-radius: 30px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.autopilot-control-panel.minimized:hover {
+.autopilot-control-panel.minimized:hover,
+.autopilot-control-panel.minimized:active {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+}
+
+@media (max-width: 480px) {
+    .autopilot-control-panel.minimized {
+        min-width: 120px;
+        height: 50px;
+    }
 }
 
 .autopilot-control-panel.minimized .autopilot-body,
@@ -885,18 +896,130 @@
         width: 240px;
         bottom: 10px;
         right: 10px;
+        max-height: 60vh;
     }
-    
-    .autopilot-body { max-height: 350px; }
-    
+
+    .autopilot-body { 
+        max-height: 300px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     .autopilot-iframe-container {
         width: 95%;
         height: 85vh;
+        max-height: 90vh;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .autopilot-iframe-container.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .autopilot-btn span { display: none !important; }
+    .start-btn span { display: inline !important; }
+
+    .tour-btn span { display: none; }
+    .tour-btn { padding: 8px 12px; }
+
+    .setting-group { margin-bottom: 6px; }
+    .section-toggle { font-size: 10px; padding: 6px 8px; }
+    
+    /* Improve touch targets on mobile */
+    .autopilot-btn,
+    .tour-btn,
+    .iframe-btn {
+        min-height: 36px;
+        min-width: 36px;
     }
 }
 
 @media (max-width: 480px) {
-    .autopilot-control-panel { width: 220px; }
+    .autopilot-control-panel { 
+        width: 200px;
+        bottom: 8px;
+        right: 8px;
+    }
+
+    .autopilot-header { padding: 8px 10px; }
+    .autopilot-title { font-size: 12px; gap: 6px; }
+    .autopilot-title i { font-size: 14px; }
+
+    .autopilot-body { 
+        max-height: 250px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .autopilot-controls { gap: 4px; }
+    .autopilot-btn { 
+        padding: 6px 4px; 
+        font-size: 9px;
+        min-height: 38px;
+        min-width: 38px;
+    }
+    .autopilot-btn i { font-size: 10px; }
+
+    .progress-info { font-size: 9px; }
+    .current-app { max-width: 120px; font-size: 10px; }
+
+    .setting-group > label { font-size: 10px; }
+    .section-toggle { 
+        font-size: 9px; 
+        padding: 5px 6px;
+        min-height: 32px;
+    }
+
+    .tour-controls { gap: 4px; }
+    .tour-btn { 
+        padding: 5px; 
+        font-size: 9px;
+        min-height: 36px;
+        min-width: 36px;
+    }
+    .tour-btn i { font-size: 10px; }
+
+    .speed-slider, .tour-speed-slider { height: 4px; }
+    .speed-slider::-webkit-slider-thumb,
+    .tour-speed-slider::-webkit-slider-thumb {
+        width: 14px;
+        height: 14px;
+    }
+
+    .preview-mode-select,
+    .scroll-mode-select,
+    .category-filter { 
+        padding: 6px 8px;
+        font-size: 10px;
+        min-height: 36px;
+    }
+
+    .autopilot-iframe-container {
+        width: 98%;
+        height: 80vh;
+        border-radius: 12px;
+    }
+
+    .iframe-header { padding: 10px 12px; }
+    .iframe-title { font-size: 12px; gap: 6px; }
+    .iframe-btn { 
+        width: 32px; 
+        height: 32px;
+        min-height: 32px;
+        min-width: 32px;
+    }
+
+    .modal-content { width: 95%; }
+    .stat-grid { grid-template-columns: 1fr; }
+    
+    /* Better notification positioning on mobile */
+    .autopilot-notification {
+        top: 10px;
+        right: 10px;
+        max-width: calc(100vw - 20px);
+        font-size: 11px;
+    }
 }
 
 /* Light Theme */

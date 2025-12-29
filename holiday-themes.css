@@ -6,7 +6,7 @@
    ======================================== */
 .holiday-banner {
     position: fixed;
-    top: 45px;
+    top: 65px;
     left: -300px;
     z-index: 9999;
     padding: 0.5rem 1.2rem;
@@ -339,7 +339,7 @@
 
 @media (max-width: 768px) {
     .holiday-banner {
-        top: 60px;
+        top: 80px;
         padding: 0.4rem 1rem;
     }
     
@@ -363,6 +363,7 @@
 @media (max-width: 480px) {
     .holiday-banner {
         padding: 0.3rem 0.8rem;
+        top: 85px;
     }
     
     .holiday-greeting {

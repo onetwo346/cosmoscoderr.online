@@ -1,0 +1,363 @@
+/* DAY MODE VISIBILITY ENHANCEMENT - Better Contrast & Readability */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVIGATION BAR - Enhanced Visibility for Day Mode
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="day"] .cosmic-nav {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 
+                0 0 40px rgba(255, 107, 53, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+[data-theme="day"] .nav-logo {
+    color: #ff6b35 !important;
+    text-shadow: 0 2px 10px rgba(255, 107, 53, 0.4) !important;
+    font-weight: 900 !important;
+}
+
+[data-theme="day"] .nav-link {
+    color: #2d1810 !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    padding: 0.8rem 1.2rem !important;
+    border-radius: 12px !important;
+    border: 2px solid transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-theme="day"] .nav-link:hover {
+    color: #ff6b35 !important;
+    background: rgba(255, 107, 53, 0.15) !important;
+    border-color: #ff6b35 !important;
+    text-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+}
+
+[data-theme="day"] .nav-link.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    border-color: #ff6b35 !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COSMIC SEARCH - Enhanced Visibility for Day Mode
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="day"] .cosmic-search {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 2px solid rgba(255, 107, 53, 0.4) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 
+                0 0 30px rgba(255, 107, 53, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+[data-theme="day"] .search-wrapper {
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-theme="day"] .search-input {
+    color: #2d1810 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(255, 107, 53, 0.3) !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .search-input::placeholder {
+    color: rgba(45, 24, 16, 0.5) !important;
+    font-weight: 500 !important;
+}
+
+[data-theme="day"] .search-input:focus {
+    border-color: #ff6b35 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2), 
+                0 4px 15px rgba(255, 107, 53, 0.3) !important;
+}
+
+[data-theme="day"] .search-icon,
+[data-theme="day"] .search-ai {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #ff6b35 !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+}
+
+[data-theme="day"] .search-icon:hover,
+[data-theme="day"] .search-ai:hover {
+    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AUTOPILOT PANEL - Enhanced Visibility for Day Mode
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="day"] .autopilot-control-panel {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 2px solid rgba(255, 107, 53, 0.4) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 
+                0 0 40px rgba(255, 107, 53, 0.25) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+[data-theme="day"] .autopilot-control-panel.minimized {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    border-color: #ff6b35 !important;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4) !important;
+}
+
+[data-theme="day"] .autopilot-control-panel.minimized .autopilot-title {
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .autopilot-control-panel.minimized .autopilot-title i {
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .autopilot-header {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.5) !important;
+}
+
+[data-theme="day"] .autopilot-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="day"] .autopilot-title i {
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .autopilot-minimize {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .autopilot-minimize:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-color: #ffffff !important;
+}
+
+[data-theme="day"] .autopilot-status {
+    background: rgba(255, 107, 53, 0.1) !important;
+    border: 1px solid rgba(255, 107, 53, 0.2) !important;
+}
+
+[data-theme="day"] .status-text {
+    color: #2d1810 !important;
+    font-weight: 700 !important;
+}
+
+[data-theme="day"] .current-app {
+    color: #2d1810 !important;
+    font-weight: 700 !important;
+}
+
+[data-theme="day"] .app-counter {
+    color: #ff6b35 !important;
+    font-weight: 800 !important;
+}
+
+[data-theme="day"] .progress-info {
+    color: #2d1810 !important;
+}
+
+[data-theme="day"] .autopilot-btn {
+    background: rgba(255, 107, 53, 0.1) !important;
+    border: 2px solid rgba(255, 107, 53, 0.3) !important;
+    color: #2d1810 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .autopilot-btn:hover:not(:disabled) {
+    background: rgba(255, 107, 53, 0.2) !important;
+    border-color: #ff6b35 !important;
+    color: #ff6b35 !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+}
+
+[data-theme="day"] .start-btn {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    border-color: #ff6b35 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .start-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%) !important;
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5) !important;
+}
+
+[data-theme="day"] .start-btn i {
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .pause-btn i {
+    color: #ff6b35 !important;
+}
+
+[data-theme="day"] .stop-btn i {
+    color: #ff1744 !important;
+}
+
+[data-theme="day"] .prev-btn i,
+[data-theme="day"] .next-btn i {
+    color: #ff6b35 !important;
+}
+
+[data-theme="day"] .section-toggle {
+    background: rgba(255, 107, 53, 0.1) !important;
+    border: 2px solid rgba(255, 107, 53, 0.2) !important;
+    color: #2d1810 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .section-toggle:hover {
+    background: rgba(255, 107, 53, 0.2) !important;
+    border-color: #ff6b35 !important;
+}
+
+[data-theme="day"] .section-toggle i:first-child {
+    color: #ff6b35 !important;
+}
+
+[data-theme="day"] .section-content {
+    background: rgba(255, 107, 53, 0.05) !important;
+    border: 1px solid rgba(255, 107, 53, 0.15) !important;
+}
+
+[data-theme="day"] .setting-group > label {
+    color: #2d1810 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .setting-group > label i {
+    color: #ff6b35 !important;
+}
+
+[data-theme="day"] .checkbox-group label {
+    background: rgba(255, 107, 53, 0.08) !important;
+    color: #2d1810 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .checkbox-group label:hover {
+    background: rgba(255, 107, 53, 0.15) !important;
+}
+
+[data-theme="day"] .preview-mode-select,
+[data-theme="day"] .scroll-mode-select,
+[data-theme="day"] .category-filter {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(255, 107, 53, 0.3) !important;
+    color: #2d1810 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .preview-mode-select:focus,
+[data-theme="day"] .scroll-mode-select:focus,
+[data-theme="day"] .category-filter:focus {
+    border-color: #ff6b35 !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2) !important;
+}
+
+[data-theme="day"] .tour-btn {
+    background: rgba(255, 107, 53, 0.1) !important;
+    border: 2px solid rgba(255, 107, 53, 0.3) !important;
+    color: #2d1810 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="day"] .tour-btn:hover:not(:disabled) {
+    background: rgba(255, 107, 53, 0.2) !important;
+    border-color: #ff6b35 !important;
+}
+
+[data-theme="day"] .tour-btn i {
+    color: #ff6b35 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE MENU - Enhanced Visibility
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="day"] .mobile-menu-btn {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #ff6b35 !important;
+    color: #ff6b35 !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+}
+
+[data-theme="day"] .mobile-menu-btn:hover {
+    background: rgba(255, 107, 53, 0.15) !important;
+    transform: scale(1.05) !important;
+}
+
+[data-theme="day"] .mobile-controls {
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 0.5rem !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ADDITIONAL ENHANCEMENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="day"] .autopilot-notification {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 2px solid rgba(255, 107, 53, 0.4) !important;
+    color: #2d1810 !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="day"] .autopilot-iframe-container {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 2px solid rgba(255, 107, 53, 0.4) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="day"] .iframe-header {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.5) !important;
+}
+
+[data-theme="day"] .iframe-title {
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .iframe-title i {
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .iframe-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="day"] .iframe-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Ensure text is always readable */
+[data-theme="day"] .autopilot-body {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme="day"] .speed-value,
+[data-theme="day"] .tour-speed-value {
+    color: #ff6b35 !important;
+    font-weight: 800 !important;
+}
+
+[data-theme="day"] .toggle-icon {
+    color: #2d1810 !important;
+}

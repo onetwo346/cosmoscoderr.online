@@ -25,13 +25,16 @@
             this.filterCategory = 'all';
             this.scrollMode = 'center';
             this.pageTourActive = false;
-            this.tourScrollInterval = null;
+            this.tourAnimationFrame = null;
             this.tourSpeed = 50;
             this.tourPhase = 'scroll'; // 'scroll' or 'apps'
             this.tourDirection = 'down'; // 'down' or 'up'
             this.fullscreenMode = false;
             this.voiceEnabled = false;
             this.voiceControl = null;
+            this.isMobile = window.innerWidth <= 768;
+            this.touchStartY = 0;
+            this.touchEndY = 0;
             
             // Drag properties
             this.isDragging = false;
@@ -60,6 +63,19 @@
             this.enableDragging();
             this.initVoiceControl();
             this.loadSettings();
+            this.handleWindowResize();
+        }
+
+        handleWindowResize() {
+            window.addEventListener('resize', () => {
+                this.isMobile = window.innerWidth <= 768;
+                if (this.pageTourActive) {
+                    // Adjust tour speed for mobile if needed
+                    if (this.isMobile && this.tourSpeed > 70) {
+                        this.tourSpeed = 70;
+                    }
+                }
+            });
         }
 
         initVoiceControl() {
@@ -71,6 +87,9 @@
 
         collectProjects() {
             const projectElements = document.querySelectorAll('.project');
+            const currentDomain = window.location.hostname;
+            const currentPath = window.location.pathname;
+            
             this.originalProjects = Array.from(projectElements).map((el, index) => {
                 const title = el.querySelector('h3')?.textContent.trim() || `Project ${index + 1}`;
                 const description = el.querySelector('p')?.textContent.trim() || '';
@@ -90,7 +109,27 @@
                     viewCount: 0,
                     isFavorite: false
                 };
+            }).filter(project => {
+                // Filter out the current website to prevent recursive loop
+                const url = project.url.toLowerCase();
+                
+                // Skip if URL is empty, # or javascript:void(0)
+                if (!url || url === '#' || url.includes('javascript:')) {
+                    return false;
+                }
+                
+                // Skip if URL points to current domain or current page
+                if (url.includes(currentDomain) || 
+                    url.includes('cosmoscoderr.online') ||
+                    url.includes('index.html') ||
+                    url === window.location.href ||
+                    url === currentPath) {
+                    return false;
+                }
+                
+                return true;
             });
+            
             this.projects = [...this.originalProjects];
             this.loadFavorites();
         }
@@ -332,6 +371,7 @@
             let initialX;
             let initialY;
 
+            // Mouse events for desktop
             header.addEventListener('mousedown', (e) => {
                 if (e.target.closest('.autopilot-minimize')) return;
                 isDragging = true;
@@ -354,6 +394,30 @@
             document.addEventListener('mouseup', () => {
                 isDragging = false;
                 header.style.cursor = 'grab';
+            });
+
+            // Touch events for mobile
+            header.addEventListener('touchstart', (e) => {
+                if (e.target.closest('.autopilot-minimize')) return;
+                isDragging = true;
+                const touch = e.touches[0];
+                initialX = touch.clientX - element.offsetLeft;
+                initialY = touch.clientY - element.offsetTop;
+            }, { passive: true });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const touch = e.touches[0];
+                currentX = touch.clientX - initialX;
+                currentY = touch.clientY - initialY;
+                element.style.left = currentX + 'px';
+                element.style.top = currentY + 'px';
+                element.style.right = 'auto';
+                element.style.bottom = 'auto';
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => {
+                isDragging = false;
             });
         }
 
@@ -387,9 +451,12 @@
             prevBtn.addEventListener('click', () => this.previous());
             nextBtn.addEventListener('click', () => this.next());
             speedSlider.addEventListener('input', (e) => this.updateSpeed(e.target.value));
-            minimizeBtn.addEventListener('click', () => this.toggleMinimize());
+            minimizeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.toggleMinimize();
+            });
             
-            // Allow clicking the entire panel to restore when minimized
+            // Allow clicking/tapping the entire panel to restore when minimized
             this.controlPanel.addEventListener('click', (e) => {
                 if (this.controlPanel.classList.contains('minimized')) {
                     // Don't trigger if clicking the minimize button itself
@@ -398,6 +465,17 @@
                     }
                 }
             });
+
+            // Touch support for mobile - tap to expand when minimized
+            this.controlPanel.addEventListener('touchend', (e) => {
+                if (this.controlPanel.classList.contains('minimized')) {
+                    // Don't trigger if tapping the minimize button itself
+                    if (!e.target.closest('.autopilot-minimize')) {
+                        e.preventDefault();
+                        this.toggleMinimize();
+                    }
+                }
+            }, { passive: false });
 
             // Collapsible sections
             const sectionToggles = this.controlPanel.querySelectorAll('.section-toggle');
@@ -602,7 +680,7 @@
             // Highlight current project
             this.highlightProject(project.element);
 
-            // Show preview based on mode
+            // Show preview based on mode (only once per project)
             if (this.previewMode === 'popup') {
                 this.showPopupPreview(project);
             } else if (this.previewMode === 'iframe') {
@@ -611,13 +689,11 @@
 
             // Auto-open in iframe if enabled (instead of new tab)
             const autoOpen = this.controlPanel.querySelector('.auto-open-checkbox').checked;
-            if (autoOpen && this.isActive && !this.isPaused) {
+            if (autoOpen && this.isActive && !this.isPaused && this.previewMode !== 'iframe') {
                 // Use iframe preview instead of opening new tab
-                if (this.previewMode !== 'iframe') {
-                    setTimeout(() => {
-                        this.showIframePreview(project);
-                    }, 500);
-                }
+                setTimeout(() => {
+                    this.showIframePreview(project);
+                }, 500);
             }
 
             // Smart scrolling based on mode
@@ -654,152 +730,155 @@
         startPageTour() {
             if (this.pageTourActive) return;
             
-            try {
-                // Clean up any existing tour
-                this.stopPageTour();
-                
-                this.pageTourActive = true;
-                this.tourPhase = 'scroll';
-                this.tourDirection = 'down';
-                
-                const startTourBtn = this.controlPanel.querySelector('.start-tour');
-                const stopTourBtn = this.controlPanel.querySelector('.stop-tour');
-                
-                if (startTourBtn) startTourBtn.disabled = true;
-                if (stopTourBtn) stopTourBtn.disabled = false;
-                
-                // Scroll to top first
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                this.showNotification('🗺️ Full Site Tour - Scrolling through entire website...', 'success');
-                
-                // Wait for smooth scroll to complete
-                setTimeout(() => {
-                    if (this.pageTourActive) {
-                        this.performPageTour();
-                    }
-                }, 1000);
-            } catch (error) {
-                console.error('Error starting tour:', error);
-                this.stopPageTour();
-                this.showNotification('Tour failed to start', 'warning');
+            // Clean up any existing tour first
+            this.stopPageTour();
+            
+            // FORCE tour to use ALL apps regardless of current filter
+            this.projects = [...this.originalProjects];
+            this.currentIndex = 0;
+            
+            // Debug: Check if we have projects
+            console.log('Tour Debug - Original Projects:', this.originalProjects.length);
+            console.log('Tour Debug - Tour Projects:', this.projects.length);
+            
+            this.pageTourActive = true;
+            this.tourPhase = 'scroll';
+            this.tourDirection = 'down';
+            
+            const startTourBtn = this.controlPanel.querySelector('.start-tour');
+            const stopTourBtn = this.controlPanel.querySelector('.stop-tour');
+            
+            if (startTourBtn) startTourBtn.disabled = true;
+            if (stopTourBtn) stopTourBtn.disabled = false;
+            
+            // Disable user scroll on mobile
+            if (this.isMobile) {
+                document.body.style.overflow = 'hidden';
             }
+            
+            // FORCE scroll to absolute top first - instant, no animation
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            
+            this.showNotification('🗺️ Tour Started - Scroll speed adjustable', 'success');
+            
+            // Start tour immediately - no delay
+            this.performPageTour();
         }
 
         performPageTour() {
             if (!this.pageTourActive) return;
             
-            // Clear any existing interval
-            if (this.tourScrollInterval) {
-                clearInterval(this.tourScrollInterval);
-                this.tourScrollInterval = null;
+            // Cancel any existing animation
+            if (this.tourAnimationFrame) {
+                cancelAnimationFrame(this.tourAnimationFrame);
+                this.tourAnimationFrame = null;
             }
             
-            const scrollStep = Math.max(1, this.tourSpeed / 10);
-            let lastScrollTime = Date.now();
+            // Speed-based scroll step: tourSpeed ranges from 10-100
+            // Map to scroll pixels: 10=1px, 50=3px, 100=6px per frame
+            const baseSpeed = this.isMobile ? 0.8 : 1;
+            const scrollStep = baseSpeed + (this.tourSpeed / 20);
             
-            this.tourScrollInterval = setInterval(() => {
-                try {
-                    if (!this.pageTourActive) {
-                        clearInterval(this.tourScrollInterval);
-                        this.tourScrollInterval = null;
-                        return;
-                    }
-                    
-                    // Throttle to prevent lag
-                    const now = Date.now();
-                    if (now - lastScrollTime < 16) return;
-                    lastScrollTime = now;
-                    
-                    if (this.tourPhase === 'scroll') {
-                        // Get current scroll position and page dimensions
-                        const currentScroll = window.scrollY || window.pageYOffset;
-                        const docHeight = document.documentElement.scrollHeight;
-                        const windowHeight = window.innerHeight;
-                        const maxScroll = Math.max(0, docHeight - windowHeight);
-                        
-                        // Full page scrolling phase
-                        if (this.tourDirection === 'down') {
-                            const newScroll = Math.min(currentScroll + scrollStep, maxScroll);
-                            
-                            if (newScroll >= maxScroll - 10) {
-                                // Reached bottom, scroll back up
-                                window.scrollTo({ top: maxScroll, behavior: 'auto' });
-                                this.tourDirection = 'up';
-                                this.showNotification('⬆️ Scrolling back up...', 'info');
-                            } else {
-                                window.scrollTo({ top: newScroll, behavior: 'auto' });
-                            }
+            // Cache the element; its position can move as the page loads content, so we recompute
+            // its absolute Y during the animation loop.
+            const featuredSection = document.getElementById('projects');
+            
+            // Continuous smooth scroll animation loop - NO PAUSES
+            const scroll = () => {
+                if (!this.pageTourActive) return;
+                
+                const current = window.scrollY;
+                const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                
+                if (this.tourPhase === 'scroll') {
+                    if (this.tourDirection === 'down') {
+                        // Scrolling down to footer/bottom
+                        if (current >= maxScroll - 2) {
+                            // Reached bottom footer - immediately switch to scrolling up
+                            this.tourDirection = 'up';
+                            // Continue immediately - no pause
+                            this.tourAnimationFrame = requestAnimationFrame(scroll);
                         } else {
-                            const newScroll = Math.max(currentScroll - scrollStep, 0);
-                            
-                            if (newScroll <= 10) {
-                                // Reached top, switch to apps phase
-                                window.scrollTo({ top: 0, behavior: 'auto' });
-                                clearInterval(this.tourScrollInterval);
-                                this.tourScrollInterval = null;
-                                this.showNotification('🎮 Now showcasing apps...', 'success');
-                                
-                                setTimeout(() => {
-                                    if (this.pageTourActive && this.tourPhase === 'scroll') {
-                                        this.tourPhase = 'apps';
-                                        this.startAppShowcase();
-                                    }
-                                }, 1500);
-                                return;
-                            } else {
-                                window.scrollTo({ top: newScroll, behavior: 'auto' });
-                            }
+                            window.scrollTo(0, current + scrollStep);
+                            this.tourAnimationFrame = requestAnimationFrame(scroll);
                         }
-                        
-                        // Safely highlight visible apps
-                        if (typeof this.highlightVisibleApps === 'function') {
-                            this.highlightVisibleApps();
+                    } else {
+                        // Scrolling up to Featured Apps section
+                        const targetUp = featuredSection
+                            ? Math.max(0, featuredSection.getBoundingClientRect().top + window.pageYOffset - 120)
+                            : 0;
+
+                        // Use an overshoot-safe check so we don't skip past the target
+                        const nextPos = current - scrollStep;
+                        if (nextPos <= targetUp + 2) {
+                            // Reached Featured Apps section - start showcasing immediately
+                            window.scrollTo(0, targetUp);
+                            this.tourPhase = 'apps';
+                            this.startAppShowcase();
+                            return;
                         }
+
+                        window.scrollTo(0, nextPos);
+                        this.tourAnimationFrame = requestAnimationFrame(scroll);
                     }
-                } catch (error) {
-                    console.error('Error in tour scroll:', error);
-                    this.stopPageTour();
                 }
-            }, 16);
+            };
+            
+            // Start the scroll animation immediately
+            this.tourAnimationFrame = requestAnimationFrame(scroll);
         }
 
         startAppShowcase() {
-            if (!this.pageTourActive || !this.projects || this.projects.length === 0) return;
+            if (!this.pageTourActive) return;
+            
+            // Check if we have projects to showcase
+            if (!this.projects || this.projects.length === 0) {
+                this.showNotification('⚠️ No apps to showcase', 'warning');
+                this.stopPageTour();
+                return;
+            }
             
             try {
-                // Scroll to first app
-                if (this.projects[0] && this.projects[0].element) {
-                    this.projects[0].element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Stop any existing autopilot to prevent duplicates
+                this.stopAutoAdvance();
+                
+                // FORCE iframe preview mode for tour
+                this.previewMode = 'iframe';
+                const previewSelect = this.controlPanel.querySelector('.preview-mode-select');
+                if (previewSelect) previewSelect.value = 'iframe';
+                
+                // Reset to first app
+                this.currentIndex = 0;
+                this.isActive = true;
+                this.isPaused = false;
+                this.progressValue = 0;
+                
+                // Update UI status
+                this.updateStatus('Tour: Showcasing Apps', 'active');
+                this.updateButtons();
+                
+                const firstProject = this.projects[0];
+                
+                // Scroll to first app and highlight it
+                if (firstProject && firstProject.element) {
+                    firstProject.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    this.highlightProject(firstProject.element);
                 }
                 
-                // Start autopilot with iframe preview after scroll
-                setTimeout(() => {
-                    if (!this.pageTourActive) return;
-                    
-                    try {
-                        // Start autopilot with iframe preview
-                        this.previewMode = 'iframe';
-                        const previewSelect = this.controlPanel.querySelector('.preview-mode-select');
-                        if (previewSelect) previewSelect.value = 'iframe';
-                        
-                        this.currentIndex = 0;
-                        this.isActive = true;
-                        this.isPaused = false;
-                        
-                        this.updateStatus('Showcasing Apps', 'active');
-                        this.updateButtons();
-                        
-                        // Show first app with preview
-                        this.showCurrentProject();
-                        this.startAutoAdvance();
-                        
-                        this.showNotification('🎬 App showcase started!', 'success');
-                    } catch (error) {
-                        console.error('Error starting app showcase:', error);
-                        this.stopPageTour();
-                    }
-                }, 800);
+                // Update the control panel info
+                this.controlPanel.querySelector('.current-app').textContent = firstProject.title;
+                this.controlPanel.querySelector('.app-counter').textContent = `1 / ${this.projects.length}`;
+                
+                // Open the live iframe preview immediately
+                this.iframeContainer.classList.add('active');
+                this.showIframePreview(firstProject);
+                
+                // Start auto-advancing through apps with tour-specific logic
+                this.startTourAutoAdvance();
+                
+                this.showNotification(`🎬 Tour: Showcasing ${this.projects.length} apps...`, 'success');
             } catch (error) {
                 console.error('Error in startAppShowcase:', error);
                 this.stopPageTour();
@@ -849,10 +928,15 @@
                 this.tourPhase = 'scroll';
                 this.tourDirection = 'down';
                 
-                // Clear interval safely
-                if (this.tourScrollInterval) {
-                    clearInterval(this.tourScrollInterval);
-                    this.tourScrollInterval = null;
+                // Cancel animation frame for smooth scrolling
+                if (this.tourAnimationFrame) {
+                    cancelAnimationFrame(this.tourAnimationFrame);
+                    this.tourAnimationFrame = null;
+                }
+                
+                // Re-enable user scroll on mobile
+                if (this.isMobile) {
+                    document.body.style.overflow = '';
                 }
                 
                 // Stop autopilot if it was started by tour
@@ -886,10 +970,12 @@
                 console.error('Error stopping tour:', error);
                 // Force cleanup
                 this.pageTourActive = false;
-                if (this.tourScrollInterval) {
-                    clearInterval(this.tourScrollInterval);
-                    this.tourScrollInterval = null;
+                if (this.tourAnimationFrame) {
+                    cancelAnimationFrame(this.tourAnimationFrame);
+                    this.tourAnimationFrame = null;
                 }
+                // Ensure scroll is re-enabled
+                document.body.style.overflow = '';
             }
         }
 
@@ -1147,12 +1233,22 @@
             const loader = this.iframeContainer.querySelector('.iframe-loader');
             const appName = this.iframeContainer.querySelector('.iframe-app-name');
 
+            // Prevent duplicate loading if already showing this project
+            if (iframe.src === project.url && this.iframeContainer.classList.contains('active')) {
+                return;
+            }
+
             this.iframeContainer.classList.add('active');
             loader.classList.add('active');
             appName.textContent = project.title;
 
-            // Load the URL
-            iframe.src = project.url;
+            // Clear previous iframe before loading new one
+            iframe.src = 'about:blank';
+            
+            // Small delay to ensure clean transition
+            setTimeout(() => {
+                iframe.src = project.url;
+            }, 100);
 
             // Hide loader after timeout
             setTimeout(() => {
@@ -1207,6 +1303,69 @@
                     }
                 }
             }, this.speed);
+        }
+
+        startTourAutoAdvance() {
+            this.stopAutoAdvance();
+            
+            // Progress animation
+            this.progressInterval = setInterval(() => {
+                if (!this.isPaused && this.pageTourActive) {
+                    this.progressValue += 100;
+                    const percentage = (this.progressValue / this.speed) * 100;
+                    this.updateProgressBar(Math.min(percentage, 100));
+                }
+            }, 100);
+
+            // Auto advance through apps during tour - NO LOOP, always complete
+            this.intervalId = setInterval(() => {
+                if (!this.isPaused && this.pageTourActive) {
+                    if (this.currentIndex >= this.projects.length - 1) {
+                        // Tour completed - showcase all apps
+                        this.completeTour();
+                    } else {
+                        // Move to next app and show its preview
+                        this.currentIndex++;
+                        this.progressValue = 0;
+                        const project = this.projects[this.currentIndex];
+                        
+                        if (project) {
+                            // Update UI
+                            this.updateProgressBar(0);
+                            this.controlPanel.querySelector('.current-app').textContent = project.title;
+                            this.controlPanel.querySelector('.app-counter').textContent = 
+                                `${this.currentIndex + 1} / ${this.projects.length}`;
+
+                            // Highlight and scroll to current project
+                            this.highlightProject(project.element);
+                            if (project.element) {
+                                project.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+
+                            // Show iframe preview for this app
+                            this.showIframePreview(project);
+
+                            // Track viewing
+                            project.viewCount++;
+                            if (!this.viewedApps.includes(project.index)) {
+                                this.viewedApps.push(project.index);
+                            }
+                            this.updateProjectInfo(project);
+                        }
+                    }
+                }
+            }, this.speed);
+        }
+
+        completeTour() {
+            // Tour has finished showcasing all apps
+            this.sessionStats.completed++;
+            this.showNotification('🎉 Tour Completed! All apps showcased.', 'success');
+            
+            // Stop the tour
+            setTimeout(() => {
+                this.stopPageTour();
+            }, 2000);
         }
 
         stopAutoAdvance() {
@@ -1281,6 +1440,10 @@
             
             if (this.controlPanel.classList.contains('minimized')) {
                 icon.className = 'fas fa-plus';
+                // Add visual feedback for mobile
+                if (this.isMobile) {
+                    this.showNotification('Tap icon to expand Autopilot', 'info');
+                }
             } else {
                 icon.className = 'fas fa-minus';
             }
