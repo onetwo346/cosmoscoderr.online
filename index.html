@@ -2073,9 +2073,10 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
+                width: 60%;
+                max-width: 220px;
+                height: auto;
+                max-height: 100vh;
                 background: linear-gradient(135deg, 
                     rgba(0, 0, 0, 0.95), 
                     rgba(20, 20, 50, 0.9),
@@ -2083,22 +2084,19 @@
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
                 flex-direction: column;
-                padding: 6rem 2rem;
+                padding: 3.5rem 1rem 1.5rem;
                 transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 border-left: 2px solid var(--primary);
                 z-index: 1001;
                 box-shadow: 
                     -10px 0 30px rgba(0, 255, 255, 0.2),
                     inset 0 0 50px rgba(0, 255, 255, 0.05);
+                gap: 0.3rem;
             }
 
-            .theme-toggle {
-                margin-left: 0;
-                margin-top: 2rem;
-                align-self: center;
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
+            .nav-link {
+                padding: 0.6rem 1rem !important;
+                font-size: 0.9rem !important;
             }
 
             .nav-links.active {
@@ -5529,9 +5527,6 @@
                 <a href="#home" class="nav-logo">COSMOS CODERR</a>
             </div>
             <div class="mobile-controls">
-                <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle theme">
-                    <i class="fas fa-sun"></i>
-                </button>
                 <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -5542,9 +5537,7 @@
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#news-feed" class="nav-link">Feed</a>
                 <a href="#projects" class="nav-link">Apps</a>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i class="fas fa-sun"></i>
-                </button>
+                <!-- Theme toggle removed - night mode only -->
                 <!-- Authentication Buttons -->
             </div>
             <!-- Moved search bar below nav-links -->
@@ -7422,20 +7415,12 @@
         }
     </style>
 
-    <!-- Theme Toggle - Night Mode Only -->
+    <!-- Night Mode Only -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const htmlElement = document.documentElement;
-            
-            // Force night theme only - no day mode
-            htmlElement.setAttribute('data-theme', 'night');
+            // Force night theme only
+            document.documentElement.setAttribute('data-theme', 'night');
             localStorage.setItem('theme', 'night');
-            
-            // Hide theme toggle buttons since we only have night mode
-            const themeToggle = document.getElementById('themeToggle');
-            const themeToggleMobile = document.getElementById('themeToggleMobile');
-            if (themeToggle) themeToggle.style.display = 'none';
-            if (themeToggleMobile) themeToggleMobile.style.display = 'none';
         });
     </script>
     <script src="chatbot-system.js"></script>
