@@ -221,7 +221,7 @@
             const isToday = daysUntil === 0;
             
             let modalContent = `
-                <div style="max-height: 75vh; overflow-y: auto; padding: 1.5rem;">
+                <div style="flex: 1; overflow-y: auto; padding: 1.5rem; padding-bottom: 2rem;">
                     <div style="text-align: center; margin-bottom: 2rem;">
                         <div style="font-size: 4rem; margin-bottom: 0.5rem;">${holiday.emoji}</div>
                         <h2 style="color: var(--primary); margin: 0 0 0.5rem 0; font-size: 2rem;">
@@ -307,7 +307,7 @@
             const upcoming = this.getUpcomingHolidays(10);
             
             let modalContent = `
-                <div style="max-height: 70vh; overflow-y: auto; padding: 1rem;">
+                <div style="flex: 1; overflow-y: auto; padding: 1rem; padding-bottom: 2rem;">
                     <h2 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">
                         🎉 Upcoming Holidays 🎉
                     </h2>
@@ -349,11 +349,11 @@
                 modal = document.createElement('div');
                 modal.id = 'holidayModal';
                 modal.className = 'modal';
-                modal.style.cssText = 'display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px); animation: fadeIn 0.3s ease;';
+                modal.style.cssText = 'display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); animation: fadeIn 0.3s ease; cursor: default;';
                 
                 const modalBox = document.createElement('div');
                 modalBox.className = 'modal-content';
-                modalBox.style.cssText = 'position: relative; margin: 3% auto; padding: 2rem; max-width: 700px; background: rgba(10, 10, 30, 0.98); border-radius: 1.5rem; border: 2px solid var(--primary); box-shadow: 0 0 60px rgba(0, 240, 255, 0.6), 0 0 100px rgba(255, 0, 247, 0.3); animation: slideInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);';
+                modalBox.style.cssText = 'position: relative; margin: 2% auto; padding: 2rem; max-width: 700px; max-height: 95vh; overflow: hidden; display: flex; flex-direction: column; background: rgba(15, 15, 40, 0.95); border-radius: 1.5rem; border: 2px solid var(--primary); box-shadow: 0 0 40px rgba(0, 240, 255, 0.4), 0 0 80px rgba(255, 0, 247, 0.2); animation: slideInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: auto;';
                 
                 const closeBtn = document.createElement('button');
                 closeBtn.innerHTML = '×';
@@ -401,7 +401,7 @@
             }
 
             const modalBox = modal.querySelector('.modal-content');
-            const existingContent = modalBox.querySelector('div[style*="max-height"]');
+            const existingContent = modalBox.querySelector('div[style*="flex"]');
             if (existingContent) {
                 existingContent.remove();
             }

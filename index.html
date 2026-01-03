@@ -5401,6 +5401,7 @@
     </script>
     <link rel="stylesheet" href="blog-smooth-interactions.css">
     <link rel="stylesheet" href="voice-control.css">
+    <link rel="stylesheet" href="news-feed.css">
 </head>
 <body>
     <!-- 3D Space Environment -->
@@ -5502,31 +5503,12 @@
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#blog" class="nav-link">Blog</a>
+                <a href="#news-feed" class="nav-link">Feed</a>
                 <a href="#projects" class="nav-link">Apps</a>
-                <a href="#community" class="nav-link" title="Community">Comm</a>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <i class="fas fa-sun"></i>
                 </button>
                 <!-- Authentication Buttons -->
-                <div class="auth-buttons" id="authButtons">
-                    <button class="auth-btn-nav" onclick="openAuthModal()">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Sign In
-                    </button>
-                    <button class="auth-btn-nav primary" onclick="openAuthModal('signup')">
-                        <i class="fas fa-user-plus"></i>
-                        Sign Up
-                </button>
-                </div>
-                <!-- User Status (hidden by default) -->
-                <div class="user-nav-status" id="userNavStatus" style="display: none;">
-                    <button class="user-nav-btn" onclick="openDashboard()">
-                        <div class="user-avatar-nav">
-                            <img id="navAvatarImg" src="" alt="User Avatar">
-                        </div>
-                        <span id="navDisplayName">Username</span>
-                    </button>
-                </div>
             </div>
             <!-- Moved search bar below nav-links -->
         </div>
@@ -5547,343 +5529,6 @@
             </button>
         </div>
         <div class="search-results"></div>
-    </div>
-
-    <!-- Authentication Modals -->
-    <div class="auth-modal" id="authModal" style="display: none;">
-        <div class="auth-overlay" onclick="closeAuthModal()">
-            <div class="auth-container" onclick="event.stopPropagation()">
-                <div class="auth-header">
-                    <div class="auth-logo">
-                        <i class="fas fa-rocket"></i>
-                        <span>Cosmic Community</span>
-                    </div>
-                    <button class="close-auth" onclick="closeAuthModal()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="auth-tabs">
-                    <button class="auth-tab active" onclick="switchAuthTab('signin')">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Sign In
-                    </button>
-                    <button class="auth-tab" onclick="switchAuthTab('signup')">
-                        <i class="fas fa-user-plus"></i>
-                        Sign Up
-                    </button>
-                </div>
-
-                <!-- Sign In Form -->
-                <div class="auth-form" id="signinForm">
-                    <div class="form-group">
-                        <label for="signinEmail">Email</label>
-                        <input type="email" id="signinEmail" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signinPassword">Password</label>
-                        <input type="password" id="signinPassword" placeholder="Enter your password" required>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="rememberMe">
-                            <span class="checkmark"></span>
-                            Remember me
-                        </label>
-                        <a href="#" class="forgot-password" onclick="showForgotPassword()">Forgot password?</a>
-                    </div>
-                    <button class="auth-btn primary" onclick="signIn()">
-                        <i class="fas fa-rocket"></i>
-                        Sign In
-                    </button>
-                    <div class="auth-divider">
-                        <span>or</span>
-                    </div>
-                    <div class="social-auth">
-                        <button class="social-btn google" onclick="signInWithGoogle()">
-                            <i class="fab fa-google"></i>
-                            Continue with Google
-                        </button>
-                        <button class="social-btn github" onclick="signInWithGithub()">
-                            <i class="fab fa-github"></i>
-                            Continue with GitHub
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Sign Up Form -->
-                <div class="auth-form" id="signupForm" style="display: none;">
-                    <div class="form-group">
-                        <label for="signupUsername">Username</label>
-                        <input type="text" id="signupUsername" placeholder="Choose a username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupEmail">Email</label>
-                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" placeholder="Create a password" required>
-                        <div class="password-strength" id="passwordStrength"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="agreeTerms" required>
-                            <span class="checkmark"></span>
-                            I agree to the <a href="#" onclick="showTerms()">Terms of Service</a> and <a href="#" onclick="showPrivacy()">Privacy Policy</a>
-                        </label>
-                    </div>
-                    <button class="auth-btn primary" onclick="signUp()">
-                        <i class="fas fa-user-plus"></i>
-                        Create Account
-                    </button>
-                    <div class="auth-divider">
-                        <span>or</span>
-                    </div>
-                    <div class="social-auth">
-                        <button class="social-btn google" onclick="signUpWithGoogle()">
-                            <i class="fab fa-google"></i>
-                            Continue with Google
-                        </button>
-                        <button class="social-btn github" onclick="signUpWithGithub()">
-                            <i class="fab fa-github"></i>
-                            Continue with GitHub
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- User Dashboard Modal -->
-    <div class="dashboard-modal" id="dashboardModal" style="display: none;">
-        <div class="dashboard-overlay" onclick="closeDashboard()">
-            <div class="dashboard-container" onclick="event.stopPropagation()">
-                <div class="dashboard-header">
-                    <div class="user-profile-header">
-                        <div class="user-avatar-large">
-                            <img id="userAvatarImg" src="" alt="User Avatar">
-                            <div class="avatar-status online"></div>
-                        </div>
-                        <div class="user-info">
-                            <h2 id="userDisplayName">Username</h2>
-                            <p id="userEmail">user@example.com</p>
-                            <div class="user-stats">
-                                <span class="stat">
-                                    <i class="fas fa-star"></i>
-                                    <span id="userLevel">Level 1</span>
-                                </span>
-                                <span class="stat">
-                                    <i class="fas fa-trophy"></i>
-                                    <span id="userPoints">0 XP</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="close-dashboard" onclick="closeDashboard()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-
-                <div class="dashboard-tabs">
-                    <button class="dashboard-tab active" onclick="switchDashboardTab('overview')">
-                        <i class="fas fa-chart-line"></i>
-                        Overview
-                    </button>
-                    <button class="dashboard-tab" onclick="switchDashboardTab('profile')">
-                        <i class="fas fa-user"></i>
-                        Profile
-                    </button>
-                    <button class="dashboard-tab" onclick="switchDashboardTab('activity')">
-                        <i class="fas fa-history"></i>
-                        Activity
-                    </button>
-                    <button class="dashboard-tab" onclick="switchDashboardTab('achievements')">
-                        <i class="fas fa-trophy"></i>
-                        Achievements
-                    </button>
-                    <button class="dashboard-tab" onclick="switchDashboardTab('settings')">
-                        <i class="fas fa-cog"></i>
-                        Settings
-                    </button>
-                </div>
-
-                <div class="dashboard-content">
-                    <!-- Overview Tab -->
-                    <div class="dashboard-tab-content active" id="overviewTab">
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 id="totalPosts">0</h3>
-                                    <p>Posts Made</p>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-reply"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 id="totalComments">0</h3>
-                                    <p>Comments</p>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 id="totalLikes">0</h3>
-                                    <p>Likes Received</p>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 id="totalFollowers">0</h3>
-                                    <p>Followers</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="recent-activity">
-                            <h3>Recent Activity</h3>
-                            <div class="activity-list" id="recentActivityList">
-                                <!-- Activity items will be loaded here -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Profile Tab -->
-                    <div class="dashboard-tab-content" id="profileTab">
-                        <div class="profile-editor">
-                            <div class="form-group">
-                                <label for="editDisplayName">Display Name</label>
-                                <input type="text" id="editDisplayName" placeholder="Your display name">
-                            </div>
-                            <div class="form-group">
-                                <label for="editBio">Bio</label>
-                                <textarea id="editBio" placeholder="Tell us about yourself..." rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="editLocation">Location</label>
-                                <input type="text" id="editLocation" placeholder="Where are you from?">
-                            </div>
-                            <div class="form-group">
-                                <label for="editWebsite">Website</label>
-                                <input type="url" id="editWebsite" placeholder="https://yourwebsite.com">
-                            </div>
-                            <button class="save-btn" onclick="saveProfile()">
-                                <i class="fas fa-save"></i>
-                                Save Changes
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Activity Tab -->
-                    <div class="dashboard-tab-content" id="activityTab">
-                        <div class="activity-filters">
-                            <button class="filter-btn active" onclick="filterActivity('all')">All</button>
-                            <button class="filter-btn" onclick="filterActivity('posts')">Posts</button>
-                            <button class="filter-btn" onclick="filterActivity('comments')">Comments</button>
-                            <button class="filter-btn" onclick="filterActivity('likes')">Likes</button>
-                        </div>
-                        <div class="activity-timeline" id="activityTimeline">
-                            <!-- Activity timeline will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- Achievements Tab -->
-                    <div class="dashboard-tab-content" id="achievementsTab">
-                        <div class="achievements-grid" id="achievementsGrid">
-                            <!-- Achievements will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- Settings Tab -->
-                    <div class="dashboard-tab-content" id="settingsTab">
-                        <div class="settings-section">
-                            <h3>Account Settings</h3>
-                            <div class="setting-item">
-                                <label>Email Notifications</label>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="emailNotifications" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="setting-item">
-                                <label>Public Profile</label>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="publicProfile" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="setting-item">
-                                <label>Show Online Status</label>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="showOnlineStatus" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="settings-section">
-                            <h3>Privacy</h3>
-                            <div class="setting-item">
-                                <label>Allow Direct Messages</label>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="allowDMs" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="settings-section">
-                            <h3>Danger Zone</h3>
-                            <button class="danger-btn" onclick="showDeleteAccount()">
-                                <i class="fas fa-trash"></i>
-                                Delete Account
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- User Status Bar -->
-    <div class="user-status-bar" id="userStatusBar" style="display: none;">
-        <div class="status-content">
-            <div class="user-info-mini">
-                <div class="user-avatar-mini">
-                    <img id="statusAvatarImg" src="" alt="User Avatar">
-                </div>
-                <div class="user-details">
-                    <span id="statusDisplayName">Username</span>
-                    <span class="user-level" id="statusLevel">Level 1</span>
-                </div>
-            </div>
-            <div class="status-actions">
-                <button class="status-btn" onclick="openDashboard()" title="Dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                </button>
-                <button class="status-btn" onclick="toggleNotifications()" title="Notifications">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-count" id="statusNotificationCount">0</span>
-                </button>
-                <button class="status-btn" onclick="signOut()" title="Sign Out">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </div>
-        </div>
     </div>
 
     <!-- Modern Hero Section -->
@@ -6394,24 +6039,8 @@
         </section>
 
         <div class="cosmic-cards-row" id="cosmicCardsRow">
-
-            <section id="community" class="futuristic-community-section scroll-reveal">
-                <div class="community-hologram-container">
-                    <div class="hologram-grid"></div>
-                    <div class="community-card">
-                        <div class="card-border-glow"></div>
-                        <div class="card-inner-glow"></div>
-                        <div class="community-header-futuristic">
-                            <div class="icon-hologram">
-                                <i class="fas fa-users"></i>
-                                <div class="icon-particles"></div>
-                </div>
-                            <h2 class="community-title-futuristic">
-                                <span class="title-text">Community Hub</span>
-                                <div class="title-underline"></div>
-                            </h2>
-                            <p class="community-subtitle">Join our cosmic community of developers, creators, and innovators</p>
-                        </div>
+            <!-- Community section removed -->
+        </div>
                         
                         <div class="community-features">
                             <div class="unified-social-card">
@@ -8358,6 +7987,7 @@
     <script src="voice-control.js"></script>
     <script src="browser-autopilot.js"></script>
     <script src="holiday-blog.js"></script>
+    <script src="news-feed.js"></script>
     
 
 
