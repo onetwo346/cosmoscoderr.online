@@ -2198,16 +2198,29 @@
 
         @media (max-width: 480px) {
             header { font-size: 2rem; }
-            .subtitle, .tagline { font-size: 1rem; }
+            .subtitle { font-size: 0.85rem; margin: 0.8rem 0; }
+            .tagline { font-size: 0.9rem; margin-bottom: 1.5rem; }
             h2 { font-size: 2rem; }
             
             .hero-title {
-                font-size: clamp(1.5rem, 10vw, 2.5rem);
-                letter-spacing: 2px;
+                font-size: clamp(1.2rem, 7vw, 1.8rem);
+                letter-spacing: 1px;
+                margin-bottom: 1rem;
+                line-height: 1.2;
             }
             
             .hero-grid {
-                padding: 0 1rem;
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+                min-height: auto;
+            }
+            
+            .hero-content-left {
+                padding-top: 1rem;
             }
         }
 
@@ -5437,7 +5450,7 @@
         <div class="space-layer space-layer-3">
             <div class="cosmic-planet planet-small"></div>
             <div class="constellation-layer">
-                <div class="constellation" style="top: 40%; left: 10%;">
+                <div class="constellation" style="top: 70%; left: 80%;">
                     <div class="star-point" style="top: 10%; left: 10%;"></div>
                     <div class="star-point" style="top: 20%; left: 50%;"></div>
                     <div class="star-point" style="top: 50%; left: 30%;"></div>

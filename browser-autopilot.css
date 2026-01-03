@@ -56,6 +56,11 @@
         min-width: 120px;
         height: 50px;
     }
+    
+    .autopilot-control-panel {
+        bottom: 80px;
+        right: 8px;
+    }
 }
 
 .autopilot-control-panel.minimized .autopilot-body,
