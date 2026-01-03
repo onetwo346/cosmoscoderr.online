@@ -20,11 +20,38 @@
     pointer-events: none;
 }
 
-.cosmic-news-title {
+.section-title {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.sparkle-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.2) rotate(10deg);
+        opacity: 0.8;
+    }
+}
+
+.cosmic-news-title,
+.news-title-main {
     font-size: 2.5rem;
     font-weight: 900;
     text-align: center;
     margin-bottom: 0.5rem;
+    color: var(--primary);
     background: linear-gradient(45deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -32,14 +59,20 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
+    display: block;
+    z-index: 2;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 .news-subtitle {
     text-align: center;
     color: var(--text);
     font-size: 1rem;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
     opacity: 0.8;
+    max-width: 100%;
+    display: block;
 }
 
 .news-categories {

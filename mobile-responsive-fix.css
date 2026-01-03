@@ -1,0 +1,294 @@
+/* Mobile Responsive Fix - Scale down all content for better mobile display */
+
+/* Update viewport scaling */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* Global mobile scaling */
+@media screen and (max-width: 768px) {
+    * {
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    html {
+        font-size: 14px !important;
+    }
+
+    body {
+        font-size: 0.875rem !important;
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+
+    /* Scale down all headings */
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.25rem !important;
+    }
+
+    h4 {
+        font-size: 1.1rem !important;
+    }
+
+    h5, h6 {
+        font-size: 1rem !important;
+    }
+
+    /* Scale down containers */
+    .container,
+    section,
+    .section {
+        padding: 1rem 0.75rem !important;
+        max-width: 100% !important;
+    }
+
+    /* Hero section scaling */
+    .hero-section,
+    .hero-content {
+        padding: 1.5rem 1rem !important;
+        min-height: auto !important;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+    }
+
+    /* Button scaling */
+    button,
+    .btn,
+    .action-btn,
+    .cta-button {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Card scaling */
+    .card,
+    .app-card,
+    .game-card,
+    .stream-card,
+    .unified-social-card {
+        padding: 0.75rem !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    /* Grid layouts */
+    .grid,
+    .apps-grid,
+    .live-games-grid,
+    .live-streams-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Navigation scaling */
+    nav,
+    .nav,
+    .navbar {
+        padding: 0.5rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    .nav-links {
+        gap: 0.5rem !important;
+    }
+
+    /* Icon scaling */
+    i,
+    .icon,
+    .fas,
+    .far {
+        font-size: 1rem !important;
+    }
+
+    /* Image scaling */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Modal scaling */
+    .modal-content {
+        width: 95% !important;
+        max-width: 95% !important;
+        padding: 1rem !important;
+        margin: 1rem !important;
+    }
+
+    /* Stats and counters */
+    .stat-number,
+    .counter {
+        font-size: 1.25rem !important;
+    }
+
+    .stat-label {
+        font-size: 0.75rem !important;
+    }
+
+    /* Feature tags */
+    .feature-tag,
+    .tag,
+    .badge {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* Gaming and streaming cards */
+    .live-game-card,
+    .stream-card {
+        padding: 0.75rem !important;
+    }
+
+    .game-info h4,
+    .stream-info h4 {
+        font-size: 1rem !important;
+    }
+
+    .game-info p,
+    .stream-info p {
+        font-size: 0.8rem !important;
+    }
+
+    /* Social feed scaling */
+    .social-feed-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.5rem !important;
+    }
+
+    .feed-header {
+        padding: 0.75rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .post-composer {
+        padding: 0.75rem !important;
+    }
+
+    textarea {
+        font-size: 0.85rem !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Coming soon TV section */
+    .coming-soon-tv {
+        padding: 1rem !important;
+    }
+
+    .tv-container {
+        transform: scale(0.8) !important;
+    }
+
+    /* Cosmic elements */
+    .cosmic-card,
+    .cosmic-element {
+        padding: 0.75rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* App preview scaling */
+    .app-preview {
+        padding: 0.75rem !important;
+    }
+
+    /* Featured apps */
+    .featured-app {
+        padding: 0.75rem !important;
+    }
+
+    /* Reduce spacing */
+    .section-spacing,
+    .mt-5,
+    .mb-5,
+    .py-5 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    /* Fix overflow issues */
+    * {
+        box-sizing: border-box !important;
+    }
+
+    .overflow-hidden {
+        overflow: hidden !important;
+    }
+
+    /* Scale down animations */
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    /* Reduce padding on all major sections */
+    section > div,
+    .section-content {
+        padding: 0.5rem !important;
+    }
+
+    /* Fix any fixed width elements */
+    [style*="width"] {
+        max-width: 100% !important;
+    }
+
+    /* Ensure no horizontal scroll */
+    body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+}
+
+/* Extra small devices (phones in portrait, less than 576px) */
+@media screen and (max-width: 576px) {
+    html {
+        font-size: 12px !important;
+    }
+
+    .hero-title {
+        font-size: 1.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.25rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+    }
+
+    button,
+    .btn {
+        padding: 0.4rem 0.75rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .card,
+    .app-card {
+        padding: 0.5rem !important;
+    }
+}

@@ -31,7 +31,7 @@ class CosmicNewsFeed {
             <div class="news-feed-overlay"></div>
             <div class="section-title">
                 <span class="sparkle-icon">📰</span>
-                <h2 class="cosmic-news-title">COSMIC NEWS FEED</h2>
+                <h2 class="cosmic-news-title">NEWS FEED</h2>
                 <p class="news-subtitle">Real-time global updates from across the universe</p>
             </div>
             
