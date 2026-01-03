@@ -68,7 +68,7 @@ class CosmicNewsFeed {
             <div class="news-refresh-info">
                 <span class="refresh-indicator">
                     <i class="fas fa-sync-alt"></i>
-                    Auto-refreshing every 5 minutes
+                    <span class="refresh-text">Auto-refreshing every minute • Live from across the universe</span>
                 </span>
             </div>
         `;
@@ -89,9 +89,22 @@ class CosmicNewsFeed {
                 // Add active class to clicked button
                 btn.classList.add('active');
                 
-                // Update current category and load news
+                // Update current category with smooth transition
                 this.currentCategory = btn.dataset.category;
-                this.displayNews();
+                
+                // Add fade out effect
+                const newsGrid = document.getElementById('newsGrid');
+                if (newsGrid) {
+                    newsGrid.style.opacity = '0';
+                    newsGrid.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        this.displayNews();
+                        newsGrid.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        newsGrid.style.opacity = '1';
+                        newsGrid.style.transform = 'translateY(0)';
+                    }, 300);
+                }
             });
         });
     }
@@ -640,15 +653,18 @@ class CosmicNewsFeed {
         const currentNews = this.newsData[this.currentCategory] || [];
         
         if (currentNews.length === 0) {
-            newsGrid.innerHTML = '<p class="no-news">No news available for this category.</p>';
+            newsGrid.innerHTML = '<p class="no-news">🌌 No news available for this category. Scanning the universe...</p>';
             return;
         }
 
-        const newsHTML = currentNews.map(article => `
-            <article class="news-card">
+        const newsHTML = currentNews.map((article, index) => `
+            <article class="news-card" style="animation-delay: ${index * 0.08}s">
                 <div class="news-image" style="background-image: url('${article.image}');">
                     <div class="news-overlay"></div>
                     <span class="news-source">${article.source}</span>
+                    <div class="news-fresh-badge" title="Fresh content">
+                        <i class="fas fa-bolt"></i>
+                    </div>
                 </div>
                 <div class="news-content">
                     <h3 class="news-title">${article.title}</h3>
@@ -671,7 +687,6 @@ class CosmicNewsFeed {
         // Add scroll reveal animation to news cards
         const newsCards = newsGrid.querySelectorAll('.news-card');
         newsCards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
             card.classList.add('fade-in-up');
         });
 
@@ -683,6 +698,9 @@ class CosmicNewsFeed {
                 this.showNewsModal(link);
             });
         });
+        
+        // Pulse the refresh indicator when new content loads
+        this.pulseRefreshIndicator();
     }
 
     showNewsModal(linkElement) {
@@ -773,16 +791,27 @@ class CosmicNewsFeed {
     }
 
     startAutoRefresh() {
-        // Refresh news every 5 minutes
+        // Refresh news every 1 minute for fresh content across the universe
         this.refreshInterval = setInterval(() => {
+            console.log('🌌 Fetching fresh news from across the universe...');
             this.loadNews();
-        }, 5 * 60 * 1000);
+        }, 60 * 1000); // 1 minute
     }
 
     stopAutoRefresh() {
         if (this.refreshInterval) {
             clearInterval(this.refreshInterval);
             this.refreshInterval = null;
+        }
+    }
+
+    pulseRefreshIndicator() {
+        const refreshIndicator = document.querySelector('.refresh-indicator');
+        if (refreshIndicator) {
+            refreshIndicator.style.animation = 'none';
+            setTimeout(() => {
+                refreshIndicator.style.animation = 'refreshPulse 0.6s ease';
+            }, 10);
         }
     }
 

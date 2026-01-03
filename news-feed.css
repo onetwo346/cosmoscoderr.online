@@ -153,6 +153,7 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .news-card {
@@ -168,9 +169,13 @@
 }
 
 .news-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.02);
     border-color: var(--primary);
-    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.3);
+    box-shadow: 0 12px 35px rgba(0, 240, 255, 0.4), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.news-card:hover .news-fresh-badge {
+    transform: scale(1.2) rotate(10deg);
 }
 
 .news-image {
@@ -201,6 +206,32 @@
     font-size: 0.7rem;
     font-weight: 600;
     z-index: 2;
+}
+
+.news-fresh-badge {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: white;
+    padding: 0.3rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 2;
+    animation: freshPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes freshPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+    }
 }
 
 .news-content {
@@ -318,9 +349,30 @@
     animation: rotate 2s linear infinite;
 }
 
+.refresh-text {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
 @keyframes rotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@keyframes refreshPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+        color: var(--primary);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
 }
 
 .no-news {
@@ -334,15 +386,21 @@
 /* Animation for news cards */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.6s ease forwards;
+    transform: translateY(30px) scale(0.95);
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes fadeInUp {
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
+}
+
+/* Smooth category transition */
+.news-grid.transitioning {
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 /* Responsive Design */
@@ -440,24 +498,25 @@
 }
 
 .news-article-modal-content {
-    background: rgba(15, 15, 40, 0.95);
+    background: rgba(15, 15, 40, 0.98);
     border: 2px solid var(--primary);
     border-radius: 1rem;
-    padding: 2rem;
-    max-width: 600px;
-    width: 100%;
-    max-height: 80vh;
+    padding: 0;
+    max-width: 700px;
+    width: 95%;
+    max-height: 90vh;
     overflow-y: auto;
     position: relative;
     box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
     transform: scale(0.9) translateY(-20px);
     transition: transform 0.3s ease;
+    backdrop-filter: blur(20px);
 }
 
 .news-article-modal-content.news-article-preview {
-    max-width: 700px;
-    width: 100%;
-    max-height: 85vh;
+    max-width: 750px;
+    width: 95%;
+    max-height: 90vh;
     padding: 0;
     overflow-y: auto;
     display: flex;
@@ -470,23 +529,24 @@
 
 .news-modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--primary);
     color: var(--primary);
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
     line-height: 1;
     transition: all 0.3s ease;
     padding: 0.5rem;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
+    backdrop-filter: blur(10px);
 }
 
 .news-modal-close:hover {
@@ -498,13 +558,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    padding: 1.2rem 2rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 5;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .news-modal-info {
@@ -558,31 +619,40 @@
 
 .news-modal-image {
     width: 100%;
-    height: 250px;
+    height: 280px;
     background-size: cover;
     background-position: center;
     position: relative;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .news-modal-body {
-    padding: 2rem;
+    padding: 2rem 2.5rem;
+    min-height: 200px;
 }
 
 .modal-article-title {
     color: #00f0ff !important;
-    font-size: 1.4rem !important;
+    font-size: 1.6rem !important;
     font-weight: 700 !important;
-    margin: 0 0 1rem 0 !important;
-    line-height: 1.4 !important;
+    margin: 0 0 1.5rem 0 !important;
+    line-height: 1.5 !important;
     display: block !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
 }
 
 .modal-article-summary {
     color: var(--text) !important;
-    font-size: 1rem !important;
-    line-height: 1.7 !important;
-    margin-bottom: 1.5rem !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 2rem !important;
     display: block !important;
+    opacity: 0.95 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
 }
 
 .news-modal-note {
@@ -636,33 +706,42 @@
 
 @media (max-width: 768px) {
     .news-article-modal-content {
-        padding: 1.5rem;
+        padding: 0;
+        width: 95vw;
+        max-height: 85vh;
     }
     
     .news-article-modal-content.news-article-preview {
         max-width: 95vw;
+        width: 95vw;
     }
     
     .news-modal-image {
-        height: 200px;
+        height: 180px;
     }
     
     .news-modal-body {
-        padding: 1.5rem;
+        padding: 1.5rem 1.8rem;
     }
     
-    .news-modal-title {
-        font-size: 1.2rem;
+    .modal-article-title {
+        font-size: 1.3rem !important;
+    }
+    
+    .modal-article-summary {
+        font-size: 0.95rem !important;
     }
     
     .news-modal-header-bar {
-        padding: 0.8rem 1rem;
+        padding: 1rem 1.5rem;
     }
     
     .news-modal-close {
-        font-size: 1.5rem;
-        width: 36px;
-        height: 36px;
+        font-size: 1.6rem;
+        width: 40px;
+        height: 40px;
+        top: 1rem;
+        right: 1rem;
     }
     
     .news-modal-read-full {

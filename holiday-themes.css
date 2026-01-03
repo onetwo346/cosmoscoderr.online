@@ -20,13 +20,24 @@
         0 0 30px rgba(0, 247, 255, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     opacity: 0;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
+    transform: translateY(0) translateZ(0);
+    will-change: transform, opacity;
 }
 
 .holiday-banner.show {
     left: 185px;
     opacity: 1;
+    pointer-events: auto;
+}
+
+.holiday-banner.show.banner-hidden {
+    transform: translateY(-150px) translateZ(0) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 .holiday-banner-content {
@@ -39,19 +50,23 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
-    background: linear-gradient(45deg, #00f7ff, #ff00f7, #ffd700);
-    background-size: 200% 200%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    transition: all 0.3s ease;
     animation: bannerGradient 3s ease-in-out infinite;
     text-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
     white-space: nowrap;
 }
 
 .holiday-emoji {
-    font-size: 1.2rem;
-    animation: emojiFloat 2s ease-in-out infinite;
+    font-size: 1.1rem;
+    animation: emojiFloat 3s ease-in-out infinite;
+    display: inline-block;
+    transform: translateZ(0);
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
@@ -328,6 +343,26 @@
     .holiday-popup-decorations {
         gap: 1rem;
     }
+}
+
+/* Hover effect */
+.holiday-banner.show:hover {
+    transform: translateY(-2px) scale(1.02) translateZ(0);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(0, 247, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 247, 255, 0.5);
+}
+
+.holiday-banner.show:hover .holiday-emoji {
+    animation: emojiPop 0.6s ease;
+}
+
+@keyframes emojiPop {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.2) rotate(-10deg); }
+    75% { transform: scale(1.2) rotate(10deg); }
 }
 
 /* Responsive banner */

@@ -104,7 +104,8 @@
     <link rel="stylesheet" href="neon-cyberpunk-theme.css">
     <link rel="stylesheet" href="browser-autopilot.css">
     <link rel="stylesheet" href="premium-theme-toggle.css">
-    <link rel="stylesheet" href="day-mode-visibility-fix.css">
+    <!-- Day mode removed - night only -->
+    <!-- <link rel="stylesheet" href="day-mode-visibility-fix.css"> -->
     <link rel="stylesheet" href="mobile-responsive-fix.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -113,7 +114,8 @@
     <script src="futuristic-effects.js"></script>
     <script src="promo-hub.js"></script>
     <script src="admin-announcements.js"></script>
-    <script src="premium-theme-toggle.js"></script>
+    <!-- Theme toggle disabled - night mode only -->
+    <!-- <script src="premium-theme-toggle.js"></script> -->
     
     <style>
         /* Cosmic Color Scheme */
@@ -4807,6 +4809,26 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .nav-logo-img {
+                width: 35px;
+                height: 35px;
+            }
+            .nav-logo-flex {
+                gap: 0.3rem;
+            }
+            .nav-logo {
+                font-size: 0.85rem;
+            }
+            .nav-links {
+                gap: 0.5rem;
+            }
+            .nav-link {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+            }
+        }
+
         .orb-control-btn {
             background: var(--primary);
             color: #111;
@@ -5416,6 +5438,7 @@
     <link rel="stylesheet" href="blog-smooth-interactions.css">
     <link rel="stylesheet" href="voice-control.css">
     <link rel="stylesheet" href="news-feed.css">
+    <link rel="stylesheet" href="blog-stability.css">
 </head>
 <body>
     <!-- 3D Space Environment -->
@@ -6497,100 +6520,8 @@
                 if (e.target === blogModal) closeModalFunc();
             });
             
-            // Blog posts data
-            const blogPosts = [
-                { 
-                    title: "Community Hub Now Live!", 
-                    date: "September 30, 2025", 
-                    summary: "Join our cosmic community of developers, creators, and innovators in the new Community Hub.", 
-                    fullContent: "<p>We're thrilled to announce the launch of our new Community Hub! This futuristic space brings together developers, creators, and innovators from across the galaxy to collaborate, share ideas, and build amazing cosmic applications together.</p><p>The Community Hub features real-time collaboration tools, project showcases, developer forums, and exclusive access to beta features. Connect with like-minded creators, get feedback on your projects, and discover new opportunities in our growing ecosystem.</p><p>Join us today and be part of the next generation of cosmic innovation!</p>"
-                },
-                { 
-                    title: "New App: Space Calculator", 
-                    date: "September 25, 2025", 
-                    summary: "Calculate cosmic distances and space math with our new calculator app.", 
-                    fullContent: "<p>Introducing Space Calculator - a cosmic-themed calculator perfect for space enthusiasts and students. Features include unit conversions for astronomical distances, orbital calculations, and beautiful space-themed interface.</p>"
-                },
-                { 
-                    title: "Voice Control Update", 
-                    date: "September 20, 2025", 
-                    summary: "Navigate the app store using voice commands.", 
-                    fullContent: "<p>Voice control is now available! Simply speak to navigate through apps, search for content, and control the interface hands-free. Perfect for accessibility and convenience.</p>"
-                },
-                { 
-                    title: "Dark Mode Enhanced", 
-                    date: "September 15, 2025", 
-                    summary: "Improved dark mode with better contrast and eye comfort.", 
-                    fullContent: "<p>Dark mode has been enhanced with better contrast ratios, reduced eye strain, and smoother transitions. Enjoy browsing in comfort during late-night sessions.</p>"
-                },
-                { 
-                    title: "Performance Boost", 
-                    date: "September 5, 2025", 
-                    summary: "Faster loading times and smoother animations.", 
-                    fullContent: "<p>Major performance improvements implemented. Pages load 50% faster with optimized animations and reduced memory usage for better user experience.</p>"
-                },
-                { 
-                    title: "Security Update", 
-                    date: "August 25, 2025", 
-                    summary: "Enhanced security features and data protection.", 
-                    fullContent: "<p>Latest security patches applied. Your data is now better protected with improved encryption and privacy controls.</p>"
-                }
-            ];
-
-            // Display blog posts with improved performance
-            function displayBlogPosts() {
-                const container = document.getElementById('blogPostsContainer');
-                const loader = document.getElementById('blogLoader');
-                
-                if (!container || !loader) return;
-                
-                loader.style.display = 'block';
-                
-                // Use DocumentFragment for better performance
-                const fragment = document.createDocumentFragment();
-                
-                try {
-                    blogPosts.forEach((post, index) => {
-                        const article = document.createElement('article');
-                        article.className = 'blog-post update-card scroll-reveal';
-                        article.innerHTML = `
-                            <h3>${post.title}</h3>
-                            <span class="date">${post.date}</span>
-                            <p>${post.summary}</p>
-                            <a href="#" class="read-more" data-post-id="${index}">Read more →</a>
-                        `;
-                        fragment.appendChild(article);
-                    });
-                    
-                    container.innerHTML = '';
-                    container.appendChild(fragment);
-                    
-                    // Add click handlers after DOM update
-                    document.querySelectorAll('.read-more').forEach(btn => {
-                        btn.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const postId = btn.getAttribute('data-post-id');
-                            document.getElementById('modalTitle').textContent = blogPosts[postId].title;
-                            document.getElementById('modalDate').textContent = blogPosts[postId].date;
-                            document.getElementById('modalBody').innerHTML = blogPosts[postId].fullContent;
-                            openModal();
-                        });
-                    });
-                    
-                    // Observe new blog posts for scroll reveal
-                    document.querySelectorAll('.blog-post').forEach(post => {
-                        observer.observe(post);
-                    });
-                } catch (error) {
-                    console.error('Error displaying blog posts:', error);
-                    container.innerHTML = '<p>Error loading blog posts. Please try again later.</p>';
-                } finally {
-                    loader.style.display = 'none';
-                }
-            }
-            
-            // Initialize blog posts
-            displayBlogPosts();
+            // Blog posts now handled by dynamic-blogs.js
+            // Holiday blog handled by holiday-blog.js
 
             // Initialize all features
             createStars();
@@ -7491,88 +7422,20 @@
         }
     </style>
 
-    <!-- Theme Toggle Functionality -->
+    <!-- Theme Toggle - Night Mode Only -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const themeToggle = document.getElementById('themeToggle');
-            const themeToggleMobile = document.getElementById('themeToggleMobile');
             const htmlElement = document.documentElement;
             
-            // Check for saved theme preference or default to 'night'
-            const currentTheme = localStorage.getItem('theme') || 'night';
-            htmlElement.setAttribute('data-theme', currentTheme);
+            // Force night theme only - no day mode
+            htmlElement.setAttribute('data-theme', 'night');
+            localStorage.setItem('theme', 'night');
             
-            // Update toggle icon based on current theme
-            function updateToggleIcon() {
-                const icon = themeToggle.querySelector('i');
-                const mobileIcon = themeToggleMobile.querySelector('i');
-                if (htmlElement.getAttribute('data-theme') === 'day') {
-                    icon.className = 'fas fa-moon';
-                    mobileIcon.className = 'fas fa-moon';
-                } else {
-                    icon.className = 'fas fa-sun';
-                    mobileIcon.className = 'fas fa-sun';
-                }
-            }
-            
-            updateToggleIcon();
-            
-            // Theme toggle function
-            function toggleTheme(event) {
-                const currentTheme = htmlElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'day' ? 'night' : 'day';
-                
-                // Add smooth transition overlay
-                const overlay = document.createElement('div');
-                overlay.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: ${newTheme === 'day' ? 
-                        'radial-gradient(circle at center, #fbbf24 0%, #f59e0b 30%, transparent 70%)' : 
-                        'radial-gradient(circle at center, #1e1b4b 0%, #0f0f23 50%, transparent 80%)'
-                    };
-                    opacity: 0;
-                    transition: opacity 0.8s ease-in-out;
-                    pointer-events: none;
-                    z-index: 9999;
-                `;
-                document.body.appendChild(overlay);
-                
-                // Trigger transition
-                requestAnimationFrame(() => {
-                    overlay.style.opacity = '0.3';
-                });
-                
-                // Apply theme change after short delay
-                setTimeout(() => {
-                    htmlElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    updateToggleIcon();
-                    
-                    // Fade out overlay
-                    overlay.style.opacity = '0';
-                    setTimeout(() => {
-                        document.body.removeChild(overlay);
-                    }, 800);
-                }, 300);
-                
-                // Enhanced button animation
-                const activeToggle = event.target.closest('.theme-toggle, .theme-toggle-mobile');
-                if (activeToggle) {
-                    activeToggle.style.transform = 'scale(0.9) rotate(180deg)';
-                    setTimeout(() => {
-                        activeToggle.style.transform = 'scale(1) rotate(0deg)';
-                    }, 400);
-                }
-            }
-            
-            // Add event listeners to both toggle buttons
-            themeToggle.addEventListener('click', toggleTheme);
-            themeToggleMobile.addEventListener('click', toggleTheme);
-
+            // Hide theme toggle buttons since we only have night mode
+            const themeToggle = document.getElementById('themeToggle');
+            const themeToggleMobile = document.getElementById('themeToggleMobile');
+            if (themeToggle) themeToggle.style.display = 'none';
+            if (themeToggleMobile) themeToggleMobile.style.display = 'none';
         });
     </script>
     <script src="chatbot-system.js"></script>
@@ -7583,6 +7446,7 @@
     <script src="voice-control.js"></script>
     <script src="browser-autopilot.js"></script>
     <script src="holiday-blog.js"></script>
+    <script src="dynamic-blogs.js"></script>
     <script src="news-feed.js"></script>
     
 

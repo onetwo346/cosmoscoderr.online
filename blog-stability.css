@@ -1,0 +1,73 @@
+/* Blog Post Stability Fixes */
+/* Ensures blog cards are stable and reliably clickable */
+
+.blog-post {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    user-select: none;
+    -webkit-user-select: none;
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.blog-post:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    animation: none !important;
+}
+
+.blog-post:active {
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+.blog-post h3,
+.blog-post .date,
+.blog-post p {
+    pointer-events: none;
+}
+
+.blog-post .read-more {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 2;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 247, 255, 0.3);
+}
+
+/* Ensure container doesn't block clicks during transitions */
+.blog-posts,
+#blogPostsContainer {
+    pointer-events: auto !important;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 768px) {
+    .blog-post {
+        -webkit-tap-highlight-color: rgba(0, 247, 255, 0.2);
+        touch-action: manipulation;
+    }
+    
+    .blog-post:active {
+        transform: scale(0.98) !important;
+    }
+}
+
+/* Prevent animation conflicts */
+.blog-post.scroll-reveal {
+    animation: none !important;
+}
+
+.blog-post.float-animation {
+    animation: none !important;
+}
+
+/* Ensure holiday blog stays stable too */
+#holidayBlogPost {
+    pointer-events: auto !important;
+}
