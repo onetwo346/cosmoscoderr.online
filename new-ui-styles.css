@@ -78,6 +78,12 @@ body.light-mode .hero-glow-2{
 body.light-mode .hero-eyebrow{color:#5a5a78}
 body.light-mode .hero-h1{color:#0a0a12}
 body.light-mode .hero-sub{color:#4a4a68}
+body.light-mode .hero-super-title{
+  background:linear-gradient(135deg,#ff6b35 0%,#ff7d4a 50%,#ff9a6c 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 body.light-mode .stat-card{
   background:rgba(0,0,0,0.03);
   border-color:rgba(0,0,0,0.1);
@@ -399,6 +405,18 @@ body.light-mode .theme-toggle:hover{
 
 /* left text */
 .hero-text{flex:1;max-width:580px}
+
+.hero-super-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.95rem;font-weight:800;
+  letter-spacing:.05em;text-transform:uppercase;
+  background:linear-gradient(135deg,#ff6b35 0%,#ff9a6c 50%,#ffb347 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:.85rem;
+  display:inline-block;
+}
 
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:.5rem;
