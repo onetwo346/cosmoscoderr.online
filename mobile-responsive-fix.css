@@ -79,24 +79,35 @@
         font-size: 0.85rem !important;
     }
 
-    /* Card scaling */
+    /* Card scaling - super compact mobile cards */
     .card,
     .app-card,
     .game-card,
     .stream-card,
-    .unified-social-card {
-        padding: 0.75rem !important;
-        margin: 0.5rem 0 !important;
+    .unified-social-card,
+    .featured-app-card,
+    .live-game-card,
+    .news-card,
+    .cosmic-card,
+    .promo-card,
+    .blog-post {
+        padding: 0.4rem !important;
+        margin: 0.25rem 0 !important;
+        min-height: unset !important;
+        max-height: none !important;
+        border-radius: 8px !important;
     }
 
-    /* Grid layouts */
+    /* Grid layouts - tighter gaps for compact cards */
     .grid,
     .apps-grid,
     .live-games-grid,
-    .live-streams-grid {
-        grid-template-columns: 1fr !important;
-        gap: 0.75rem !important;
-        padding: 0.5rem !important;
+    .live-streams-grid,
+    .featured-apps-grid,
+    .news-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.35rem !important;
+        padding: 0.25rem !important;
     }
 
     /* Navigation scaling */
@@ -151,20 +162,179 @@
         font-size: 0.75rem !important;
     }
 
-    /* Gaming and streaming cards */
+    /* Gaming and streaming cards - compact */
     .live-game-card,
     .stream-card {
-        padding: 0.75rem !important;
+        padding: 0.35rem !important;
+        min-height: unset !important;
     }
 
     .game-info h4,
     .stream-info h4 {
-        font-size: 1rem !important;
+        font-size: 0.7rem !important;
+        margin-bottom: 0.15rem !important;
     }
 
     .game-info p,
     .stream-info p {
-        font-size: 0.8rem !important;
+        font-size: 0.6rem !important;
+        margin-bottom: 0.25rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Compact card inner elements */
+    .featured-app-card .card-content,
+    .featured-app-card .app-title {
+        font-size: 0.65rem !important;
+        padding: 2px 5px !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    .featured-app-card .app-description,
+    .app-card .app-description {
+        font-size: 0.6rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.2rem !important;
+        -webkit-line-clamp: 2 !important;
+        line-clamp: 2 !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .featured-app-card .app-button,
+    .app-card .app-button,
+    .join-game-btn {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.6rem !important;
+        min-height: unset !important;
+        border-radius: 12px !important;
+    }
+
+    .featured-app-card .app-rating,
+    .app-card .app-rating {
+        margin-bottom: 0.2rem !important;
+        gap: 0.2rem !important;
+    }
+
+    .featured-app-card .stars,
+    .app-card .stars {
+        font-size: 0.55rem !important;
+    }
+
+    .featured-app-card .rating-text,
+    .app-card .rating-text {
+        font-size: 0.55rem !important;
+    }
+
+    .featured-app-card .app-category,
+    .app-card .app-category {
+        font-size: 0.5rem !important;
+        padding: 0.1rem 0.4rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    /* News cards compact */
+    .news-card .news-image {
+        height: 60px !important;
+    }
+
+    .news-card .news-content {
+        padding: 0.3rem !important;
+    }
+
+    .news-card .news-content h3,
+    .news-card .news-title {
+        font-size: 0.6rem !important;
+        margin-bottom: 0.15rem !important;
+        -webkit-line-clamp: 2 !important;
+        line-clamp: 2 !important;
+    }
+
+    .news-card .news-summary {
+        font-size: 0.55rem !important;
+        -webkit-line-clamp: 1 !important;
+        line-clamp: 1 !important;
+        margin-bottom: 0.2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .news-card .news-meta {
+        gap: 0.15rem !important;
+    }
+
+    .news-card .news-time,
+    .news-card .news-read-more {
+        font-size: 0.5rem !important;
+    }
+
+    .news-card .news-source {
+        font-size: 0.45rem !important;
+        padding: 0.1rem 0.3rem !important;
+    }
+
+    /* App card images compact */
+    .app-image,
+    .app-card .app-image {
+        height: 55px !important;
+    }
+
+    .app-card .app-content {
+        padding: 0.35rem !important;
+    }
+
+    .app-card .app-icon,
+    .game-icon {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.7rem !important;
+        border-radius: 6px !important;
+    }
+
+    .app-card .app-header {
+        gap: 0.3rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    .app-card .app-title {
+        font-size: 0.65rem !important;
+    }
+
+    .app-card .app-footer {
+        padding-top: 0.2rem !important;
+    }
+
+    /* Stream thumbnails compact */
+    .stream-thumbnail {
+        height: 50px !important;
+        font-size: 1rem !important;
+    }
+
+    .stream-preview {
+        margin-bottom: 0.25rem !important;
+    }
+
+    .live-indicator {
+        font-size: 0.5rem !important;
+        padding: 0.1rem 0.3rem !important;
+    }
+
+    .pulse-dot {
+        width: 4px !important;
+        height: 4px !important;
+    }
+
+    .game-stats {
+        margin-bottom: 0.25rem !important;
+    }
+
+    .players-count {
+        font-size: 0.55rem !important;
+    }
+
+    .game-level {
+        font-size: 0.5rem !important;
+        padding: 0.1rem 0.3rem !important;
     }
 
     /* Social feed scaling */
@@ -197,21 +367,33 @@
         transform: scale(0.8) !important;
     }
 
-    /* Cosmic elements */
+    /* Cosmic elements - compact */
     .cosmic-card,
     .cosmic-element {
-        padding: 0.75rem !important;
-        font-size: 0.85rem !important;
+        padding: 0.35rem !important;
+        font-size: 0.65rem !important;
     }
 
     /* App preview scaling */
     .app-preview {
-        padding: 0.75rem !important;
+        padding: 0.35rem !important;
     }
 
     /* Featured apps */
     .featured-app {
-        padding: 0.75rem !important;
+        padding: 0.35rem !important;
+    }
+
+    /* Featured apps section title */
+    .featured-apps-title {
+        font-size: 1rem !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .featured-apps-subtitle {
+        font-size: 0.65rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     /* Reduce spacing */
@@ -288,7 +470,41 @@
     }
 
     .card,
-    .app-card {
-        padding: 0.5rem !important;
+    .app-card,
+    .featured-app-card,
+    .live-game-card,
+    .stream-card,
+    .news-card,
+    .cosmic-card,
+    .unified-social-card,
+    .game-card,
+    .promo-card,
+    .blog-post {
+        padding: 0.3rem !important;
+        min-height: unset !important;
+    }
+
+    /* Even tighter grids on very small screens */
+    .grid,
+    .apps-grid,
+    .live-games-grid,
+    .live-streams-grid,
+    .featured-apps-grid,
+    .news-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.25rem !important;
+    }
+
+    .news-card .news-image {
+        height: 45px !important;
+    }
+
+    .app-image,
+    .app-card .app-image {
+        height: 40px !important;
+    }
+
+    .stream-thumbnail {
+        height: 40px !important;
     }
 }
